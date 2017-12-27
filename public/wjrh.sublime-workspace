@@ -1,0 +1,730 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"metadata",
+				"metadataObject"
+			],
+			[
+				"alm",
+				"albumArt"
+			],
+			[
+				"meta",
+				"metadataObject"
+			],
+			[
+				"dom",
+				"domVisualizer"
+			],
+			[
+				"audio",
+				"audioVisualizer"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"play",
+				"play_pauseButton"
+			],
+			[
+				"field",
+				"field_Point"
+			],
+			[
+				"electr",
+				"electricField1"
+			],
+			[
+				"elect",
+				"electricFieldMany"
+			],
+			[
+				"elec",
+				"electricConstant"
+			],
+			[
+				"with",
+				"withPosition"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"time",
+				"timeSinceLastFrame"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"new",
+				"newSocket"
+			],
+			[
+				"on",
+				"onCollision"
+			],
+			[
+				"last",
+				"lastFrame1"
+			],
+			[
+				"sprite",
+				"sprite2"
+			],
+			[
+				"spri",
+				"sprite2"
+			],
+			[
+				"is",
+				"isColliding"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"frame",
+				"frameTime"
+			],
+			[
+				"Physics",
+				"PhysicsEntity"
+			],
+			[
+				"node",
+				"node1"
+			],
+			[
+				"ne",
+				"nextLine"
+			],
+			[
+				"mes",
+				"message"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"text",
+				"text-indent"
+			],
+			[
+				"fin",
+				"finisher_id"
+			],
+			[
+				"Ass",
+				"assertEquals"
+			],
+			[
+				"turn",
+				"turnEntered"
+			],
+			[
+				"di",
+				"diceRoll"
+			],
+			[
+				"Pr",
+				"PriorityHoldTest"
+			],
+			[
+				"P",
+				"PriorityHoldTest"
+			],
+			[
+				"pri",
+				"priority1"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"Tre",
+				"TreasurePotB"
+			],
+			[
+				"pi",
+				"piecesToGive"
+			],
+			[
+				"num",
+				"numberOfPieces"
+			],
+			[
+				"tile",
+				"tileRanges"
+			],
+			[
+				"toke",
+				"token_owner"
+			],
+			[
+				"token",
+				"token_id"
+			],
+			[
+				"St",
+				"Strategy"
+			],
+			[
+				"Str",
+				"Strategy_Default"
+			],
+			[
+				"player",
+				"player_id"
+			],
+			[
+				"paly",
+				"player_id"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"pos",
+				"pos_y"
+			],
+			[
+				"pox",
+				"pos_x"
+			],
+			[
+				"sp",
+				"spritesheet"
+			],
+			[
+				"draw",
+				"drawImage"
+			],
+			[
+				"Sp",
+				"SpriteSheet"
+			],
+			[
+				"fram",
+				"frame_height"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"name",
+				"nameTable"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"user",
+				"user_email"
+			],
+			[
+				"error",
+				"error_log"
+			],
+			[
+				"stored",
+				"stored_hash"
+			],
+			[
+				"server",
+				"server_interface"
+			],
+			[
+				"data",
+				"dataType"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/connorwiniarczyk/Dropbox/wjrh/main.js",
+			"settings":
+			{
+				"buffer_size": 1391,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/connorwiniarczyk/Dropbox/wjrh/node_modules/metadata.js",
+			"settings":
+			{
+				"buffer_size": 1963,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "{\n\t\"track\":\n\t{\n\t\t\"name\":\"Rocket Man\",\n\t\t\"mbid\":\"4c2a08bd-26df-4e68-835a-5bc8ff9bcf8a\",\n\t\t\"url\":\"https://www.last.fm/music/Elton+John/_/Rocket+Man\",\n\t\t\"duration\":\"288000\",\"streamable\":{\"#text\":\"0\",\"fulltrack\":\"0\"\n\t},\n\t\"listeners\":\"160470\",\n\t\"playcount\":\"896150\",\n\t\"artist\":\n\t{\n\t\t\"name\":\"Elton John\",\n\t\t\"mbid\":\"b83bc61f-8451-4a5d-8b8e-7e9ed295e822\",\n\t\t\"url\":\"https://www.last.fm/music/Elton+John\"\n\t},\n\t\"album\":\n\t{\n\t\t\"artist\":\"Elton John\",\n\t\t\"title\":\"Greatest Hits\",\n\t\t\"mbid\":\"de402eab-3c08-4962-b02f-0790d4f35a26\",\n\t\t\"url\":\"https://www.last.fm/music/Elton+John/Greatest+Hits\",\n\t\t\"image\":\n\t\t[\n\t\t\t{\"#text\":\"https://lastfm-img2.akamaized.net/i/u/34s/6006e5ff83244d8fba4ec1709820a6f5.png\",\"size\":\"small\"},\n\t\t\t{\"#text\":\"https://lastfm-img2.akamaized.net/i/u/64s/6006e5ff83244d8fba4ec1709820a6f5.png\",\"size\":\"medium\"},\n\t\t\t{\"#text\":\"https://lastfm-img2.akamaized.net/i/u/174s/6006e5ff83244d8fba4ec1709820a6f5.png\",\"size\":\"large\"},\n\t\t\t{\"#text\":\"https://lastfm-img2.akamaized.net/i/u/300x300/6006e5ff83244d8fba4ec1709820a6f5.png\",\"size\":\"extralarge\"}],\"@attr\":{\"position\":\"16\"}},\"toptags\":{\"tag\":[{\"name\":\"classic rock\",\"url\":\"https://www.last.fm/tag/classic+rock\"},{\"name\":\"70s\",\"url\":\"https://www.last.fm/tag/70s\"},{\"name\":\"pop\",\"url\":\"https://www.last.fm/tag/pop\"},{\"name\":\"singer-songwriter\",\"url\":\"https://www.last.fm/tag/singer-songwriter\"},{\"name\":\"rock\",\"url\":\"https://www.last.fm/tag/rock\"}]}}}",
+			"settings":
+			{
+				"buffer_size": 1392,
+				"line_ending": "Unix",
+				"name": "{"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/SASS Build/SASS - Compressed.sublime-build",
+					""
+				],
+				[
+					"Packages/SASS Build/SASS.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/SASS Build/SASS.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "package",
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Build With: SASS"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/connorwiniarczyk/Dropbox/wjrh"
+	],
+	"file_history":
+	[
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/Scripts/render.js",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/Scripts/music.js",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/Scripts/script.js",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/index.html",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/stylesheets/fonts.sass",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/stylesheets/main.sass",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/template.handlebars",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/main.js",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/stylesheets/helper_classes.sass",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/Scripts/new_visualizer.js",
+		"/Users/connorwiniarczyk/Dropbox/wjrh/public/Scripts/audio_visualizer.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/main.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/Scripts/audio_visualizer.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/Scripts/wjrh_source_for_reference.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/stylesheets/fonts.sass",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/fonts.sass",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/script.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/music.js",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/index.html",
+		"/C/Users/winiarcc/Dropbox/wjrh/public/main.sass",
+		"/Users/connorwiniarczyk/Documents/Fall2017/Haskell/tut.hs",
+		"/Users/connorwiniarczyk/Documents/Fall2017/Haskell/q.hs",
+		"/Users/connorwiniarczyk/Documents/Fall2017/wjrh/main.js",
+		"/Users/connorwiniarczyk/Documents/Fall2017/wjrh/test.js",
+		"/Users/connorwiniarczyk/Documents/Fall2017/Dig1/homework_03.txt",
+		"/Users/connorwiniarczyk/Documents/Fall2017/Dig1/Lab_03/lab03/Simulation/lab_03.tv",
+		"/Users/connorwiniarczyk/Documents/Fall2017/wjrh/index.html",
+		"/Users/connorwiniarczyk/Documents/Fall2017/wjrh/script.js",
+		"/Users/connorwiniarczyk/Dropbox/7segment.tv",
+		"/Users/connorwiniarczyk/Documents/Fall2017/Dig1/bool_tester.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/public/Input.js",
+		"/Users/connorwiniarczyk/Documents/Projects/server/node_modules/test_module.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/public/UtilityFunctions.js",
+		"/Users/connorwiniarczyk/Documents/Projects/server/node_modules/Sprite.js",
+		"/Users/connorwiniarczyk/Documents/Projects/server/public/Sprite.js",
+		"/Users/connorwiniarczyk/Documents/Projects/server/public/client.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/public/Sprite.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/main.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/public/Player.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/public/physics.js",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/index.html",
+		"/Users/connorwiniarczyk/Documents/Projects/phys_engine/physics.js",
+		"/Users/connorwiniarczyk/Documents/Projects/jsplayer/player_test.js",
+		"/Users/connorwiniarczyk/Downloads/Listings/listing-3.js",
+		"/Users/connorwiniarczyk/Library/Application Support/Sublime Text 3/Packages/User/sass.sublime-build",
+		"/Users/connorwiniarczyk/Documents/Projects/recipes/.sassbuilder-config",
+		"/Users/connorwiniarczyk/Dropbox/Projects/Satirical News/views/home.handlebars",
+		"/Users/connorwiniarczyk/Dropbox/Projects/Satirical News/main.js",
+		"/Users/connorwiniarczyk/Documents/Projects/recipes/main.js",
+		"/Users/connorwiniarczyk/Documents/Projects/recipes/views/layouts/main.handlebars",
+		"/Users/connorwiniarczyk/Documents/Projects/recipes/public/test.html",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/steering_test.ks",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/circularize.ks",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/launch.ks",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/orbit.ks",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/lower_atmosphere.ks",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/hover.ks",
+		"/Users/connorwiniarczyk/Dropbox/Projects/NeuralNet/Synaptic_Test.js",
+		"/Users/connorwiniarczyk/Library/Application Support/Steam/steamapps/common/Kerbal Space Program/Ships/Script/first.ks",
+		"/Volumes/NO NAME/install/gtk/install.bat",
+		"/Volumes/NO NAME/live/vmlinuz",
+		"/Volumes/KALI-INSTAL/efi/boot/bootX64.efi",
+		"/Volumes/KALI-INSTAL/efi/boot/boot.efi",
+		"/Volumes/NO NAME/install/install.bat",
+		"/Volumes/KALI/casper-rw",
+		"/Users/connorwiniarczyk/Documents/extension/manifest.json",
+		"/Users/connorwiniarczyk/Dropbox/Project_3/Hold.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_3/Tile.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_3/ConfigReader.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_3/config.properties",
+		"/Users/connorwiniarczyk/Dropbox/Project_3/TileGenerator.java",
+		"/Users/connorwiniarczyk/Documents/Xcode/Hello_World/Podfile",
+		"/Users/connorwiniarczyk/Documents/Projects/chat/package/package.json",
+		"/Users/connorwiniarczyk/Documents/Projects/chat/main.css",
+		"/Users/connorwiniarczyk/Documents/Projects/GitTest/hello-world/README.md",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Tile.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/BoardTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Board.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/TreasurePotA.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Dice.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/DiceTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Player.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/config.properties",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/TokenTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Token.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/PriorityHold.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/package.bluej",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/PriorityHoldTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/PriorityHoldTest.ctxt",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/ConfigReaderTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/ConfigReader.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/PositionTest.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Position.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Strategy.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Output.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Main.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Strategy_Random.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Strategy_Default.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/LastTile.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/JStack.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/TreasurePotB.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/TileGenerator.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/HoldQ.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/Hold.java",
+		"/Users/connorwiniarczyk/Dropbox/Project_2/AI.java",
+		"/D/XAMPP/htdocs/JS_Chat/routes/script.js",
+		"/D/XAMPP/htdocs/JS_Chat/routes/index.html",
+		"/D/XAMPP/htdocs/JS_Chat/routes/index.js",
+		"/D/XAMPP/htdocs/JS_Chat/app.js",
+		"/D/XAMPP/htdocs/JS_Chat/routes/main.css",
+		"/D/XAMPP/htdocs/JS_Chat/index.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/player.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/sprite.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/script.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/framework.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/index.html",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/main.css",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/input.js",
+		"/C/Users/Connor Winiarczyk/Dropbox/JavscriptGame/class_test.js",
+		"/D/XAMPP/htdocs/File_Rename_Script/file_rename.php",
+		"/D/XAMPP/htdocs/File_Rename_Script/nameTable.php",
+		"/D/XAMPP/htdocs/File_Rename_Script/test_2.txt",
+		"/D/Documents/Projects/File_Rename_Script/file_rename.php",
+		"/D/Documents/Projects/File_Rename_Script/test_file.txt",
+		"/D/XAMPP/htdocs/Fact_Checker_Improved/Friends/script.ljs",
+		"/D/XAMPP/htdocs/Fact_Checker_Improved/stylesheets/navbar.sass",
+		"/D/XAMPP/htdocs/Fact_Checker_Improved/script.js",
+		"/D/XAMPP/htdocs/Fact_Checker_Improved/stylesheets/main.sass"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"console.log",
+			"songdata",
+			"audioElement",
+			"w",
+			"output",
+			"let",
+			"console",
+			"poke",
+			"players",
+			"PriorityHold",
+			"board1",
+			"Main.board",
+			"player",
+			"Player",
+			"player",
+			"Player",
+			"player",
+			"8",
+			"\t\t\n",
+			"();\n",
+			">",
+			"center",
+			"Home",
+			"inputs",
+			"test"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/connorwiniarczyk/Dropbox/wjrh/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1391,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1102,
+								1102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 73.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/connorwiniarczyk/Dropbox/wjrh/node_modules/metadata.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 331.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1392,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								925,
+								925
+							]
+						],
+						"settings":
+						{
+							"auto_name": "{",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 102.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/SASS Build/SASS.sublime-build",
+	"project": "wjrh.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 161.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
