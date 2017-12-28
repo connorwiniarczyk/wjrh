@@ -49,7 +49,7 @@ let lastFmEvents = bacon.fromEvent(eventEmitter, "lastFmResponse")
 
 let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
 
-	const defaultImage = "http://localhost:8000/resources/Art/default.jpg"
+	const defaultImage = "http://45.55.38.183/resources/Art/default.jpg"
 	let data = {teal: teal, lastFm: lastFm}
 
 	return {
@@ -75,9 +75,10 @@ let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
 	}
 })
 
+//TODO: delete
 const pickBestImage = function(teal, lastFm){
 
-	const defaultImage = "http://localhost:8000/resources/Art/default.jpg"
+	const defaultImage = "http://45.55.38.183/resources/Art/default.jpg"
 
 	if(lastFm instanceof Error) {
 		if(teal.episode.image != null) return teal.episode.image

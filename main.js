@@ -38,8 +38,8 @@ app.get('/api/:method', function(req, res){
 
 app.use('/', express.static('public'));
 
-// start the server on port 8000
-const server = app.listen(8000);
+// start the server on port 80
+const server = app.listen(80);
 io.listen(server);
 
 
