@@ -59,8 +59,31 @@ window.onresize = function(){
 const makeColorScheme = function(img){
 	var swatches = new Vibrant(img).swatches();
 
+	console.log(swatches)
+
 	return {
-		primary: swatches.LightVibrant.getHex(),
-		secondary: swatches.DarkMuted.getHex()
-	};
+		primary: priority([
+			"LightVibrant",
+			"Vibrant",
+			"DarkVibrant"
+		])(swatches).getHex(),
+		secondary: priority([
+			"DarkMuted",
+			"Muted",
+			"LightMuted",
+			"DarkVibrant"
+		])(swatches).getHex()
+	}
+}
+
+Object.resolve = function(obj, path) {
+	return path.split('.').reduce((prev, cur) => {
+		return prev ? prev[cur] : undefined
+	}, obj || self)
+}
+
+const priority = (paths, Default) => obj => {
+	return paths.reduce((prev, cur) => {
+		return prev || Object.resolve(obj, cur)
+	}, Object.resolve(obj, paths[0])) || Default
 }
