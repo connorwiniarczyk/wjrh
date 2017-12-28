@@ -49,14 +49,29 @@ let lastFmEvents = bacon.fromEvent(eventEmitter, "lastFmResponse")
 
 let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
 
-	let error = lastFm instanceof Error
+	const defaultImage = "http://localhost:8000/resources/Art/default.jpg"
+	let data = {teal: teal, lastFm: lastFm}
 
 	return {
-		songname: lastFm.track.name,
-		artistname: lastFm.track.artist.name,
-		title: teal.program.name,
-		author: teal.program.author,
-		image: pickBestImage(teal, lastFm)
+		songname: priority([
+			"lastFm.track.name",
+			"teal.track.title"
+		], "")(data),
+		artistname: priority([
+			"lastFm.track.artist.name",
+			"teal.track.artist"
+		], "")(data),
+		title: priority([
+			"teal.program.name"
+		], "RoboDJ's greatest hits")(data),
+		author: priority([
+			"teal.program.author"
+		], "RoboDJ")(data),
+		image: priority([
+			"lastFm.track.album.image[3].#text",
+			"teal.episode.image",
+			"teal.program.image"
+		], defaultImage)(data)
 	}
 })
 
@@ -88,4 +103,9 @@ exports.getData = function(key) {
 
 exports.onData = func => metadata.onValue(func)
 
+const priority = (paths, Default) => obj => {
+	return paths.reduce((prev, cur) => {
+		return prev || _.get(obj, cur)
+	}, _.get(obj, paths[0])) || Default
+}
 console.log(exports.getData())
