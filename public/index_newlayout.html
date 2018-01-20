@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+	<title>WJRH</title>
+
+	<script src="api/getScript?script=vibrant" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="newlayout.css">
+</head>
+<body>
+	<div class="page">
+		<image class="album-art" src="api/artwork"></image>
+
+		<div class="song-info">
+			<span>Life Itself</span>
+			<span>Glass Animals</span>
+			<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco </span>
+		</div>
+
+		<div class="controls">
+			<button class="play-pause-button pause"></button>
+		</div>
+
+		<div class="visualizer">
+			<script src="api/getScript?script=visualizer" type="text/javascript" data-loadhere="true" data-audioId="audio"></script>
+		</div>
+	</div>
+
+	<div class="page">
+		secondpage
+	</div>
+
+	<audio id="audio" src="http://www.wjrh.org:8000/WJRHlow" crossorigin="anonymous"></audio>
+</body>
+</html>

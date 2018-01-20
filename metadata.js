@@ -37,10 +37,12 @@ setInterval(() => {
 	.catch(error => eventEmitter.emit("tealError", error))
 }, 100)
 
+eventEmitter.on("tealError", error => console.log(error.message))
+
 let tealEvents = bacon.fromEvent(eventEmitter, "tealResponse").skipDuplicates(_.isEqual)
 
 tealEvents.onValue(newData => {
-	lastFmCall(newData.track.title, newData.track.artist)
+	lastFmCall(_.get(newData,"track.title"), _.get(newData,"track.artist"))
 	.then(body => eventEmitter.emit("lastFmResponse", body))
 	.catch(error => eventEmitter.emit("lastFmResponse", error))
 })

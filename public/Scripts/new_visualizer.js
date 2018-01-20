@@ -1,5 +1,5 @@
 //returns an array of dom elements to be used as a visualizer
-const createDomVisualizer = function( color ){
+const createDomVisualizer = function(color){
 	const elementToAppend = document.getElementById("new-visualizer");
 
 	let elements = [];

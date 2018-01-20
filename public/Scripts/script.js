@@ -26,6 +26,8 @@ window.onload = function(){
 		document.getElementById("Album-Art").style.backgroundRepeat = "no-repeat"
 	});
 
+	socket.on("restart", () => console.log("restart"))
+
 	window.onresize();
 	play_pauseButton = document.getElementById("play-pause-button");
 
@@ -58,8 +60,6 @@ window.onresize = function(){
 
 const makeColorScheme = function(img){
 	var swatches = new Vibrant(img).swatches();
-
-	console.log(swatches)
 
 	return {
 		primary: priority([
