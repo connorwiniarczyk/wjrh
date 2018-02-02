@@ -16,8 +16,10 @@ const lastFM_ApiString = function(trackName, artistName){
 
 const tealCall = function() {
 	return new Promise((resolve, reject) => {
-			request(tealURL, {json: true}, function(err, res, body){
-			resolve(body)
+		request(tealURL, {json: true}, function(err, res, body){
+			if(err) resolve(err)
+			else if(body.event == "episode-end") resolve({})
+			else resolve(body)
 		})
 	})
 }
@@ -55,25 +57,27 @@ let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
 	let data = {teal: teal, lastFm: lastFm}
 
 	return {
-		songname: priority([
+		songname: chooseFrom([
 			"lastFm.track.name",
 			"teal.track.title"
-		], "")(data),
-		artistname: priority([
+		], "Song Unknown")(data),
+		artistname: chooseFrom([
 			"lastFm.track.artist.name",
 			"teal.track.artist"
-		], "")(data),
-		title: priority([
+		], "Artist Unknown")(data),
+		title: chooseFrom([
 			"teal.program.name"
 		], "RoboDJ's greatest hits")(data),
-		author: priority([
+		author: chooseFrom([
 			"teal.program.author"
 		], "RoboDJ")(data),
-		image: priority([
+		image: chooseFrom([
 			"lastFm.track.album.image[3].#text",
 			"teal.episode.image",
 			"teal.program.image"
-		], defaultImage)(data)
+		 ], "https://media.giphy.com/media/kIjnPxW8ESIqQ/giphy.gif"
+		// "https://media.giphy.com/media/xUA7b0eVRL7rs06iK4/giphy.gif"
+		)(data)
 	}
 })
 
@@ -106,7 +110,7 @@ exports.getData = function(key) {
 
 exports.onData = func => metadata.onValue(func)
 
-const priority = (paths, Default) => obj => {
+const chooseFrom = (paths, Default) => obj => {
 	return paths.reduce((prev, cur) => {
 		return prev || _.get(obj, cur)
 	}, _.get(obj, paths[0])) || Default

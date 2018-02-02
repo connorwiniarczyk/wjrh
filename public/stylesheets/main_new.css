@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "slendergrey";
+  src: url("/fonts/slendergrey/Slendergreyregular.ttf"); }
+@font-face {
+  font-family: "ensure";
+  src: url("/fonts/ensure/Ensure-Medium.otf"); }
+@font-face {
+  font-family: "asenine";
+  src: url("/fonts/asenine/ASENINE_.ttf"); }
+@font-face {
+  font-family: "caviar_dreams";
+  src: url("/fonts/caviar_dreams/CaviarDreams.ttf"); }
+@font-face {
+  font-family: "gravity";
+  src: url("/fonts/gravity/Gravity-Regular.otf"); }
+.page {
+  height: 100vh;
+  width: 100%; }
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center; }
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column; }
+
+.template {
+  display: none; }
+
+.visualizer {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  z-index: -1;
+  position: fixed;
+  align-items: flex-end; }
+
+.visualizer-node {
+  background: #852830;
+  width: 6px;
+  height: 50px;
+  border-radius: 3px; }
+
+.paused {
+  background: url("/graphics/play-button.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity, 0.5s;
+  width: 75px;
+  height: 75px;
+  transition: transform 0.1s ease-in-out; }
+  .paused:hover {
+    transform: scale(1.1); }
+
+.play {
+  background: url("/graphics/pause-round-button.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity, 0.5s;
+  width: 75px;
+  height: 75px;
+  transition: transform 0.1s ease-in-out; }
+  .play:hover {
+    transform: scale(1.1); }
+
+.loading {
+  background: url("/graphics/pause-round-button.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity, 0.5s;
+  width: 75px;
+  height: 75px;
+  transition: transform 0.1s ease-in-out; }
+  .loading:hover {
+    transform: scale(1.1); }
+
+.play-pause-button {
+  background: url("/graphics/play-button.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity, 0.5s;
+  width: 75px;
+  height: 75px;
+  transition: transform 0.1s ease-in-out; }
+  .play-pause-button:hover {
+    transform: scale(1.1); }
+
+#pause-button-toggler {
+  display: none; }
+  #pause-button-toggler:checked + .play-pause-button {
+    background: url("/graphics/pause-button.svg");
+    background-size: cover;
+    background-repeat: no-repeat; }
+
+/*# sourceMappingURL=main_new.css.map */

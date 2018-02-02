@@ -26,7 +26,7 @@ button:active {
 
 	/*position: absolute;*/
 
-	/*grid-template-rows: 10vh auto 15vh 10vh;*/
+	/*grid-template-rows: auto auto auto;*/
 	/*grid-template-areas: "song-info" "image" "visualizer" "controls";*/
 }
 
@@ -35,31 +35,33 @@ button:active {
 	grid-template-rows: auto auto auto;
 	grid-template-areas: "image" "song-info" "visualizer";
 
-	margin-bottom: 73px;
+	/*margin-bottom: 73px;*/
 
-	position: absolute;
-	margin-bottom: 100vh;
+	/*position: absolute;*/
+	/*margin-bottom: 100vh;*/
 
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
+	/*top: 0px;*/
+	/*left: 0px;*/
+	/*right: 0px;*/
+	/*bottom: 0px;*/
 
 }
 
 .page:nth-of-type(2) {
-	background: red;
+	background: blue;
 }
 
 .album-art {
 	width: 100%;
 	grid-area: image;
 	background: #10EDE0;
+
+	border: 1px solid black;
 }
 
 .controls {
 
-	/*display: none;*/
+	display: none;
 	--control-height: 73px;
 
 	text-align: center;
@@ -102,7 +104,7 @@ button:active {
 
 .visualizer {
 	grid-area: visualizer;
-	/*background: #214793;*/
+	background: #214793;
 
 	display: flex;
 	justify-content: space-evenly;

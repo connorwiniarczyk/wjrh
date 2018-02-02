@@ -17,7 +17,7 @@ const path = require('path');
 const api = require("./api");
 
 app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname, 'public/index_newlayout.html'));
+	res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.get('/api/:method', function(req, res){
@@ -39,7 +39,7 @@ app.get('/api/:method', function(req, res){
 app.use('/', express.static('public'));
 
 // start the server on port 80 
-const server = app.listen(8000, function(){
+const server = app.listen(80, function(){
 	if(process.send) process.send('online')
 })
 io.listen(server);
