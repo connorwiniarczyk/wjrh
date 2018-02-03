@@ -5,11 +5,15 @@
 	<title>WJRH</title>
 
 	<script src="api/getScript?script=vibrant" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="newlayout.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/main_new.css">
 </head>
 <body>
 	<div class="page">
-		<image class="album-art" src="api/artwork"></image>
+		<image class="album-art" src="api/artwork">
+			<div class="mouse-over">
+				<div id="play-pause-button" class="play-pause-button"></div>
+			</div>
+		</image>
 
 		<div class="song-info">
 			<span>Life Itself</span>
@@ -19,9 +23,9 @@
 			quis nostrud exercitation ullamco </span>
 		</div>
 
-		<div class="controls">
+		<!-- <div class="controls">
 			<button class="play-pause-button pause"></button>
-		</div>
+		</div> -->
 
 		<div class="visualizer">
 			<script src="api/getScript?script=visualizer" type="text/javascript" data-loadhere="true" data-audioId="audio"></script>
