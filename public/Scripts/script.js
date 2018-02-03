@@ -5,53 +5,44 @@ let visualizer;
 
 let socket;
 
-window.onload = function(){
+//Global Event Streams
+let metadata, artwork, colorScheme
 
+// let img = document.createElement("img")
+
+
+window.addEventListener("load", function(){
+	window.onresize();
 	socket = io();
 
-	socket.on("newData", renderSongInfo);
-	socket.on("UpdateArtwork", function(url){
-		var img = document.createElement("img");
-		img.setAttribute('src', "/api/artwork?" + new Date().getTime());
+	let img = document.createElement("img")
 
-		// img.setAttribute('src', 'api/artwork?date=' + new Date().getTime());
+	metadata = Bacon.fromEvent(socket, "newData")
+	artwork = Bacon.fromEvent(socket, "UpdateArtwork")
+	colorScheme = Bacon.fromEvent(img, "load").map(img => makeColorScheme(img.target)).log()
 
-		img.addEventListener('load', function(){
-			let colorScheme = makeColorScheme(img);
-			visualizer.setColor(colorScheme.primary);
-			document.getElementById("new-visualizer").style.background = colorScheme.secondary;
-		});
-		document.getElementById("Album-Art").style.background = "url("+ url +")"
-		document.getElementById("Album-Art").style.backgroundSize = "cover"
-		document.getElementById("Album-Art").style.backgroundRepeat = "no-repeat"
-	});
 
-	socket.on("restart", () => console.log("restart"))
+	metadata.onValue(renderSongInfo)
+	artwork.onValue(url => img.setAttribute('src', "/api/artwork?" + new Date().getTime()))
+	artwork.onValue(url => {
+		document.getElementsByClassName("album-art")[0].style.background = "url("+ url +")"
+		document.getElementsByClassName("album-art")[0].style.backgroundSize = "cover"
+		document.getElementsByClassName("album-art")[0].style.backgroundRepeat = "no-repeat"
+	})
 
-	window.onresize();
+	colorScheme.onValue(scheme => document.getElementById("html").style.background = scheme.secondary)
+
+
 	play_pauseButton = document.getElementById("play-pause-button");
 
-	music = new Music("http://www.wjrh.org:8000/WJRH").withController(play_pauseButton);
-	music.loadMetaData(function(){
-		// console.log(music.metadata);
-		// renderSongInfo(music.metadata);
-	});
+	// music = new Music("http://www.wjrh.org:8000/WJRH").withController(play_pauseButton);
 
-	canvas = document.getElementById("visualizer");
-	visualizer = new audioVisualizer(
-		music.Audio
-	).withDomVisualizer(createDomVisualizer( "#333" ));
-
-	play_pauseButton.onclick = function(){
-		music.togglePaused();
-		visualizer.play();
-	};
-};
+	play_pauseButton.onclick = () => music.togglePaused()
+});
 
 window.onresize = function(){
-	// renderSongInfo({title: "Misc. Songs"});
-	var player = document.getElementById("Album-Art");
-	var songInfo = document.getElementById("song-info");
+	var player = document.getElementsByClassName("album-art")[0];
+	var songInfo = document.getElementsByClassName("song-info")[0];
 
 	player.style.height = "" + player.getBoundingClientRect().width + "px";
 	songInfo.style.height = "" + player.getBoundingClientRect().width + "px";
@@ -62,12 +53,12 @@ const makeColorScheme = function(img){
 	var swatches = new Vibrant(img).swatches();
 
 	return {
-		primary: priority([
+		primary: chooseFrom([
 			"LightVibrant",
 			"Vibrant",
 			"DarkVibrant"
 		])(swatches).getHex(),
-		secondary: priority([
+		secondary: chooseFrom([
 			"DarkMuted",
 			"Muted",
 			"LightMuted",
@@ -82,7 +73,7 @@ Object.resolve = function(obj, path) {
 	}, obj || self)
 }
 
-const priority = (paths, Default) => obj => {
+const chooseFrom = (paths, Default) => obj => {
 	return paths.reduce((prev, cur) => {
 		return prev || Object.resolve(obj, cur)
 	}, Object.resolve(obj, paths[0])) || Default

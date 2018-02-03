@@ -57,22 +57,24 @@ AudioVisualizer.getDraw = visualizer => data => {
 }
 
 AudioVisualizer.createDomVisualizer = function(color){
-	let output = new Array(20).fill().map(() => {
+	let output = new Array(50).fill().map(() => {
 		let node = document.createElement("div")
 		node.className = "visualizer-node"
+		node.style.background = color
 		return node
 	})
 
 	return output
 }
 
-
-window.onload = function(){
+window.addEventListener("load", function(){
 	console.log(AudioVisualizer.options)
 	let elements = AudioVisualizer.createDomVisualizer("#333")
 	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
 
-	let asdf = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
-	asdf.draw = AudioVisualizer.getDraw(elements)
-	asdf.play()
-}
+	primary = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
+	primary.draw = AudioVisualizer.getDraw(elements)
+	primary.play()
+
+	colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
+});

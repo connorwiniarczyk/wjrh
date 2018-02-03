@@ -17,7 +17,7 @@ const path = require('path');
 const api = require("./api");
 
 app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname, 'public/index.html'));
+	res.sendFile(path.join(__dirname, 'public/index_newlayout.html'));
 });
 
 app.get('/api/:method', function(req, res){

@@ -5,7 +5,7 @@
  * @param      {Object}  metadata  The metadata we want to render
  */
 const renderSongInfo = function(metadata){
-	container = document.getElementById("song-info");
+	container = document.getElementsByClassName("song-info")[0];
 	container.innerHTML = "";
 
 	var html = document.getElementById("template").innerHTML;
@@ -16,4 +16,4 @@ const renderSongInfo = function(metadata){
 	songInfo.innerHTML = template(metadata);
 
 	container.appendChild(songInfo);
-};
+}

@@ -4,6 +4,7 @@ html {
 
 body {
 	background: #7F56CB;
+	/*background: blue;*/
 }
 
 button {
@@ -15,7 +16,7 @@ button:active {
 }
 
 .page {
-	/*display: grid;*/
+	display: grid;
 
 	/*padding: 20px;*/
 
