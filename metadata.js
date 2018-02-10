@@ -115,4 +115,3 @@ const chooseFrom = (paths, Default) => obj => {
 		return prev || _.get(obj, cur)
 	}, _.get(obj, paths[0])) || Default
 }
-console.log(exports.getData())
