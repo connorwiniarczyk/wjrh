@@ -1,10 +1,12 @@
 const bacon = require("baconjs")
 const request = require("request")
 const events = require("events")
+const fetch = require("node-fetch")
 const _ = require("lodash") // Utility Functions
 const eventEmitter = new events.EventEmitter()
 
 const tealURL = "https://api.teal.cool/organizations/wjrh/latest"
+const iceCastURL = "http://www.wjrh.org:8000/status-json.xsl"
 
 const lastFM_ApiString = function(trackName, artistName){
 	const LASTFM_API_KEY = "14cacc2d28210dcd318ffa2085778844"
@@ -14,46 +16,53 @@ const lastFM_ApiString = function(trackName, artistName){
 	+ "&format=json"
 }
 
-const tealCall = function() {
-	return new Promise((resolve, reject) => {
-		request(tealURL, {json: true}, function(err, res, body){
-			if(err) resolve(err)
-			else if(body.event == "episode-end") resolve({})
-			else resolve(body)
-		})
-	})
+const tealCall = function(){
+	fetch(tealURL)
+	.then(res => res.json())
+	.then(body => body.event == "episode-end" ? null : body)
+	.then(data => eventEmitter.emit("tealResponse", data))
+	.catch(err => eventEmitter.emit("tealResponse", err))
 }
 
-const lastFmCall = function(trackName, artistname){
-	return new Promise((resolve, reject) => {
-		request(lastFM_ApiString(trackName, artistname), {json: true}, function(err, res, body){
-			if(err) reject(err)
-			else resolve(body)
-		})
+const iceCastCall = function(){
+	fetch(iceCastURL)
+	.then(res => res.json())
+	.then(data => data.icestats.source[0].title.split(" - "))
+	.then(data => data.map(element => element.replace(/\[.*?\]/, "")))
+	.then(data => {
+		return {
+			track: {
+				title: data[1],
+				artist: data[0]
+			}
+		}
 	})
+	.then(data => eventEmitter.emit("iceCastResponse", data))
+	.catch(err => eventEmitter.emit("iceCastResponse", err))
 }
 
-setInterval(() => {
-	tealCall()
-	.then(body => eventEmitter.emit("tealResponse", body))
-	.catch(error => eventEmitter.emit("tealError", error))
-}, 100)
-
-eventEmitter.on("tealError", error => console.log(error.message))
-
-let tealEvents = bacon.fromEvent(eventEmitter, "tealResponse").skipDuplicates(_.isEqual)
-
-tealEvents.onValue(newData => {
-	lastFmCall(_.get(newData,"track.title"), _.get(newData,"track.artist"))
+const lastFmCall = function(trackName, artistName){
+	fetch(lastFM_ApiString(trackName || "", artistName || "")) // 
+	.then(res => res.json())
 	.then(body => eventEmitter.emit("lastFmResponse", body))
-	.catch(error => eventEmitter.emit("lastFmResponse", error))
+}
+
+setInterval(tealCall, 100)
+setInterval(iceCastCall, 100)
+
+const tealEvents = bacon.fromEvent(eventEmitter, "tealResponse")
+const iceCastEvents = bacon.fromEvent(eventEmitter, "iceCastResponse")
+const lastFmEvents = bacon.fromEvent(eventEmitter, "lastFmResponse")
+
+const nowPlaying = tealEvents.zip(iceCastEvents, function(teal, iceCast){
+	return teal || iceCast
+}).skipDuplicates(_.isEqual)
+
+nowPlaying.onValue(newData => {
+	lastFmCall(_.get(newData,"track.title"), _.get(newData,"track.artist"))
 })
 
-let lastFmEvents = bacon.fromEvent(eventEmitter, "lastFmResponse")
-
-let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
-
-	const defaultImage = "http://45.55.38.183/resources/Art/default.jpg"
+const metadata = nowPlaying.zip(lastFmEvents, function(teal, lastFm){
 	let data = {teal: teal, lastFm: lastFm}
 
 	return {
@@ -76,27 +85,9 @@ let metadata = tealEvents.zip(lastFmEvents, function(teal, lastFm){
 			"teal.episode.image",
 			"teal.program.image"
 		 ], "https://media.giphy.com/media/kIjnPxW8ESIqQ/giphy.gif"
-		// "https://media.giphy.com/media/xUA7b0eVRL7rs06iK4/giphy.gif"
 		)(data)
 	}
 })
-
-//TODO: delete
-const pickBestImage = function(teal, lastFm){
-
-	const defaultImage = "http://45.55.38.183/resources/Art/default.jpg"
-
-	if(lastFm instanceof Error) {
-		if(teal.episode.image != null) return teal.episode.image
-		else if(teal.program.image != null) return teal.program.image
-		else return defaultImage
-	} else {
-		if(lastFm.track == null) return defaultImage
-		else if(lastFm.track.album == null) return defaultImage
-		else if(lastFm.track.album.image == null) return defaultImage
-		else return lastFm.track.album.image[3]['#text']
-	}
-}
 
 metadata.log()
 
