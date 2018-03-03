@@ -27,8 +27,8 @@ const apiMethods = {
 };
 
 const scripts = {
-	"vibrant": "public/Scripts/vibrant.js",
-	"handlebars": "public/Scripts/handlebars.js",
-	"socket.io": "public/Scripts/socket.io.js",
+	"vibrant": "public/Scripts/Dependencies/vibrant.js",
+	"handlebars": "public/Scripts/Dependencies/handlebars.js",
+	"socket.io": "public/Scripts/Dependencies/socket.io.js",
 	"visualizer": "public/Scripts/visualizer.js"
 };

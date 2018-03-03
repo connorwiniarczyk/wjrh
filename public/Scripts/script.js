@@ -78,3 +78,36 @@ const chooseFrom = (paths, Default) => obj => {
 		return prev || Object.resolve(obj, cur)
 	}, Object.resolve(obj, paths[0])) || Default
 }
+
+
+/**
+ *	Handles sidebar toggling
+ * TODO: this should really be made more intuitive at some point
+ */
+window.addEventListener("load", function(){
+	const btn = document.getElementById("slide-out-button");
+	const sidebar = document.getElementById("sidebar");
+	const content = document.getElementById("content");
+
+	const sidebarToggle = Bacon.fromEvent(btn, "click").map(() => {
+		return sidebar.className.split(' ').includes("out");
+	}).log();
+
+	sidebarToggle.onValue(toggled => {
+		if(toggled)		sidebar.className = "";
+		else 			sidebar.className += " out"
+	});
+
+	sidebarToggle.onValue(toggled => {
+		if(toggled)		content.className = "";
+		else 			content.className += " out"
+	});
+
+	sidebarToggle.onValue(toggled => {
+		if(toggled)		btn.className = "";
+		else 			btn.className += " out"
+	});
+
+	//Set Sidebar to be the primary color
+	colorScheme.onValue(scheme => btn.style.color = scheme.primary)
+})

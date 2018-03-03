@@ -76,6 +76,22 @@ a {
 }*/
 
 .song-info {
+  box-sizing: border-box;
+  padding: 10px;
+  padding-left: 25px;
+
+  font-family: gravity;
+  font-size: 20px;
+
+  background: #eee;
+
+  display: grid;
+  grid-template-rows: 4;
+
+  grid-area: info;
+}
+
+/*.song-info {
   background: #D5A2A2;
   box-sizing: border-box;
   font-family: "gravity";
