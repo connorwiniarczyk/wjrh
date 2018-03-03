@@ -58,22 +58,8 @@ a {
   background: url("/api/artwork");
   background-size: cover;
   background-repeat: no-repeat;
-  /*max-width: 500px; */
-
-  /*height: 0;*/
-  /*padding-bottom: 100%*/
-
   grid-area: art;
-
-  /*grid-column: 3 / 7;*/
-  /*grid-row: 2 / 3;*/
 }
-
-/*.album-art:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}*/
 
 .song-info {
   box-sizing: border-box;
@@ -90,58 +76,3 @@ a {
 
   grid-area: info;
 }
-
-/*.song-info {
-  background: #D5A2A2;
-  box-sizing: border-box;
-  font-family: "gravity";
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  text-align: right;
-  padding: 15px;
-
-  grid-area: info;
-
-  /*grid-column: 8 / 11;*/
-  /*grid-row: 2 / 3;*/
-}
-
-/*.playing {
-  font-size: 15px;
-  margin-right: 1em; }*/
-
-/*TODO: delete*/
-/*.second-page {
-  background: #fff;
-  width: 80%;
-  height: 50%;
-  padding: 40px;
-  box-sizing: border-box;
-  font-family: gravity; }*/
-
-
-/*TODO: delete*/
-/*.sidebar {
-  border-right: 1px solid black;
-  width: 10%;
-  height: 100%;
-  list-style-type: none;
-  text-align: right;
-  padding-right: 20px; }
-  .sidebar > li {
-    margin-bottom: 10px; }
-
-.schedule {
-  width: 80%;
-  height: 100%;
-  text-align: center;
-  list-style-type: none; }
-  .schedule > li {
-    width: 90%;
-    height: 40px;
-    border-bottom: 1px solid #999; }*/
-
-/*# sourceMappingURL=main.css.map */

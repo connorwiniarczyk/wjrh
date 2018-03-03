@@ -68,7 +68,6 @@ AudioVisualizer.createDomVisualizer = function(color){
 }
 
 window.addEventListener("load", function(){
-	console.log(AudioVisualizer.options)
 	let elements = AudioVisualizer.createDomVisualizer("#333")
 	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
 

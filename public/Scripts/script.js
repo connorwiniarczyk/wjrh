@@ -35,9 +35,16 @@ window.addEventListener("load", function(){
 
 	play_pauseButton = document.getElementById("play-pause-button");
 
-	// music = new Music("http://www.wjrh.org:8000/WJRH").withController(play_pauseButton);
-
-	play_pauseButton.onclick = () => music.togglePaused()
+	let playing = false;
+	play_pauseButton.onclick = function(){
+		if(playing){
+			document.getElementById("audio").pause()
+			playing = false;
+		}else{
+			document.getElementById("audio").play()
+			playing = true;
+		}
+	}
 });
 
 window.onresize = function(){
@@ -47,6 +54,8 @@ window.onresize = function(){
 	player.style.height = "" + player.getBoundingClientRect().width + "px";
 	songInfo.style.height = "" + player.getBoundingClientRect().width + "px";
 };
+
+
 
 
 const makeColorScheme = function(img){

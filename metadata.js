@@ -42,7 +42,7 @@ const iceCastCall = function(){
 }
 
 const lastFmCall = function(trackName, artistName){
-	fetch(lastFM_ApiString(trackName || "", artistName || "")) // 
+	fetch(lastFM_ApiString(trackName || "", artistName || ""))
 	.then(res => res.json())
 	.then(body => eventEmitter.emit("lastFmResponse", body))
 }
