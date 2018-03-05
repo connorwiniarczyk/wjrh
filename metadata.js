@@ -28,7 +28,7 @@ const iceCastCall = function(){
 	fetch(iceCastURL)
 	.then(res => res.json())
 	.then(data => data.icestats.source[0].title.split(" - "))
-	.then(data => data.map(element => element.replace(/\[.*?\]/, "")))
+	.then(data => data.map(element => element.replace(/\[.*?\]/, "").trim()))
 	.then(data => {
 		return {
 			track: {
@@ -45,6 +45,7 @@ const lastFmCall = function(trackName, artistName){
 	fetch(lastFM_ApiString(trackName || "", artistName || ""))
 	.then(res => res.json())
 	.then(body => eventEmitter.emit("lastFmResponse", body))
+	.catch(err => eventEmitter.emit("lastFmResponse", err.message))
 }
 
 setInterval(tealCall, 100)
