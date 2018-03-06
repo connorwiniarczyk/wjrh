@@ -28,7 +28,7 @@ const iceCastCall = function(){
 	fetch(iceCastURL)
 	.then(res => res.json())
 	.then(data => data.icestats.source[0].title.split(" - "))
-	.then(data => data.map(element => element.replace(/\[.*?\]/, "").trim()))
+	.then(data => data.map(element => element.replace(/\[.*\]/, "").trim()))
 	.then(data => {
 		return {
 			track: {

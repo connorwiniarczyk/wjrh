@@ -1,0 +1,19 @@
+.page#Schedule {
+
+    justify-content: stretch;
+
+	grid-template-areas: 
+    /*". . . . . . . . . . . ."*/
+    ". . s s s s s s s s . ."
+    /*". . . . . . . .  . . . .";*/
+}
+
+.schedule {
+	text-align: center;
+	background: white;
+
+	grid-area: s;
+
+	width: 100%;
+	height: 80%;
+}

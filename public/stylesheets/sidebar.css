@@ -1,7 +1,7 @@
 #sidebar {
 	position: fixed;
-	left: -20%;
-	width: 20%;
+	left: -15%;
+	width: 15%;
 	height: 100%;
 
 	background: #eee;
@@ -33,7 +33,7 @@
 }
 
 #slide-out-button.out {
-	left: calc(20% + 1em);
+	left: calc(15% + 1em);
 }
 
 #sidebar.out {
@@ -41,6 +41,6 @@
 }
 
 #content.out {
-	left: 20%;
+	left: 15%;
 	right: 0%;
 }

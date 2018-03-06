@@ -1,0 +1,17 @@
+.page#About-Us {
+	grid-template-areas: 
+    /*". . . . . . . . . . . ."*/
+    ". . s s s s s s s s . ."
+    /*". . . . . . . .  . . . .";*/
+}
+
+.about-us {
+	width: 100%;
+	grid-area: s;
+
+	background: white;
+}
+
+.about-us > h1 {
+	text-align: center;
+}

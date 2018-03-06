@@ -23,7 +23,9 @@
   grid-template-rows: 1fr;
 
   align-items: center;
+}
 
+.page#Home {
   grid-template-areas: 
     /*". . . . . . . . . . . ."*/
     ". . art art art art . info info info . ."
@@ -75,4 +77,8 @@ a {
   grid-template-rows: 4;
 
   grid-area: info;
+}
+
+.song-info > div {
+  display: grid;
 }

@@ -12,8 +12,6 @@ const averageArray = (array, length) => {
 	})
 }
 
-
-
 const AudioVisualizer = function(audio) {
 	this.analyser = makeAnalyser(audio)
 }
