@@ -17,6 +17,7 @@
     "reload": "^2.2.2"
   },
   "scripts": {
+    "start": "nodemon main.js",
     "test": "jest",
     "watch": "jest --watchAll"
   },
