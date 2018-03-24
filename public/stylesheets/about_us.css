@@ -9,11 +9,19 @@
 	width: 100%;
 	grid-area: s;
 
-	background: white;
+	background: rgba(0,0,0,.8);
+	color: #eee;
 
 	font-family: gravity;
 
 	padding: 10px;
+
+
+}
+
+.about-us nav a{
+	color: white;
+	margin-right: 10px;
 }
 
 .about-us .scroll-window {
@@ -38,13 +46,6 @@
 
 ::-webkit-scrollbar {
 	display: none;
-}
-
-.about-us nav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
 }
 
 .about-us div .content {

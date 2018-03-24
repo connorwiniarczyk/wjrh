@@ -18,17 +18,24 @@ function determineOverflow(content, container) {
     }
 }
 
+ABOUT_US.blocks; 
+
 window.addEventListener("load", function(){
     const scrollWindow = document.getElementById("scroll-window");
     const scrollContent = document.getElementById("scroll-content");
     const navbar = document.getElementById("about-us-navbar");
+
+    ABOUT_US.blocks = [].slice.call(document.querySelectorAll(".block"));
+    // console.log(blocks);
+
 
     scrollWindow.setAttribute("data-overflowing", determineOverflow(scrollContent, scrollWindow));
 
     [].slice.call(document.querySelectorAll(".pn-ProductNav_Link"))
     .forEach((element, index) => {
         element.addEventListener("click", () => {
-            ABOUT_US.scrollTo(index, scrollContent)
+            console.log(ABOUT_US.blocks)
+            ABOUT_US.scrollTo(ABOUT_US.blocks[index], scrollContent, scrollWindow)
             moveIndicator(element, "#f90", navbar)
         })
     })
@@ -50,11 +57,16 @@ var SETTINGS = {
     navBarTravelDistance: 150
 }
 
-ABOUT_US.scrollTo = function(index, scrollContent){
-    const size = 4; // the number of panels
-    const scrollAmount = -(100 / size) * index;
+ABOUT_US.scrollTo = function(block, scrollContent, scrollWindow){
+    // const size = 4; // the number of panels
+    // const scrollAmount = -(100 / size) * index;
 
-    scrollContent.style.transform = "translateX(" + scrollAmount + "%)";
+    // scrollContent.style.transform = "translateX(" + scrollAmount + "%)";
+
+    let blockPosition = block.getBoundingClientRect();
+    let container = scrollContent.getBoundingClientRect().left;
+    let distance = blockPosition.left - container;
+   scrollContent.style.transform = "translateX(" + -distance + "px)";
 }
 
 function moveIndicator(item, color, navbar) {
