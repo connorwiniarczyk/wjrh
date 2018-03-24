@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "nodemon main.js",
+    "browser-sync": "browser-sync start -p localhost:80 -f public",
     "test": "jest",
     "watch": "jest --watchAll"
   },

@@ -10,8 +10,95 @@
 	grid-area: s;
 
 	background: white;
+
+	font-family: gravity;
+
+	padding: 10px;
+
+	/*overflow-x: auto;*/
+	/*box-sizing: border-box;*/
 }
 
-.about-us > h1 {
+/*.about-us h1 {
 	text-align: center;
+}*/
+
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.about-us .scroll-window {
+	width: 100%;
+	overflow-x: auto;
+
+	/* Make this scrollable when needed */
+	    overflow-x: auto;
+	    /* We don't want vertical scrolling */
+	    overflow-y: hidden;
+	    /* Make an auto-hiding scroller for the 3 people using a IE */
+	    -ms-overflow-style: -ms-autohiding-scrollbar;
+	    /* For WebKit implementations, provide inertia scrolling */
+	    -webkit-overflow-scrolling: touch;
+	    /* We don't want internal inline elements to wrap */
+	    /*white-space: nowrap;*/
+	    /* Remove the default scrollbar for WebKit implementations */
+	    &::-webkit-scrollbar {
+	        display: none;
+	    }
+}
+
+#element::-webkit-scrollbar {
+	display: none;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.about-us nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.about-us nav ul li {
+	float: left;
+}
+
+.about-us nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.about-us div .content {
+	display: grid;
+
+	grid-template-rows: 100% 100%;
+
+	grid-template-areas: "about-us history";
+
+	overflow-x: hidden;
+	overflow-y: hidden;
+
+	width: 200%;
+}
+
+.block {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.block-1 {
+	grid-area: about-us;
+}
+
+.block-2 {
+	grid-area: history;
 }
