@@ -14,6 +14,8 @@
 	<!-- <script src="Scripts/music.js" type="text/javascript"></script> -->
 	<script src="Scripts/script.js" type="text/javascript"></script>
 
+	<script src="Scripts/about_us.js" type="text/javascript"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/visualizer.css">
@@ -82,17 +84,16 @@
 		</div>
 		<div id="About-Us" class="page">
 			<div class="about-us">
-				<nav>
-					<div class="pn-ProductNav_Contents">
-						<a href="#" class="pn-ProductNav_Link" aria-selected="true">About Us</a>
-						<a href="#" class="pn-ProductNav_Link">History</a>
-						<a href="#" class="pn-ProductNav_Link">Team</a>
-						<a href="#" class="pn-ProductNav_Link">Your Music</a>
-					</div>
+				<nav id="about-us-navbar" class="pn-ProductNav_Contents">
+					<span id="pnIndicator" class="pn-ProductNav_Indicator"></span>
+					<a href="#About-Us" class="pn-ProductNav_Link" aria-selected="true">About Us</a>
+					<a href="#" class="pn-ProductNav_Link">History</a>
+					<a href="#" class="pn-ProductNav_Link">Team</a>
+					<a href="#" class="pn-ProductNav_Link">Your Music</a>
 				</nav>
-				<div class="scroll-window">
-				<div class="content">
-					<div class="block block-1">
+				<div id="scroll-window" class="scroll-window">
+				<div id="scroll-content" class="content">
+					<div class="block block-about-us">
 						<p>Broadcasting from Hogg Hall since 1946, WJRH has been a major part of life on Lafayette College’s campus and beyond in the Lehigh Valley community. We provide the soundtrack to the Lafayette experience and make our voice heard by the greater community. You can listen to us 24/7 every day of the year on 104.9 FM in the area.</p>
 
 						<p>WJRH is one of the last college radio stations in the United States that is fully student managed and provides fully freeform programming. This means that we give 100% control to live DJs in the booth without any intervention or guidance from the Music Director. Freeform radio stations have always been at the forefront of the music world and we believe that we can achieve better programming through diversity.</p>
@@ -101,7 +102,7 @@
 
 						<p>WJRH is a federally licensed FM station owned by the Lafayette College Board of Trustees, operating at 104.9 MHz. You can tune into our signal from most of the Lehigh Valley 24 hours a day. WJRH is a noncommercial educational radio station meaning that we never air commercials.</p>
 					</div>
-					<div class="block block-2">
+					<div class="block block-history">
 						<p>Broadcasting from Hogg Hall since 1946, WJRH has been a major part of life on Lafayette College’s campus and beyond in the Lehigh Valley community. We provide the soundtrack to the Lafayette experience and make our voice heard by the greater community. You can listen to us 24/7 every day of the year on 104.9 FM in the area.</p>
 
 						<p>WJRH is one of the last college radio stations in the United States that is fully student managed and provides fully freeform programming. This means that we give 100% control to live DJs in the booth without any intervention or guidance from the Music Director. Freeform radio stations have always been at the forefront of the music world and we believe that we can achieve better programming through diversity.</p>
@@ -111,6 +112,12 @@
 						<p>WJRH is a federally licensed FM station owned by the Lafayette College Board of Trustees, operating at 104.9 MHz. You can tune into our signal from most of the Lehigh Valley 24 hours a day. WJRH is a noncommercial educational radio station meaning that we never air commercials.</p>
 					</div>
 				</div>
+				    <button id="pnAdvancerLeft" class="pn-Advancer pn-Advancer_Left" type="button">
+				        <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 551 1024"><path d="M445.44 38.183L-2.53 512l447.97 473.817 85.857-81.173-409.6-433.23v81.172l409.6-433.23L445.44 38.18z"/></svg>
+				    </button>
+				    <button id="pnAdvancerRight" class="pn-Advancer pn-Advancer_Right" type="button">
+				        <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 551 1024"><path d="M105.56 985.817L553.53 512 105.56 38.183l-85.857 81.173 409.6 433.23v-81.172l-409.6 433.23 85.856 81.174z"/></svg>
+				    </button>
 				</div>
 			</div>
 		</div>

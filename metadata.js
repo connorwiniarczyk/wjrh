@@ -32,8 +32,8 @@ const iceCastCall = function(){
 	.then(data => {
 		return {
 			track: {
-				title: data[1],
-				artist: data[0]
+				title: data[0],
+				artist: data[1]
 			}
 		}
 	})

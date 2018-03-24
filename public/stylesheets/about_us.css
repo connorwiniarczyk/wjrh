@@ -90,15 +90,53 @@ ul {
 	width: 200%;
 }
 
-.block {
-	padding-left: 1em;
-	padding-right: 1em;
-}
+.block {}
 
-.block-1 {
+.block-about-us {
 	grid-area: about-us;
 }
 
-.block-2 {
+.block-history {
 	grid-area: history;
+}
+
+.pn-Advancer {
+    /* Reset the button */
+    appearance: none;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.pn-Advancer_Left {
+	[data-overflowing="both"] ~ &,
+	[data-overflowing="left"] ~ & {
+		opacity: 1;
+	}
+}
+
+/*.pn-Advancer_Right {
+	[data-overflowing="both"] ~ &,
+	[data-overflowing="right"] ~ & {
+		opacity: 1;
+	}
+}*/
+
+.pn-Advancer_Icon {
+    width: 20px;
+    height: 44px;
+    fill: #bbb;
+}
+
+.pn-ProductNav_Indicator {
+    /*position: relative;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    height: 4px;
+    width: 100px;
+    background-color: #f90;
+    /*transform-origin: 0 0;*/
 }
