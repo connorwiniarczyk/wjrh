@@ -14,21 +14,6 @@
 	font-family: gravity;
 
 	padding: 10px;
-
-	/*overflow-x: auto;*/
-	/*box-sizing: border-box;*/
-}
-
-/*.about-us h1 {
-	text-align: center;
-}*/
-
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
 }
 
 .about-us .scroll-window {
@@ -51,10 +36,6 @@ ul {
 	    }
 }
 
-#element::-webkit-scrollbar {
-	display: none;
-}
-
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -66,31 +47,25 @@ ul {
 	overflow: hidden;
 }
 
-.about-us nav ul li {
-	float: left;
-}
-
-.about-us nav ul li a {
-    display: block;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-}
-
 .about-us div .content {
 	display: grid;
 
-	grid-template-rows: 100% 100%;
-
-	grid-template-areas: "about-us history";
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-areas: "about-us history team your-music";
+	grid-column-gap: 20px;
 
 	overflow-x: hidden;
 	overflow-y: hidden;
 
-	width: 200%;
+	width: 400%;
+
+	transition: translateX, 1s;
 }
 
-.block {}
+.block {
+	max-height: 100%;
+	overflow-y: hidden;
+}
 
 .block-about-us {
 	grid-area: about-us;
@@ -100,30 +75,13 @@ ul {
 	grid-area: history;
 }
 
-.pn-Advancer {
-    /* Reset the button */
-    appearance: none;
-    background: transparent;
-    padding: 0;
-    border: 0;
-    &:focus {
-        outline: 0;
-    }
+.block-team {
+	grid-area: team;
 }
 
-.pn-Advancer_Left {
-	[data-overflowing="both"] ~ &,
-	[data-overflowing="left"] ~ & {
-		opacity: 1;
-	}
+.block-your-music {
+	grid-area: your-music
 }
-
-/*.pn-Advancer_Right {
-	[data-overflowing="both"] ~ &,
-	[data-overflowing="right"] ~ & {
-		opacity: 1;
-	}
-}*/
 
 .pn-Advancer_Icon {
     width: 20px;
@@ -131,12 +89,14 @@ ul {
     fill: #bbb;
 }
 
-.pn-ProductNav_Indicator {
-    /*position: relative;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
+.nav-indicator {
+    position: relative;
+    bottom: 0;
+    left: 0;
     height: 4px;
     width: 100px;
     background-color: #f90;
-    /*transform-origin: 0 0;*/
+
+    transform-origin: 0 0;
+    transition: transform 1s;
 }

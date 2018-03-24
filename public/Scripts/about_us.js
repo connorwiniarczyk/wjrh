@@ -1,3 +1,5 @@
+let ABOUT_US = {}
+
 function determineOverflow(content, container) {
     var containerMetrics = container.getBoundingClientRect();
     var containerMetricsRight = Math.floor(containerMetrics.right);
@@ -23,12 +25,13 @@ window.addEventListener("load", function(){
 
     scrollWindow.setAttribute("data-overflowing", determineOverflow(scrollContent, scrollWindow));
 
-    var pnAdvancerLeft = document.getElementById("pnAdvancerLeft");
-    var pnAdvancerRight = document.getElementById("pnAdvancerRight");
-
-    pnAdvancerRight.addEventListener("click", function(){
-        scrollContent.style.transform = "translateX(" + -50 + "%)";
-    });
+    [].slice.call(document.querySelectorAll(".pn-ProductNav_Link"))
+    .forEach((element, index) => {
+        element.addEventListener("click", () => {
+            ABOUT_US.scrollTo(index, scrollContent)
+            moveIndicator(element, "#f90", navbar)
+        })
+    })
 
     navbar.addEventListener("click", function(e){
         let links = [].slice.call(document.querySelectorAll(".pn-ProductNav_Link"))
@@ -45,4 +48,24 @@ var SETTINGS = {
     navBarTravelling: false,
     navBarDirection: "",
     navBarTravelDistance: 150
+}
+
+ABOUT_US.scrollTo = function(index, scrollContent){
+    const size = 4; // the number of panels
+    const scrollAmount = -(100 / size) * index;
+
+    scrollContent.style.transform = "translateX(" + scrollAmount + "%)";
+}
+
+function moveIndicator(item, color, navbar) {
+    let pnIndicator = document.getElementById("nav-indicator")
+    var textPosition = item.getBoundingClientRect();
+    var container = navbar.getBoundingClientRect().left;
+    console.log(textPosition, container);
+    var distance = textPosition.left - container;
+    var scrollPosition = pnIndicator.parentNode.scrollLeft;
+    pnIndicator.style.transform = "translateX(" + (distance) + "px) scaleX(" + textPosition.width * 0.01 + ")";
+    if (color) {
+        pnIndicator.style.backgroundColor = color;
+    }
 }
