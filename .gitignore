@@ -1,7 +1,7 @@
 .main.js.swo
 .main.js.swp
-bs-config.js
-package-lock.json
+./bs-config.js
+./package-lock.json
 
 
 # Logs
