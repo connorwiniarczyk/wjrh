@@ -13,41 +13,123 @@
 @font-face {
   font-family: "gravity";
   src: url("/fonts/gravity/Gravity-Regular.otf"); }
+@font-face {
+  font-family: "stencilia";
+  src: url("/fonts/Stencilia-A.ttf");
+}
+
+body {
+  font-family: gravity;
+}
+
+.hidden {
+  display: none !important;
+}
 
 .page {
   height: 100vh;
   width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-
   align-items: center;
 }
 
-.page#Home {
-  grid-template-areas: 
-    /*". . . . . . . . . . . ."*/
-    ". . art art art art . info info info . ."
-    /*". . . . . . . .  . . . .";*/
+.template {
+  display: none !important;
 }
 
-/*TODO: delete*/
-/*.flex-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center; }
+.tab {
+  max-width: 700px;
+  margin-right: auto;
+  margin-left: auto;
 
-.flex-vertical {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+#site-content {
+  min-height: 100vh;
+  width: 100%;
+}
+
+#site-nav {
+  height: 62px;
+  width: 100%;
+  background: #002347;
+  text-align: center;
+
+  position: sticky;
+  top: 0;
+}
+
+#site-nav > a {
+  color: #eee;
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+#site-nav > a.active {
+  border-bottom: 2px solid #eee;
+}
+
+/*TITLE*/
+
+#title {
+  height: 100vh;
+  text-align: center;
+  /*background: #eec8eb;*/
+  background: #5de6d8;
+
   display: flex;
-  flex-direction: column; }*/
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#title > h1 {
+  font-family: caviar_dreams;
+  white-space: nowrap;
+  color: #e6d354;
+  font-size: 6em;
+  text-shadow: -1px -1px 0px #333,
+    1px -1px 0px #333,
+    -1px 1px 0px #333,
+    1px 1px 0px #333;
+}
+
+#listen-live-btn {
+  background: transparent;
+  border: 2px solid black;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform .05s; 
+  transition-timing-function: ease-out;
+}
+
+#title > button:hover {
+  transform: scale(1.07);
+}
+
+#title > button:focus {
+    outline: none;
+}
+
+#title > button:active {
+  box-shadow: none;
+}
+
+/*END TITLE*/
+
+#about-us {}
 
 .template {
-  display: none; }
+  display: none; 
+}
 
 html {
-  font-family: "Open Sans Condensed", sans; }
+  font-family: "Open Sans Condensed", sans; 
+}
 
 body {
   margin: 0px; }
@@ -56,14 +138,35 @@ a {
   text-decoration: none;
   color: #333; }
 
-.album-art {
-  background: url("/api/artwork");
-  background-size: cover;
-  background-repeat: no-repeat;
-  grid-area: art;
+
+#Home {
+  background: #5de6d8;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  box-sizing: border-box;
 }
 
-.song-info {
+#Home > .album-art {
+  position: absolute;
+  width: 25%;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.square > .content {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+}
+
+#Home > .song-info {
   box-sizing: border-box;
   padding: 10px;
   padding-left: 25px;
@@ -72,13 +175,65 @@ a {
   font-size: 20px;
 
   background: #eee;
-
-  display: grid;
-  grid-template-rows: 4;
-
-  grid-area: info;
 }
 
 .song-info > div {
   display: grid;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid black;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
 }

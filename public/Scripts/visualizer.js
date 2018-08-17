@@ -51,7 +51,7 @@ AudioVisualizer.prototype.stop = function(){}
 
 AudioVisualizer.getDraw = visualizer => data => {
 	displayData = averageArray(data, visualizer.length)
-	visualizer.forEach((element, index) => element.style.height = displayData[index] + 15 + "px")
+	visualizer.forEach((element, index) => element.style.height = (displayData[index] / 255) * 100 + "%")
 }
 
 AudioVisualizer.createDomVisualizer = function(color){
@@ -73,5 +73,5 @@ window.addEventListener("load", function(){
 	primary.draw = AudioVisualizer.getDraw(elements)
 	primary.play()
 
-	colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
+	// colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
 });

@@ -1,4 +1,3 @@
-// 'use strict'
 // We need these modules to make a webserver
 const express = require("express");
 const app = express();
@@ -14,7 +13,7 @@ const request = require("request");
 const path = require('path');
 
 //the module we wrote for handling api requests
-const api = require("./api");
+const api = require("./api/api");
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -46,12 +45,12 @@ io.listen(server);
 
 // Manage socket connections
 io.on('connection', function(socket){
-	let data = api.metadata.getData();
-	io.emit("newData", data);
-	io.emit("UpdateArtwork", data.image);
+	// let data = api.metadata.getData();
+	// io.emit("newData", data);
+	// io.emit("UpdateArtwork", data.image);
 });
 
-api.metadata.onData(function(data){
-	io.emit("newData", data);
-	io.emit("UpdateArtwork", data.image);
-});
+// api.metadata.onData(function(data){
+// 	io.emit("newData", data);
+// 	io.emit("UpdateArtwork", data.image);
+// });

@@ -1,7 +1,7 @@
 .visualizer {
   display: flex;
-  z-index: -1;
-  position: fixed;
+  /*z-index: -1;*/
+  position: absolute;
 
   bottom: 0;
   left: 0;
@@ -9,6 +9,10 @@
 
   align-items: flex-end;
   justify-content: space-between;
+
+  margin: 4px;
+
+  border: 1px solid black;
 }
 
 .visualizer-node {
