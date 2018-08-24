@@ -10,9 +10,23 @@
 	border-bottom: 1px solid black;
 }
 
-.program > .image {
+.header {
+	display: flex;
+	align-items: center;
+}
+
+.image {
 	width: 100px;
 	height: 100px;
 
-	margin-right: 3em;
+	margin-right: 2em;
+}
+
+.episode {
+	display: flex;
+	align-items: center;
+}
+
+.episode > .play-button {
+	margin-right: 2em; 
 }

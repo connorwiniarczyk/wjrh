@@ -13,11 +13,36 @@ const render_program_button = function(program_data) {
 	new_button.querySelector("div > .authors")
 	.innerHTML = program_data.author || "author not found"
 
+	new_button.onclick = function(){
+		render_episode_list(program_data.shortname)
+	}
+
 	new_button.classList.remove("template")
+	document.getElementById("programs").appendChild(new_button)
+}
 
-	console.log(new_button)
+const render_episode_button = function(episode_data) {
+	const template = document.getElementById("episode-template")
+	let new_button = template.cloneNode(true)
 
-	document.getElementById("recent-shows").appendChild(new_button)
+	new_button.querySelector(".play-button")
+	.setAttribute("onclick", "function(){console.log('play')}")
+
+	new_button.querySelector(".title")
+	.innerHTML = episode_data.name
+
+	new_button.querySelector(".description")
+	.innerHTML = episode_data.description
+
+	new_button.classList.remove("template")
+	document.getElementById("episodes").appendChild(new_button)
+}
+
+const render_episode_list = function(program_name){
+	fetch("api/episodes?program=" + program_name + "")
+	.then(res => res.json())
+	.then(body => body.splice(0, 10))
+	.then(body => body.forEach(episode => render_episode_button(episode)))
 }
 
 window.addEventListener("load", function(){
@@ -28,4 +53,6 @@ window.addEventListener("load", function(){
 	fetch("api/episodes?program=sendnudes")
 	.then(res => res.json())
 	.then(body => console.log(body))
+
+	render_episode_list("sendnudes")
 })

@@ -11,7 +11,7 @@ let metadata, artwork
 // Tab Navigation
 const switchTo = function(event, tab) {
 	//set all tabs to hidden
-	Array.prototype.forEach.call(document.getElementsByClassName("tab"), tab => tab.classList.add("hidden"))
+	Array.prototype.forEach.call(document.getElementsByClassName("main-tab"), tab => tab.classList.add("hidden"))
 
 	// set all tab buttons to default
 	console.log(document.getElementById("site-nav").children)

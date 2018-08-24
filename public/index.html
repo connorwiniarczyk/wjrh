@@ -29,6 +29,43 @@
 
 </head>
 <body>
+		<div id="recent-shows" class="tab main-tab">
+			<nav>
+				<button class="back"><</button>
+			</nav>
+			<div id="programs" class="hidden">
+				<a id="program-template" class="program template">
+					<img class="image" src="http://i.imgur.com/1iQ6U4d.png">
+					<div>
+						<h4 class="name"></h4>
+						<h5 class="authors"></h5>
+						<p class="description hidden"></p>
+					</div>
+				</a>
+			</div>
+			<div id="episodes" class="tab">
+				<div class="header">
+					<img class="image" src="http://i.imgur.com/1iQ6U4d.png">
+					<div>
+						<h4>A Test Program</h4>
+						<h5>The Author</h5>
+					</div>
+					<br>
+				</div>
+				<p class="description">
+					We like saying Disco Cheerio is a radio show with lively music and conversation to pump up your weekend. It's actually just two guys talking in a basement.
+				</p>
+				<hr>
+				<a id="episode-template" class="episode">
+					<button class="play-button">></button>
+					<div>
+						<h4 class="title">The Title</h4>
+						<p class="description">This is an amazing night already! I'm not ready tonight! I just what to rock tonight! LET'S GOOOOO!</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
 		<div id="Home" class="page hidden">
 			<div class="album-art square">
 				<div class="content">
@@ -71,7 +108,7 @@
 			<nav id="site-nav">
 				<a href="#about-us" onclick="switchTo(event, 'about-us')">About Us</a>
 				<a href="#schedule" onclick="switchTo(event, 'schedule')">Schedule</a>
-				<a href="#recent-shows" onclick="switchTo(event, 'recent-shows')">Recent Shows</a>
+				<a href="#recent-shows" onclick="switchTo(event, 'recent-shows')">Programs</a>
 				<a href="#contact-us" onclick="switchTo(event, 'contact-us')">Contact Us</a>
 			</nav>
 
@@ -113,16 +150,21 @@
 					<iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=lafayette.edu_5k9e8d0c54rfq7jvvbhmmjvt9c%40group.calendar.google.com&amp;color=%23865A5A&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
 				</div>
 			</div>
-			<div id="recent-shows" class="tab">
-				<a id="program-template" class="program template">
-					<img class="image" src="http://i.imgur.com/1iQ6U4d.png">
-					<div>
-						<h4 class="name"></h4>
-						<h5 class="authors"></h5>
-						<p class="description hidden"></p>
-					</div>
-				</a>
-			</div>
+			<!-- <div id="recent-shows" class="tab hidden">
+				<div id="programs">
+					<a id="program-template" class="program template">
+						<img class="image" src="http://i.imgur.com/1iQ6U4d.png">
+						<div>
+							<h4 class="name"></h4>
+							<h5 class="authors"></h5>
+							<p class="description hidden"></p>
+						</div>
+					</a>
+				</div>
+				<div id="episodes">
+					
+				</div>
+			</div> -->
 			<div id="contact-us" class="tab hidden">
 				<div class="contact">
 					<h1>Contact Us</h1>
