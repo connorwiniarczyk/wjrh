@@ -20,7 +20,7 @@ const averageArray = (array, length) => {
 // 	loadhere: document.currentScript.getAttribute("data-loadhere") ? true : false,
 // 	audioId: document.currentScript.getAttribute("data-audioId")
 // }
-// AudioVisualizer.parent = document.currentScript.parentElement
+// AudioVisualizer.parent = document.currentScript.parentElementff
 
 const AudioVisualizer = {}
 
