@@ -12,15 +12,17 @@ const averageArray = (array, length) => {
 	})
 }
 
-const AudioVisualizer = function(audio) {
-	this.analyser = makeAnalyser(audio)
-}
+// const AudioVisualizer = function(audio) {
+// 	this.analyser = makeAnalyser(audio)
+// }
 
-AudioVisualizer.options = {
-	loadhere: document.currentScript.getAttribute("data-loadhere") ? true : false,
-	audioId: document.currentScript.getAttribute("data-audioId")
-}
-AudioVisualizer.parent = document.currentScript.parentElement
+// AudioVisualizer.options = {
+// 	loadhere: document.currentScript.getAttribute("data-loadhere") ? true : false,
+// 	audioId: document.currentScript.getAttribute("data-audioId")
+// }
+// AudioVisualizer.parent = document.currentScript.parentElement
+
+const AudioVisualizer = {}
 
 const makeAnalyser = function(audio) {
 	let ctx = new AudioContext()
@@ -65,6 +67,11 @@ AudioVisualizer.createDomVisualizer = function(color){
 	return output
 }
 
+AudioVisualizer.setColor = function(color){
+	this.elements.forEach(element => element.style.background = 
+		"rgb(" + color[0] + "," + color[1] + ", " + color[2] + ")")
+}
+
 window.addEventListener("load", function(){
 	let elements = AudioVisualizer.createDomVisualizer("#333")
 	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
@@ -72,6 +79,8 @@ window.addEventListener("load", function(){
 	primary = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
 	primary.draw = AudioVisualizer.getDraw(elements)
 	primary.play()
+
+	primary.setColor([255, 255, 255])
 
 	// colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
 });

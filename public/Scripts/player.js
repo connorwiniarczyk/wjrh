@@ -1,4 +1,4 @@
-const loadPlayer = function(streamURL) {
+const loadPlayer = function(streamURL, metadata) {
 	//show loading animation
 	document.getElementById("loading-animation").classList.remove("hidden")
 	document.getElementById("listen-live-btn").classList.add("hidden")
@@ -13,6 +13,8 @@ const loadPlayer = function(streamURL) {
 		audio.oncanplay = resolve
 
 		document.getElementById("Home").appendChild(audio)
+
+		
 	})
 
 	audioLoad.then(message => {
@@ -23,10 +25,16 @@ const loadPlayer = function(streamURL) {
 
 	audioLoad.catch(err => console.log(err.message))
 
-	//load image
-	// imageLoad = window.fetch("/api/artwork")
-	// .then(body => {
-	// 	document.getElementById("Home").classList.remove("hidden");
-	// 	document.getElementById("title").classList.add("hidden");
-	// })
+	// load image
+	imageLoad = window.fetch("/api/artwork")
+	.then(body => {
+		document.getElementById("Home").classList.remove("hidden");
+		document.getElementById("title").classList.add("hidden");
+	})
+
+	//load color scheme
+	colorLoad = window.fetch("/api/color_scheme")
+	.then(res => res.json())
+	.then(body => "rgb(" + body.Secondary[0] + ", " + body.Secondary[1] + ", " + body.Secondary[2] + ")")
+	.then(scheme => document.getElementById("Home").style.background = scheme)
 }
