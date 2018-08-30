@@ -37,8 +37,9 @@ const render_episode_button = function(episode_data) {
 	const template = document.getElementById("episode-template")
 	let new_button = template.cloneNode(true)
 
-	new_button.querySelector(".play-button")
-	.setAttribute("onclick", "function(){console.log('play')}")
+	new_button.onclick = function(){ 
+		loadPlayer("/api/listen?id=" + (episode_data.id || ""), "")
+	}
 
 	new_button.querySelector(".title")
 	.innerHTML = episode_data.name
@@ -53,7 +54,7 @@ const render_episode_button = function(episode_data) {
 const render_episode_list = function(program_name){
 	fetch("api/episodes?program=" + program_name + "")
 	.then(res => res.json())
-	.then(body => body.splice(0, 10))
+	// .then(body => body.splice(0, 10))
 	.then(body => body.forEach(episode => render_episode_button(episode)))
 	// .then(body => body.forEach(episode => console.log(episode)))
 	// .catch(err => console.log(err.message))
@@ -65,5 +66,5 @@ const render_episode_list = function(program_name){
 window.addEventListener("load", function(){
 	fetch("api/programs")
 	.then(res => res.json())
-	.then(body => body.splice(0, 10).forEach(program => render_program_button(program)))
+	.then(body => body.forEach(program => render_program_button(program)))
 })

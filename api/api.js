@@ -39,6 +39,10 @@ const apiMethods = {
 			type: "string",
 			content: episodes
 		}
+	}),
+	"listen": params => Promise.resolve({
+		type: "url",
+		content: "http://api.teal.cool/download/" + params.id + ".mp3"//56f9e362944f1e001692f824.mp3"
 	})
 }
 

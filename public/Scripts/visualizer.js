@@ -22,7 +22,52 @@ const averageArray = (array, length) => {
 // }
 // AudioVisualizer.parent = document.currentScript.parentElementff
 
-const AudioVisualizer = {}
+const Visualizer = {}
+
+Visualizer.elements;
+Visualizer.analyser;
+
+Visualizer.draw = function(data) {
+	displayData = averageArray(data, Visualizer.elements.length)
+	Visualizer.elements.forEach(function(element, index){ 
+		element.style.height = (displayData[index] / 255) * 100 + "%"
+	})
+}
+
+Visualizer.animationLoop = function() {
+	let dataArray = new Uint8Array(Visualizer.analyser.frequencyBinCount)
+	Visualizer.analyser.getByteFrequencyData(dataArray)
+	Visualizer.draw(dataArray)
+	window.requestAnimationFrame(Visualizer.animationLoop)
+}
+
+Visualizer.render = function(container){
+	container.innerHTML = "";
+
+	let amount = Math.ceil(window.innerWidth / 20);
+
+	let output = new Array(amount).fill().map(() => {
+		let node = document.createElement("div")
+		node.className = "visualizer-node"
+		node.style.background = "white"
+		return node
+	})
+
+	Visualizer.elements = output;
+
+	output.forEach(
+		element => container.appendChild(element)
+	)
+}
+
+Visualizer.load = function(audio, container) {
+	// initialize audio analyser
+	Visualizer.analyser = makeAnalyser(audio);
+
+	Visualizer.render(container);
+	Visualizer.animationLoop()
+
+}
 
 const makeAnalyser = function(audio) {
 	let ctx = new AudioContext()
@@ -37,50 +82,52 @@ const makeAnalyser = function(audio) {
 	return analyser
 }
 
-AudioVisualizer.prototype.play = function(){
-	this.loop()
-}
+window.addEventListener("resize", () => Visualizer.render(document.getElementById("visualizer")))
 
-AudioVisualizer.prototype.loop = function(){
-	let dataArray = new Uint8Array(this.analyser.frequencyBinCount)
-	this.analyser.getByteFrequencyData(dataArray)
-	this.draw(dataArray)
-	window.requestAnimationFrame(this.loop.bind(this))
-}
+// AudioVisualizer.prototype.play = function(){
+// 	this.loop()
+// }
 
-AudioVisualizer.prototype.stop = function(){}
+// AudioVisualizer.prototype.loop = function(){
+// 	let dataArray = new Uint8Array(this.analyser.frequencyBinCount)
+// 	this.analyser.getByteFrequencyData(dataArray)
+// 	this.draw(dataArray)
+// 	window.requestAnimationFrame(this.loop.bind(this))
+// }
+
+// AudioVisualizer.prototype.stop = function(){}
 
 
-AudioVisualizer.getDraw = visualizer => data => {
-	displayData = averageArray(data, visualizer.length)
-	visualizer.forEach((element, index) => element.style.height = (displayData[index] / 255) * 100 + "%")
-}
+// AudioVisualizer.getDraw = visualizer => data => {
+// 	displayData = averageArray(data, visualizer.length)
+// 	visualizer.forEach((element, index) => element.style.height = displayData[index] + "px")
+// }
 
-AudioVisualizer.createDomVisualizer = function(color){
-	let output = new Array(50).fill().map(() => {
-		let node = document.createElement("div")
-		node.className = "visualizer-node"
-		node.style.background = color
-		return node
-	})
+// AudioVisualizer.createDomVisualizer = function(color){
+// 	let output = new Array(50).fill().map(() => {
+// 		let node = document.createElement("div")
+// 		node.className = "visualizer-node"
+// 		node.style.background = color
+// 		return node
+// 	})
 
-	return output
-}
+// 	return output
+// }
 
-AudioVisualizer.setColor = function(color){
-	this.elements.forEach(element => element.style.background = 
-		"rgb(" + color[0] + "," + color[1] + ", " + color[2] + ")")
-}
+// AudioVisualizer.setColor = function(color){
+// 	this.elements.forEach(element => element.style.background = 
+// 		"rgb(" + color[0] + "," + color[1] + ", " + color[2] + ")")
+// }
 
-window.addEventListener("load", function(){
-	let elements = AudioVisualizer.createDomVisualizer("#333")
-	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
+// window.addEventListener("load", function(){
+// 	let elements = AudioVisualizer.createDomVisualizer("#333")
+// 	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
 
-	primary = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
-	primary.draw = AudioVisualizer.getDraw(elements)
-	primary.play()
+// 	primary = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
+// 	primary.draw = AudioVisualizer.getDraw(elements)
+// 	primary.play()
 
-	primary.setColor([255, 255, 255])
+// 	primary.setColor([255, 255, 255])
 
-	// colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
-});
+// 	// colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
+// });

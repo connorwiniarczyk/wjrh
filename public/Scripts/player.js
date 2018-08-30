@@ -1,3 +1,10 @@
+const Player = {}
+Player.audio = document.createElement('audio')
+
+window.addEventListener("load", function(){
+	document.getElementById("Home").appendChild(Player.audio)
+})
+
 const loadPlayer = function(streamURL, metadata) {
 	//show loading animation
 	document.getElementById("loading-animation").classList.remove("hidden")
@@ -12,18 +19,22 @@ const loadPlayer = function(streamURL, metadata) {
 
 		audio.oncanplay = resolve
 
-		document.getElementById("Home").appendChild(audio)
+		document.getElementById("Home").removeChild(Player.audio)
 
-		
+		Player.audio = audio
 	})
 
 	audioLoad.then(message => {
-		console.log("loaded")
+		Player.audio.play();
+
+		document.getElementById("Home").appendChild(Player.audio)
+		Visualizer.load(Player.audio, document.getElementById("visualizer"));
+
 		document.getElementById("Home").classList.remove("hidden");
 		document.getElementById("title").classList.add("hidden");
-	})
 
-	audioLoad.catch(err => console.log(err.message))
+
+	})
 
 	// load image
 	imageLoad = window.fetch("/api/artwork")
