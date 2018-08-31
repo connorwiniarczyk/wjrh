@@ -9,15 +9,12 @@
 	<script src="api/getScript?script=handlebars" type="text/javascript"></script>
 	<script src="api/getScript?script=socket.io" type="text/javascript"></script>
 
-	<script src="api/getScript?script=visualizer" type="text/javascript"></script>
-
-	<script src="Scripts/render.js" type="text/javascript"></script>
+	<!-- <script src="api/getScript?script=visualizer" type="text/javascript"></script> -->
 	<script src="Scripts/script.js" type="text/javascript"></script>
-
-	<!-- <script src="Scripts/about_us.js" type="text/javascript"></script> -->
 
 	<script src="Scripts/player.js" type="text/javascript"></script>
 	<script src="Scripts/programs.js" type="text/javascript"></script>
+	<script src="Scripts/visualizer.js" type="text/javascript"></script>
 
 
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
@@ -64,7 +61,7 @@
 			<h1 data-heading="WJRH">WJRH</h1>
 			<div style="min-height: 75px;">
 				<div id="loading-animation" class="lds-ellipsis hidden"><div></div><div></div><div></div><div></div></div>
-				<button id="listen-live-btn" onclick="loadPlayer('http://www.wjrh.org:8000/WJRHlow')">Listen Live</button>
+				<button id="listen-live-btn" onclick="Player.load('http://www.wjrh.org:8000/WJRHlow', 'LIVE')">Listen Live</button>
 			</div>
 		</div>
 		<div id="site-content" class="">

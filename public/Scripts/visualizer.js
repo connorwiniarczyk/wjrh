@@ -12,6 +12,8 @@ const averageArray = (array, length) => {
 	})
 }
 
+const toStyle = color => "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")"
+
 // const AudioVisualizer = function(audio) {
 // 	this.analyser = makeAnalyser(audio)
 // }
@@ -24,8 +26,14 @@ const averageArray = (array, length) => {
 
 const Visualizer = {}
 
-Visualizer.elements;
+Visualizer.elements = [];
 Visualizer.analyser;
+
+Visualizer.setColor = function(color) {
+	Visualizer.elements.forEach(
+		element => element.style.background = toStyle(color)
+	)
+}
 
 Visualizer.draw = function(data) {
 	displayData = averageArray(data, Visualizer.elements.length)

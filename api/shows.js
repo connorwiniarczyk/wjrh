@@ -12,4 +12,4 @@ exports.getEpisodes = function(programName){
 	.then(body => body.episodes)
 }
 
-exports.getPrograms()
+// exports.getPrograms()

@@ -56,8 +56,6 @@ const render_episode_list = function(program_name){
 	.then(res => res.json())
 	// .then(body => body.splice(0, 10))
 	.then(body => body.forEach(episode => render_episode_button(episode)))
-	// .then(body => body.forEach(episode => console.log(episode)))
-	// .catch(err => console.log(err.message))
 
 	document.getElementById("episodes").innerHTML = "";
 

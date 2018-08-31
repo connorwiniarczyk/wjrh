@@ -24,15 +24,15 @@ app.get('/api/:method', function(req, res){
 	.then((data) => {
 		if(data.type == "file") 		res.sendFile(path.join(__dirname, data.content));
 		else if(data.type == "string")	res.send(data.content);
-		else if(data.type == "url")		{
+		else if(data.type == "url") {
 			res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
 			res.header('Expires', '-1');
 			res.header('Pragma', 'no-cache');
 			request(data.content).pipe(res);
 		}
-		else							res.send("error: type " + data.type + " not recognized");
+		else res.send("error: type " + data.type + " not recognized");
 	})
-	.catch((error) => res.send("error: " + error.message));
+	.catch(error => res.send("error: " + error.message));
 });
 
 app.use('/', express.static('public'));
@@ -45,12 +45,9 @@ io.listen(server);
 
 // Manage socket connections
 io.on('connection', function(socket){
-	// let data = api.metadata.getData();
-	// io.emit("newData", data);
-	// io.emit("UpdateArtwork", data.image);
+	let data = api.metadata.getData();
+	io.emit("newData", data);
+	io.emit("UpdateArtwork", data.image);
 });
 
-// api.metadata.onData(function(data){
-// 	io.emit("newData", data);
-// 	io.emit("UpdateArtwork", data.image);
-// });
+api.metadata.onData(data => io.emit(data));
