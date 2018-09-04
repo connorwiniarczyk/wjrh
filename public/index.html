@@ -4,10 +4,12 @@
 <head>
 	<title>WJRH</title>
 
-	<!-- BaconJS  --><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bacon.js/1.0.1/Bacon.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bacon.js/1.0.1/Bacon.js"></script> -->
 
-	<script src="api/getScript?script=handlebars" type="text/javascript"></script>
+	<!-- <script src="api/getScript?script=handlebars" type="text/javascript"></script> -->
 	<script src="api/getScript?script=socket.io" type="text/javascript"></script>
+
+	<!-- <script src="https://cdn.rawgit.com/gpujs/gpu.js/45103b7f154a12ec639990c6896b21a053eb6a6c/bin/gpu.js" type="text/javascript"></script> -->
 
 	<!-- <script src="api/getScript?script=visualizer" type="text/javascript"></script> -->
 	<script src="Scripts/script.js" type="text/javascript"></script>
@@ -18,7 +20,7 @@
 
 
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/visualizer.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/player.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/play_pause_button.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/sidebar.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/schedule.css">
@@ -28,14 +30,13 @@
 
 </head>
 <body>
-		<div id="Home" class="page hidden">
+		<div id="Home" class="page">
 			<div class="album-art square">
 				<div class="content">
 					<div class="controls">
-						<div id="play-pause-button" class="play-pause-button"></div>
+						<!-- <div id="play-pause-button" class="play-pause-button"></div> -->
 					</div>
 				</div>
-				<!-- <img src="/api/artwork"> -->
 			</div>
 
 			<!-- <div class="song-info"></div> -->
@@ -55,6 +56,10 @@
 				<img class="logo" src="resources/Logo.png" style="width: 60%">
 			</script>
 			<div id="visualizer" class="visualizer"></div>
+
+			<div class="control-bar">
+				<button id="play-pause-btn" class="play-pause-btn play"></button>
+			</div>
 
 		</div>
 		<div id="title" class="">

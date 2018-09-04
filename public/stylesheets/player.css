@@ -1,0 +1,66 @@
+
+/*Removes Default Button Styling*/
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button.play-pause-btn {
+  box-sizing: border-box;
+  height: 40px;
+    
+  border-color: transparent transparent transparent #202020;
+  transition: 100ms all ease;
+  will-change: border-width;
+  cursor: pointer;
+}
+
+button.play-pause-btn.play {
+  border-style: solid;
+  border-width: 20px 0 20px 30px;
+}
+
+button.play-pause-btn.pause {
+  border-style: double;
+  border-width: 0px 0 0px 40px;
+}
+
+.control-bar {
+  background: white;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: .75em;
+
+  text-align: center;
+}
+
+.visualizer {
+  display: flex;
+  /*z-index: -1;*/
+  position: absolute;
+
+  bottom: 100px;
+  left: 0;
+  right: 0;
+
+  height: 200px;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin: 4px;
+}
+
+.visualizer-node {
+  /*background: #852830;*/
+  width: 6px;
+  height: 50px;
+  border-radius: 3px; 
+}

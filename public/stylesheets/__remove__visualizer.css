@@ -19,4 +19,7 @@
   /*background: #852830;*/
   width: 6px;
   height: 50px;
-  border-radius: 3px; }
+  border-radius: 3px; 
+
+  /*transition: height .05s;*/
+}

@@ -3,7 +3,6 @@ const fetch = require("node-fetch")
 exports.getPrograms = function() {
 	return fetch("https://api.teal.cool/organizations/wjrh")
 	.then(res => res.json())
-	// .then(body => body.map(elem => elem.name))
 }
 
 exports.getEpisodes = function(programName){
@@ -11,5 +10,3 @@ exports.getEpisodes = function(programName){
 	.then(res => res.json())
 	.then(body => body.episodes)
 }
-
-// exports.getPrograms()

@@ -30,9 +30,6 @@ window.addEventListener("load", function(){
 		recent_shows: 	document.getElementById("recent-shows"),
 		contact_us: 	document.getElementById("contact-us")
 	};
-
-	console.log(Object.keys(tabs).map(key => tabs[key]))
-	// Object.keys(tabs).forEach(key => tabs[key].classList.add("hidden"))
 });
 
 window.addEventListener("load", function(){

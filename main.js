@@ -45,9 +45,7 @@ io.listen(server);
 
 // Manage socket connections
 io.on('connection', function(socket){
-	let data = api.metadata.getData();
-	io.emit("newData", data);
-	io.emit("UpdateArtwork", data.image);
+	io.emit("newData", api.metadata.getData());
 });
 
-api.metadata.onData(data => io.emit(data));
+api.metadata.onData(data => io.emit("newData", data));

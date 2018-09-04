@@ -27,9 +27,11 @@ const toStyle = color => "rgb(" + color[0] + ", " + color[1] + ", " + color[2] +
 const Visualizer = {}
 
 Visualizer.elements = [];
+Visualizer.color
 Visualizer.analyser;
 
 Visualizer.setColor = function(color) {
+	Visualizer.color = color
 	Visualizer.elements.forEach(
 		element => element.style.background = toStyle(color)
 	)
@@ -38,7 +40,7 @@ Visualizer.setColor = function(color) {
 Visualizer.draw = function(data) {
 	displayData = averageArray(data, Visualizer.elements.length)
 	Visualizer.elements.forEach(function(element, index){ 
-		element.style.height = (displayData[index] / 255) * 100 + "%"
+		element.style.height = ((displayData[index] / 255) * 100) + 5 + "%"
 	})
 }
 
@@ -57,11 +59,11 @@ Visualizer.render = function(container){
 	let output = new Array(amount).fill().map(() => {
 		let node = document.createElement("div")
 		node.className = "visualizer-node"
-		node.style.background = "white"
 		return node
 	})
 
 	Visualizer.elements = output;
+	Visualizer.setColor(Visualizer.color || [255, 255, 255])
 
 	output.forEach(
 		element => container.appendChild(element)
@@ -74,7 +76,6 @@ Visualizer.load = function(audio, container) {
 
 	Visualizer.render(container);
 	Visualizer.animationLoop()
-
 }
 
 const makeAnalyser = function(audio) {

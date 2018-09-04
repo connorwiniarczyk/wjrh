@@ -1,23 +1,49 @@
 const Player = {}
 
-Player.audio = document.createElement('audio')
-Player.metadata = {}
+Player.socket;
+Player.audio;
+
+Player.toggle = function(){
+	if(Player.audio == null) return
+
+	if(Player.audio.paused){ 
+		Player.audio.play()
+		document.getElementById("play-pause-btn").classList.remove("play")
+		document.getElementById("play-pause-btn").classList.add("pause")
+	} else {
+		Player.audio.pause()
+		document.getElementById("play-pause-btn").classList.remove("pause")
+		document.getElementById("play-pause-btn").classList.add("play")
+	}
+}
+
+window.addEventListener("load", function(){
+	document.getElementById("play-pause-btn").onclick = Player.toggle
+})
 
 Player.setColorScheme = function(scheme) {
 	document.getElementById("Home").style.background = toStyle(scheme.Secondary)
 	Visualizer.setColor(scheme.Primary)
 }
 
+Player.render = function(data) {
+	Player.audio = data.audio
+
+	document.getElementById("Home").classList.remove("hidden");
+	document.getElementById("title").classList.add("hidden");
+
+	document.querySelector(".album-art > .content").style.background = "url(/api/artwork?time=" + new Date().now + ")";
+
+	Visualizer.load(data.audio, document.getElementById("visualizer"))
+	Player.setColorScheme(data.metadata.colorScheme)
+
+	Player.audio.play();
+}
+
 Player.load = function(streamURL, metadata) {
 	//show loading animation
 	document.getElementById("loading-animation").classList.remove("hidden")
 	document.getElementById("listen-live-btn").classList.add("hidden")
-
-	if(metadata == "LIVE") {
-
-	} else {
-		Player.metadata = metadata;
-	}
 
 	// load audio data
 	audioLoad = new Promise((resolve, reject) => {
@@ -26,41 +52,34 @@ Player.load = function(streamURL, metadata) {
 		audio.src = streamURL
 		audio.crossOrigin = 'anonymous'
 
-		audio.oncanplay = resolve
-
-		document.getElementById("Home").removeChild(Player.audio)
-		Player.audio = audio
-	})
-
-	audioLoad.then(message => {
-		Player.audio.play()
-
-		document.getElementById("Home").appendChild(Player.audio)
-		Visualizer.load(Player.audio, document.getElementById("visualizer"))
-	})
-
-	// load image
-	imageLoad = window.fetch("/api/artwork")
-	.then(body => {
-		document.getElementById("Home").classList.remove("hidden");
-		document.getElementById("title").classList.add("hidden");
+		audio.oncanplay = () => resolve(audio)
 	})
 
 	//load color scheme
-	colorLoad = window.fetch("/api/color_scheme")
-	.then(res => res.json())
-	.then(body => Player.metadata.colorScheme = body)//Player.setColorScheme) // => "rgb(" + body.Secondary[0] + ", " + body.Secondary[1] + ", " + body.Secondary[2] + ")")
-	// .then(scheme => document.getElementById("Home").style.background = scheme)
+	metadataLoad = Promise.all([
+		window.fetch("/api/metadata")
+		.then(res => res.json()),
 
-	Promise.all([audioLoad, imageLoad, colorLoad])
-	.then(function(values){
-		document.getElementById("Home").classList.remove("hidden");
-		document.getElementById("title").classList.add("hidden");
+		window.fetch("/api/color_scheme")
+		.then(res => res.json())
+	])
+	.then(function(data){
+		data[0].colorScheme = data[1]
+		return data[0]
+	})
 
-		Player.setColorScheme(Player.metadata.colorScheme)
+	Promise.all([audioLoad, metadataLoad])
+	.then(function(data){
+		console.log(data)
+		return {
+			audio: data[0],
+			metadata: data[1]
+		}
+	})
+	.then(Player.render)
+
+	Player.socket = io("http://localhost");
+	Player.socket.on("newData", function(data){
+		console.log(data)
 	})
 }
-
-window.addEventListener("load", function(){
-	document.getElementById("Home").appendChild(Player.audio)
-})

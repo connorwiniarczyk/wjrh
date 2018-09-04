@@ -1,4 +1,4 @@
-.controls {
+/*.controls {
   width: 100%;
   height: 100%;
   background: rgba(32, 32, 32, 0);
@@ -66,4 +66,4 @@
   #pause-button-toggler:checked + .play-pause-button {
     background: url("/graphics/pause-button.svg");
     background-size: cover;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat; }*/

@@ -101,8 +101,6 @@ const iceCastStream = bacon.fromPoll(100, iceCastCall)
 	title: data[0], 
 	artist: data[1]
 }))
-.skipDuplicates(_.isEqual)
-.log()
 
 const nowPlaying = bacon.when(
 	[tealStream, iceCastStream], (teal, iceCast) => teal || iceCast
