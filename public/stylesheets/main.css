@@ -155,31 +155,35 @@ a {
 #Home {
   background: #5de6d8;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 
   box-sizing: border-box;
 }
 
-#Home > .album-art {
-  position: absolute;
-  width: 40vmin;
+.square {
+  position: relative;
 }
 
 .square:after {
   content: "";
   display: block;
   padding-bottom: 100%;
+
+  border: 1px solid black;
 }
 
 .square > .content {
   position: absolute;
 
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
 }
 
-#Home > .song-info {
+/*#Home > .song-info {
   box-sizing: border-box;
   padding: 10px;
   padding-left: 25px;
@@ -192,7 +196,7 @@ a {
 
 .song-info > div {
   display: grid;
-}
+}*/
 
 .lds-ellipsis {
   display: inline-block;

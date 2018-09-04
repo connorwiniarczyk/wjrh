@@ -38,7 +38,7 @@ Visualizer.setColor = function(color) {
 }
 
 Visualizer.draw = function(data) {
-	displayData = averageArray(data, Visualizer.elements.length)
+	displayData = averageArray(data.filter((elem, index) => index < 800), Visualizer.elements.length)
 	Visualizer.elements.forEach(function(element, index){ 
 		element.style.height = ((displayData[index] / 255) * 100) + 5 + "%"
 	})

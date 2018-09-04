@@ -31,16 +31,25 @@
 </head>
 <body>
 		<div id="Home" class="page">
-			<div class="album-art square">
-				<div class="content">
-					<div class="controls">
-						<!-- <div id="play-pause-button" class="play-pause-button"></div> -->
+
+			<div class="song-info">
+				<div class="album-art square">
+					<div class="content">
+						<div class="controls">
+							<button id="play-pause-btn" class="play-pause-btn play"></button>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<!-- <div class="song-info"></div> -->
-			<script id="template" type="text/x-handlebars-template">
+				<div id="metadata" class="metadata">
+					<h4>Stay</h4>
+					<h5>David Bowie - Station to Station</h5>
+					<br>
+					<h5>Robo DJ</h5>
+				</div>
+			</div>
+		
+			<!-- <script id="template" type="text/x-handlebars-template">
 				<div class="program">
 					<div>{{title}}</div>
 					<div><span>with </span>{{author}}</div>
@@ -54,13 +63,8 @@
 				</div>
 				<div style="font-size: 15px;">on</div>
 				<img class="logo" src="resources/Logo.png" style="width: 60%">
-			</script>
+			</script> -->
 			<div id="visualizer" class="visualizer"></div>
-
-			<div class="control-bar">
-				<button id="play-pause-btn" class="play-pause-btn play"></button>
-			</div>
-
 		</div>
 		<div id="title" class="">
 			<h1 data-heading="WJRH">WJRH</h1>
@@ -68,6 +72,9 @@
 				<div id="loading-animation" class="lds-ellipsis hidden"><div></div><div></div><div></div><div></div></div>
 				<button id="listen-live-btn" onclick="Player.load('http://www.wjrh.org:8000/WJRHlow', 'LIVE')">Listen Live</button>
 			</div>
+		</div>
+		<div id="control-bar" class="control-bar">
+			<!-- <button id="play-pause-btn" class="play-pause-btn play"></button> -->
 		</div>
 		<div id="site-content" class="">
 			<nav id="site-nav">

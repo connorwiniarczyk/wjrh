@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const http = require('http').Server(app);
 
+const bacon = require("baconjs")
+
 // Use this module to communicate with the client via websockets
 const io = require("socket.io")(http);
 
@@ -48,4 +50,9 @@ io.on('connection', function(socket){
 	io.emit("newData", api.metadata.getData());
 });
 
-api.metadata.onData(data => io.emit("newData", data));
+bacon.when([api.metadata.stream, api.colors.stream], function(metadata, colorScheme){
+	metadata.colorScheme = colorScheme
+	return metadata
+})
+.onValue(data => io.emit("newData", data))
+// api.metadata.onData(data => io.emit("newData", data));

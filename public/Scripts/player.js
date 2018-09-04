@@ -3,15 +3,23 @@ const Player = {}
 Player.socket;
 Player.audio;
 
+Player.play = function(){
+
+}
+
+Player.pause = function(){
+
+}
+
 Player.toggle = function(){
 	if(Player.audio == null) return
 
-	if(Player.audio.paused){ 
-		Player.audio.play()
+	if(Player.audio.muted){ 
+		Player.audio.muted = false
 		document.getElementById("play-pause-btn").classList.remove("play")
 		document.getElementById("play-pause-btn").classList.add("pause")
 	} else {
-		Player.audio.pause()
+		Player.audio.muted = true
 		document.getElementById("play-pause-btn").classList.remove("pause")
 		document.getElementById("play-pause-btn").classList.add("play")
 	}
@@ -81,5 +89,8 @@ Player.load = function(streamURL, metadata) {
 	Player.socket = io("http://localhost");
 	Player.socket.on("newData", function(data){
 		console.log(data)
+		Player.setColorScheme(data.colorScheme)
+		document.querySelector(".album-art > .content")
+		.style.background = "url(/api/artwork?time=" + new Date().getTime() + ")";
 	})
 }

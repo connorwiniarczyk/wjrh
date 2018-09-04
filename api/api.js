@@ -8,6 +8,7 @@ exports.call = function(method, params){
 };
 
 exports.metadata = metadata;
+exports.colors = colors;
 
 const apiMethods = {
 	"getScript": params => Promise.resolve({

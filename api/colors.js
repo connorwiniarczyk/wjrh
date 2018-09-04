@@ -3,7 +3,7 @@ const Metadata = require("./metadata.js")
 const Bacon = require("baconjs")
 const _ = require("lodash")
 
-const colors = Metadata.stream
+exports.stream = Metadata.stream
 .map(data => Vibrant.from(data.image).getPalette())
 .flatMap(Bacon.fromPromise)
 .map(data => ({
@@ -14,8 +14,6 @@ const colors = Metadata.stream
 	Muted: 			_.get(data, "Muted._rgb"),
 	DarkMuted: 		_.get(data, "DarkMuted._rgb")
 }))
-
-const colorScheme = colors
 .map(colors => ({
 	Primary: chooseFrom(colors)([
 		"LightVibrant",
@@ -31,9 +29,9 @@ const colorScheme = colors
 }))
 
 exports.colorScheme = {}
-colorScheme.onValue(function(data){
+exports.stream.onValue(function(data){
+	console.log(data);
 	exports.colorScheme = data
-	console.log(exports.colorScheme)
 })
 
 const chooseFrom = obj => (paths, Default) => {
