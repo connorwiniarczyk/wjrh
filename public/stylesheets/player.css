@@ -43,7 +43,7 @@ button.play-pause-btn {
 
   border-color: transparent transparent transparent #eee;
   /*border-color: transparent transparent transparent #202020;*/
-  transition: 100ms all ease;
+  transition: 150ms all ease;
   will-change: border-width;
   cursor: pointer;
 }
@@ -118,9 +118,15 @@ button.play-pause-btn.pause {
   margin: 4px;
 }
 
+#Home {
+
+}
+
 .visualizer-node {
   /*background: #852830;*/
   width: 6px;
   height: 50px;
-  border-radius: 3px; 
+  border-radius: 3px;
+
+  transition: background-color 1s ease;
 }

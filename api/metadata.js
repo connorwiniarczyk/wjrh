@@ -128,6 +128,9 @@ const metadata = bacon.when(
 			title: chooseFrom(data)([
 				"teal.program.name"
 			], "RoboDJ's greatest hits"),
+			album: chooseFrom(data)([
+				"lastFm.track.album.title"
+			]),
 			author: chooseFrom(data)([
 				"teal.program.author"
 			], "RoboDJ"),

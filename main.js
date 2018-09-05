@@ -47,7 +47,7 @@ io.listen(server);
 
 // Manage socket connections
 io.on('connection', function(socket){
-	io.emit("newData", api.metadata.getData());
+	// io.emit("newData", api.metadata.getData());
 });
 
 bacon.when([api.metadata.stream, api.colors.stream], function(metadata, colorScheme){

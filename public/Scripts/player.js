@@ -34,18 +34,20 @@ Player.setColorScheme = function(scheme) {
 	Visualizer.setColor(scheme.Primary)
 }
 
-Player.render = function(data) {
-	Player.audio = data.audio
+Player.render = function(metadata) {
+	// Player.audio = data.audio
 
-	document.getElementById("Home").classList.remove("hidden");
-	document.getElementById("title").classList.add("hidden");
+	// update image
+	document.querySelector(".album-art > .content")
+	.style.background = "url(/api/artwork?time=" + (new Date()).getTime() + ")";
 
-	document.querySelector(".album-art > .content").style.background = "url(/api/artwork?time=" + new Date().now + ")";
+	// update metadata
+	display = document.getElementById("metadata")
+	display.querySelector(".songname").innerHTML = metadata.songname
+	display.querySelector(".artistname").innerHTML = metadata.artistname
+	display.querySelector(".album").innerHTML = metadata.album
 
-	Visualizer.load(data.audio, document.getElementById("visualizer"))
-	Player.setColorScheme(data.metadata.colorScheme)
-
-	Player.audio.play();
+	Player.setColorScheme(metadata.colorScheme)
 }
 
 Player.load = function(streamURL, metadata) {
@@ -78,19 +80,27 @@ Player.load = function(streamURL, metadata) {
 
 	Promise.all([audioLoad, metadataLoad])
 	.then(function(data){
-		console.log(data)
 		return {
 			audio: data[0],
 			metadata: data[1]
 		}
 	})
-	.then(Player.render)
+	.then(function(data){
+		document.getElementById("Home").classList.remove("hidden");
+		document.getElementById("title").classList.add("hidden");
+
+		Player.render(data.metadata)
+
+		Visualizer.load(data.audio, document.getElementById("visualizer"))
+
+		Player.audio = data.audio;
+		Player.audio.play();
+	})
 
 	Player.socket = io("http://localhost");
 	Player.socket.on("newData", function(data){
 		console.log(data)
-		Player.setColorScheme(data.colorScheme)
-		document.querySelector(".album-art > .content")
-		.style.background = "url(/api/artwork?time=" + new Date().getTime() + ")";
+
+		Player.render(data)
 	})
 }

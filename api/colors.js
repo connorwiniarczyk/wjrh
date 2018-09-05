@@ -18,14 +18,13 @@ exports.stream = Metadata.stream
 	Primary: chooseFrom(colors)([
 		"LightVibrant",
 		"Vibrant",
-		"DarkMuted"
-	]),
+		"LightMuted"
+	], [230, 230, 230]),
 	Secondary: chooseFrom(colors)([
 		"DarkMuted",
 		"Muted",
-		"LightMuted",
 		"DarkVibrant"
-	])
+	], [0, 50, 50])
 }))
 
 exports.colorScheme = {}
