@@ -33,36 +33,54 @@ const render_program_button = function(program_data) {
 	document.getElementById("programs").appendChild(new_button)
 }
 
-const render_episode_button = function(episode_data) {
-	const template = document.getElementById("episode-template")
-	let new_button = template.cloneNode(true)
+const render_episode_link = function(episode_data, program_data) {
+	let newEpisode = document.getElementById("episode-template").cloneNode(true)
 
-	new_button.onclick = function(){ 
-		loadPlayer("/api/listen?id=" + (episode_data.id || ""), "")
+	newEpisode.onclick = function(){
+		Player.load("/api/listen?id=" + (episode_data.id || ""), {episode_data: episode_data, program_data: program_data})
 	}
 
-	new_button.querySelector(".title")
+	newEpisode.querySelector(".title")
 	.innerHTML = episode_data.name
 
-	new_button.querySelector(".description")
+	newEpisode.querySelector(".description")
 	.innerHTML = episode_data.description
 
-	new_button.classList.remove("template")
-	document.getElementById("episodes").appendChild(new_button)
+	newEpisode.classList.remove("template")
+	document.getElementById("episodes").appendChild(newEpisode)
 }
 
 const render_episode_list = function(program_name){
-	fetch("api/episodes?program=" + program_name + "")
-	.then(res => res.json())
-	// .then(body => body.splice(0, 10))
-	.then(body => body.forEach(episode => render_episode_button(episode)))
+	Utils.tealQuery(`{
+		program (id: "` + program_name + `") {
+			name, 
+			description,
+			shortname,
+			author,
+			image,
+			episodes {
+				name,
+				description,
+				id
+			}
+		}
+	}`)
+	.then(data => data.program.episodes
+		.forEach(episode => render_episode_link(episode, data.program))
+	)
 
 	document.getElementById("episodes").innerHTML = "";
-
 }
 
 window.addEventListener("load", function(){
-	fetch("api/programs")
-	.then(res => res.json())
-	.then(body => body.forEach(program => render_program_button(program)))
+	Utils.tealQuery(`{
+		programs {
+			name,
+			author,
+			image,
+			description,
+			shortname
+		}
+	}`)
+	.then(data => data.programs.forEach( program => render_program_button(program) ))
 })

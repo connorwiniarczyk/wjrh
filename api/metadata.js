@@ -56,8 +56,8 @@ const lastFM_ApiString = function(trackName, artistName){
  */
 const tealCall = function(){
 	return fetch(tealURL)
-		.then(res => res.json())	// if successful, resolve into the body in json format
-		.catch(err => err.message)	// if there was an error, resolve into the error message
+		.then(res => res.json())
+		.catch(err => err.message)
 }
 
 /**
@@ -66,8 +66,8 @@ const tealCall = function(){
  */
 const iceCastCall = function(){
 	return fetch(iceCastURL)
-		.then(res => res.json())	// if successful, resolve into the body in json format
-		.catch(err => err.message)	// if there was an error, resolve into the error message
+		.then(res => res.json())
+		.catch(err => console.log(err.message))
 }
 
 /**
@@ -75,10 +75,11 @@ const iceCastCall = function(){
  * @return {Promise} The result of the API call
  */
 const lastFmCall = function(trackName, artistName){
+	console.log(trackName)
 	return fetch(lastFM_ApiString(trackName || "", artistName || ""))	// if either field is null, replace it with an empty string
 																		// this prevents crashing
 		.then(res => res.json())	// if successful, resolve into the body in json format
-		.catch(err => err.message)	// if there was an error, resolve into the error message
+		.catch(err => console.log(err.message))	// if there was an error, resolve into the error message
 }
 
 //Now, we will start to create our streams. Each one represents a series of asynchronous events
@@ -90,7 +91,7 @@ const lastFmCall = function(trackName, artistName){
  */
 const tealStream = bacon.fromPoll(100, tealCall)
 .flatMap(bacon.fromPromise)
-.map(body => body.event == "episode-end" ? null : body.track)
+.map(body => body.event == "episode-end" ? null : body)
 
 const iceCastStream = bacon.fromPoll(100, iceCastCall)
 .flatMap(bacon.fromPromise)
@@ -98,8 +99,11 @@ const iceCastStream = bacon.fromPoll(100, iceCastCall)
 .map(title => title.replace(/\[.*\]/, ""))
 .map(title => title.split(" - ").map(string => string.trim()))
 .map(data => ({
-	title: data[0], 
+	title: data[0],
 	artist: data[1]
+}))
+.map(track => ({
+	track: track
 }))
 
 const nowPlaying = bacon.when(
@@ -108,7 +112,7 @@ const nowPlaying = bacon.when(
 .log()
 
 lastFmEvents = nowPlaying
-.map(track => lastFmCall(track.title, track.artist))
+.map(teal => lastFmCall(teal.track.title, teal.track.artist))
 .flatMap(bacon.fromPromise)
 .log()
 

@@ -66,6 +66,7 @@ button.play-pause-btn.pause {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .song-info > .album-art {

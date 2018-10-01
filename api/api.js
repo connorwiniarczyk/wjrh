@@ -43,8 +43,13 @@ const apiMethods = {
 	}),
 	"listen": params => Promise.resolve({
 		type: "url",
-		content: "http://api.teal.cool/download/" + params.id + ".mp3"//56f9e362944f1e001692f824.mp3"
-	})
+		content: "http://api.teal.cool/download/" + params.id + ".mp3"
+	}),
+	"info": params => shows.getInfo(params.program, params.episode)
+	.then(info => ({
+		type: "string",
+		content: info
+	}))
 }
 
 const scripts = {

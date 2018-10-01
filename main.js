@@ -37,6 +37,23 @@ app.get('/api/:method', function(req, res){
 	.catch(error => res.send("error: " + error.message));
 });
 
+var bodyParser = require("body-parser")
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+const teal = require("./api/teal_wrapper");
+
+app.post('/teal', function(req, res){
+	// res.send("test")
+	teal.query(req.body.query)
+	// teal.query(`{
+	// 	program (id: "sendnudes") {
+	// 		name
+	// 	}
+	// }`)
+	.then(response => res.send(response))
+})
+
 app.use('/', express.static('public'));
 
 // start the server on port 80 
