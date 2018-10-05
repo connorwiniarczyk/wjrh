@@ -20,16 +20,17 @@ Player.toggle = function(){
 	}
 }
 
-Player.setColorScheme = function(scheme) {
+Player.setColorScheme = function(scheme){
 	document.getElementById("Home").style.background = toStyle(scheme.Secondary)
 	Visualizer.setColor(scheme.Primary)
 }
 
-Player.render = function(metadata) {
+Player.render = function(metadata){
+	default_image = ""
+
 	// update image
 	document.querySelector(".album-art > .content")
-	.style["background-image"] = "url('" + metadata.image + "')"
-	// .style["background-image"] = "url(/api/artwork?time=" + (new Date()).getTime() + ")";
+	.style["background-image"] = "url('" + (metadata.image || default_image) + "')"
 
 	// update metadata
 	display = document.getElementById("metadata")
@@ -45,7 +46,6 @@ Player.render = function(metadata) {
 }
 
 Player.init = function(){
-	//show loading animation
 	document.getElementById("loading-animation").classList.remove("hidden")
 	document.getElementById("listen-live-btn").classList.add("hidden")
 
@@ -54,7 +54,7 @@ Player.init = function(){
 
 	Visualizer.load(Player.audio, document.getElementById("visualizer"))
 
-	Player.socket = io("http://localhost");
+	Player.socket = io("http://localhost")
 }
 
 Player.load = function(streamURL, metadata) {

@@ -8,7 +8,7 @@ const fetch = require("node-fetch")	// node-fetch is an implementation of the fe
 									// it is really useful for calling external web APIs
 									// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 									// 
-const _ = require("lodash")			// lodash is a popular library providing a number of useful functions
+const _ = require("lodash")		// lodash is a popular library providing a number of useful functions
 									// not included in vanilla javascript. We are using it for its 
 									// .equals() and .get() functions
 									// https://lodash.com/ 
@@ -74,7 +74,7 @@ const iceCastCall = function(){
  * Make a call to LastFm and return a promise containing the result
  * @return {Promise} The result of the API call
  */
-const lastFmCall = function(trackName, artistName){
+const lastFmCall = function({trackName, artistName}){
 	console.log(trackName)
 	return fetch(lastFM_ApiString(trackName || "", artistName || ""))	// if either field is null, replace it with an empty string
 																		// this prevents crashing
@@ -112,7 +112,7 @@ const nowPlaying = bacon.when(
 .log()
 
 lastFmEvents = nowPlaying
-.map(teal => lastFmCall(teal.track.title, teal.track.artist))
+.map(teal => lastFmCall(teal.track || {}))
 .flatMap(bacon.fromPromise)
 .log()
 
@@ -124,17 +124,17 @@ const metadata = bacon.when(
 			songname: chooseFrom(data)([
 				"lastFm.track.name",
 				"teal.track.title"
-			], "Song Unknown"),
+			], null),
 			artistname: chooseFrom(data)([
 				"lastFm.track.artist.name",
 				"teal.track.artist"
-			], "Artist Unknown"),
+			], null),
 			title: chooseFrom(data)([
 				"teal.program.name"
-			], "RoboDJ's greatest hits"),
+			], null),
 			album: chooseFrom(data)([
 				"lastFm.track.album.title"
-			]),
+			], null),
 			author: chooseFrom(data)([
 				"teal.program.author"
 			], "RoboDJ"),

@@ -82,5 +82,9 @@ window.addEventListener("load", function(){
 			shortname
 		}
 	}`)
-	.then(data => data.programs.forEach( program => render_program_button(program) ))
+	.then(data => {
+		const appendTarget = document.getElementById("programs")
+		data.programs.map( program => Dom_Templates.program_link(program) )
+		.forEach(link => appendTarget.appendChild(link))
+	})
 })
