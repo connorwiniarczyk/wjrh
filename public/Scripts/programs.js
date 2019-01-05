@@ -10,29 +10,6 @@ Programs.switchTo = function(event, tab){
 	document.getElementById(tab).classList.remove("hidden")
 }
 
-const render_program_button = function(program_data) {
-	const template = document.getElementById("program-template")
-	let new_button = template.cloneNode(true);
-
-	new_button.querySelector("img.image")
-	.setAttribute("src", program_data.image || "http://assets.podomatic.net/ts/37/11/dc/cakiral/1400x1400_11741854.jpg")
-
-	new_button.querySelector("div > .name")
-	.innerHTML = program_data.name || "name not found"
-
-	new_button.querySelector("div > .authors")
-	.innerHTML = program_data.author || "author not found"
-
-	new_button.onclick = function(){
-		render_episode_list(program_data.shortname)
-		Programs.switchTo(event, "episodes")
-	}
-
-	new_button.classList.remove("template")
-
-	document.getElementById("programs").appendChild(new_button)
-}
-
 const render_episode_link = function(episode_data, program_data) {
 	let newEpisode = document.getElementById("episode-template").cloneNode(true)
 
@@ -52,7 +29,7 @@ const render_episode_link = function(episode_data, program_data) {
 
 const render_episode_list = function(program_name){
 	Utils.tealQuery(`{
-		program (id: "` + program_name + `") {
+		program (id: ${program_name}) {
 			name, 
 			description,
 			shortname,
@@ -72,19 +49,51 @@ const render_episode_list = function(program_name){
 	document.getElementById("episodes").innerHTML = "";
 }
 
-window.addEventListener("load", function(){
-	Utils.tealQuery(`{
-		programs {
+const load_programs = async function(){
+	const query = `{
+		programs (limit_to: 20, deep: false) {
 			name,
 			author,
 			image,
 			description,
 			shortname
 		}
-	}`)
-	.then(data => {
-		const appendTarget = document.getElementById("programs")
-		data.programs.map( program => Dom_Templates.program_link(program) )
-		.forEach(link => appendTarget.appendChild(link))
-	})
-})
+	}`
+
+	const appendTarget = document.getElementById("program-list")
+
+	const data = await Utils.tealQuery(query)
+	const links = data.programs.map(Dom_Templates.program_link)
+	
+	links.forEach(link => appendTarget.appendChild(link))
+}
+
+const load_program = async function({name}){
+	const query = `{
+		program (shortname: "${name}") {
+			name, 
+			description,
+			shortname,
+			author,
+			image,
+			episodes {
+				name,
+				description,
+				audio_url
+			}
+		}
+	}`
+
+	const data = await Utils.tealQuery(query)
+
+	console.log(data)
+
+	const episode_links = data.program.episodes.map(Dom_Templates.episode_link)
+
+	console.log(episode_links)
+
+	// const appendTarget = document.getElementById
+}
+
+window.addEventListener("load", load_programs)
+window.addEventListener("load", () => load_program({name: "sendnudes"}))

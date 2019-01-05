@@ -36,8 +36,8 @@ window.addEventListener("load", function(){
 	window.onresize();
 	socket = io();
 
-	metadata = Bacon.fromEvent(socket, "newData")
-	artwork = Bacon.fromEvent(socket, "UpdateArtwork")
+	// metadata = Bacon.fromEvent(socket, "newData")
+	// artwork = Bacon.fromEvent(socket, "UpdateArtwork")
 
 	// metadata.onValue(renderSongInfo)
 	// artwork.onValue(url => {
@@ -53,18 +53,18 @@ window.addEventListener("load", function(){
 	// .then(scheme => document.getElementById("Home").style.background = scheme)
 	// .then(scheme => console.log(scheme))
 
-	play_pauseButton = document.getElementById("play-pause-button");
+	// play_pauseButton = document.getElementById("play-pause-button");
 
-	let playing = false;
-	play_pauseButton.onclick = function(){
-		if(playing){
-			document.getElementsByTagName("audio")[0].pause()
-			playing = false;
-		} else {
-			document.getElementsByTagName("audio")[0].play()
-			playing = true;
-		}
-	}
+	// let playing = false;
+	// play_pauseButton.onclick = function(){
+	// 	if(playing){
+	// 		document.getElementsByTagName("audio")[0].pause()
+	// 		playing = false;
+	// 	} else {
+	// 		document.getElementsByTagName("audio")[0].play()
+	// 		playing = true;
+	// 	}
+	// }
 });
 
 window.onresize = function(){

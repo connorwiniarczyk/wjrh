@@ -1,13 +1,19 @@
 Utils = {}
 
-Utils.tealQuery = function(query) {
-	return fetch("http://localhost:3000/teal", {
+Utils.tealQuery = async function(query) {
+
+	// build our HTTP POST request
+	const request = fetch("http://10.0.0.146:4000/graphql", {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({query: query}),
+		body: JSON.stringify({query: query, raw: true}),
 		method: "POST"
 	})
-	.then(res => res.json())
-	.then(body => body.data)
+	
+	const result = await request.then(res => res.json())
+
+	if(result.errors) throw result.errors[0]
+
+	return result.data
 }

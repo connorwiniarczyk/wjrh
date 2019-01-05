@@ -17,6 +17,14 @@
   font-family: "stencilia";
   src: url("/fonts/Stencilia-A.ttf");
 }
+@font-face {
+  font-family: "decovar";
+  src: url("/fonts/DecovarAlpha-VF.ttf");
+}
+@font-face {
+  font-family: "bavro";
+  src: url("/fonts/Bavro-Regular.ttf");
+}
 
 body {
   font-family: gravity;
@@ -49,7 +57,6 @@ body {
 }
 
 .tab {
-  max-width: 700px;
   margin-right: auto;
   margin-left: auto;
 

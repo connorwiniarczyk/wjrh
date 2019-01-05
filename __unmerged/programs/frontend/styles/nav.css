@@ -1,0 +1,30 @@
+nav.nav {
+	padding: 0 15%;
+}
+
+nav.nav--dark {
+	--height: 4rem;
+
+	background: #282828;
+	color: #9DFFFC;
+}
+
+nav.nav .btn--back {
+	float: left;
+
+	line-height: var(--height);
+	/*font-size: calc(var(--height));*/
+
+	margin-right: 1rem;
+}
+
+nav a h2 {
+	float: left;
+	line-height: var(--height);
+}
+
+nav .searchbar {
+	float: right;
+	height: calc(var(--height) * .5);
+	margin: calc(var(--height) * .25) 0;
+}
