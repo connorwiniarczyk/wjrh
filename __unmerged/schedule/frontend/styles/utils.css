@@ -1,0 +1,102 @@
+html{
+	font-family: acumin-pro;
+}
+
+p {
+	/*font-size: .75rem;*/
+}
+
+body{
+	margin: 0;
+	background: #9DFFFC;
+}
+
+input.searchbar {
+	box-shadow: unset;
+
+	border: 1px solid black;
+	border-radius: 1em;
+	padding: 0 1em; /* 1em of padding on left and right */
+
+	line-height: 1.3rem;
+
+	font-family: josefin-slab;
+}
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+	font-family: josefin-slab;
+}
+
+a {
+	text-decoration: unset;
+	color: unset;
+	border: unset;
+}
+
+ul {
+	padding: unset;
+}
+
+ul li {
+	list-style: none;
+}
+
+.tab {
+	display: none;
+}
+
+.tab.active {
+	display: unset;
+}
+
+/*Removes Default Button Styling*/
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button.play-pause-btn {
+	--color: #222;
+
+	box-sizing: border-box;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	height: 40px;
+
+	border-color: transparent transparent transparent var(--color);
+	/*border-color: transparent transparent transparent #202020;*/
+	transition: 150ms all ease;
+	will-change: border-width;
+	cursor: pointer;
+}
+
+button.play-pause-btn:hover {
+  transform: scale(1.3);
+}
+
+button.play-pause-btn.play {
+	border-style: solid;
+	border-width: 20px 0 20px 30px;
+
+	/*box-shadow: 0 0 10px 10px red;*/
+
+}
+
+button.play-pause-btn.pause {
+  border-style: double;
+  border-width: 0px 0 0px 30px;
+}
