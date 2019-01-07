@@ -31,8 +31,12 @@ Utils.escapeHtml = function(unsafe) {
 		.replace(/'/g, "&#039;");
  }
 
+Utils.DomQuery = function(query){
+	const nodelist = document.querySelectorAll(query)
+	return Array.prototype.slice.call(nodelist)
+}
 
-
+console.log(NodeList.prototype)
 
 DomTemplate = {}
 
@@ -84,21 +88,112 @@ DomTemplate["episode-link"] = function(data) {
 	return DomTemplate.render(template)
 }
 
-DomTemplate["schedule-row"] = function(timeslot, data) {
+DomTemplate["schedule__cell--show"] = function(data, { raw }) {
 	const template = `
-		<tr class="hour">
-			<td class="hours">
-				${timeslot} - ${parseInt(timeslot) + 1}
+		<td class="
+			schedule__cell
+			schedule__cell--show
+			${data.day}
+		">
+			<a href="#">
+				<p>${data.name || ""}</p>
+				<p>${data.author || ""}</p>
+			</a>
+		</td>`
+
+	if(raw)	return template
+	else 	return DomTemplate.render(template)
+}
+
+DomTemplate["schedule-row"] = function(data) {
+	const template = `
+		<tr data-hour="${data.time.range.start}"  class="schedule__row">
+			<td class="schedule__cell schedule__cell--timeslot">
+				${data.time.string}
 			</td>
-			<td class="day day--mon">${data.monday.name || ""}</td>
-			<td class="day day--tue">${data.tuesday.name || ""}</td>
-			<td class="day day--wed"></td>
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"monday", ...data.mon},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"tuesday", ...data.tue},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"wednesday", ...data.wed},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"thursday", ...data.thu},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"friday", ...data.fri},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"saturday", ...data.sat},
+				{raw: true}
+			)}
+
+			${DomTemplate["schedule__cell--show"](
+				{day:"sunday", ...data.sun},
+				{raw: true}
+			)}
+
 		</tr>`
 
 	return DomTemplate.render(template)
 }
 
 Schedule = {}
+
+Schedule.update_day = function(){
+	const date = new Date()
+	const today = date.getDay()
+
+	const today_string = `
+		${ today == 0 ? "sunday" : ""}\
+		${ today == 1 ? "monday" : ""}\
+		${ today == 2 ? "tuesday" : ""}\
+		${ today == 3 ? "wednesday" : ""}\
+		${ today == 4 ? "thursday" : ""}\
+		${ today == 5 ? "friday" : ""}\
+		${ today == 6 ? "saturday" : ""}\
+	`.trim()
+
+	Utils.DomQuery(`
+		.schedule__cell--show,
+		.schedule__cell--heading`
+	)
+	.forEach(cell => cell.classList.remove('today'))
+
+	Utils.DomQuery(`
+		.schedule__cell--show.${today_string},
+		.schedule__cell--heading.${today_string}`
+	)
+	.forEach(cell => cell.classList.add('today'))
+}
+
+Schedule.update_time = function(){
+	const date = new Date()
+	const hour = date.getHours()
+
+	Utils.DomQuery(`.schedule__row`)
+	.forEach(elem => elem.classList.remove("live"))
+
+	Utils.DomQuery(`.schedule__row[data-hour="${hour}"]`)
+	.forEach(elem => elem.classList.add("live"))
+
+	Utils.DomQuery(`.schedule__row[data-hour="${hour}"]`)[0]
+	.scrollIntoView(true)
+}
 
 /**
  *	Right now, our schedule data is indexed by day, and then by time of day
@@ -127,16 +222,18 @@ Schedule.render = async function(){
 	const request = fetch("http://10.0.0.146/schedule").then(res => res.json())
 	const data = await request
 
-	const rows = Schedule.row_index(data)
+	// made a change to the way the schedule is stored,
+	// function isn't necessary at the moment
+	// const rows = Schedule.row_index(data)
 
-	const elements = Object.keys(rows)
-	.map(key => DomTemplate["schedule-row"](key, rows[key]))
+	const elements = data.map(timeslot => DomTemplate["schedule-row"](timeslot))
+	const appendTarget = Utils.DomQuery("tbody")[0]
 
-	const appendTarget = document.getElementById("schedule")
-
+	appendTarget.innerHTML = ""
 	elements.forEach(row => appendTarget.appendChild(row))
 
-	console.log(elements)
+	Schedule.update_day()
+	Schedule.update_time()
 }
 
 window.addEventListener('load', Schedule.render)

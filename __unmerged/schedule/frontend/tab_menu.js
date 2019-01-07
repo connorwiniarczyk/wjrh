@@ -20,9 +20,4 @@ window.addEventListener("load", function(){
 	const tabs = toArray(tab_nodes)
 
 	const menu = new TabMenu(tabs)
-
-	console.log(menu)
-
-	// menu.switchTo(1)
-	// menu.switchTo(0)
 })

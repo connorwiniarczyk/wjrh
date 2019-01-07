@@ -1,14 +1,14 @@
 const server = require('./server.js')
-const yaml = require('yaml')
-const fs = require('fs')
-const path = require('path')
+const schedule = require('./parser.js')
 
-const file = fs.readFileSync(path.join(__dirname, '/schedule.yaml'), 'utf8')
-const schedule = yaml.parse(file)
 
 server.get('/schedule', function(req, res){
-
-	res.send(schedule)
+	schedule.parse()
+	.then(data => res.send(data))
+	.catch(err => res.send(err))
 })
+
+schedule.parse()
+.catch(err => console.log(err))
 
 server.listen(80)
