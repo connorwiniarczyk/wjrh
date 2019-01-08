@@ -53,7 +53,7 @@ ul li {
 }
 
 .tab.active {
-	display: unset;
+	display: inherit;
 }
 
 /*Removes Default Button Styling*/

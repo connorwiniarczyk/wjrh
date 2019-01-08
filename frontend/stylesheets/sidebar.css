@@ -1,0 +1,46 @@
+#sidebar {
+	position: fixed;
+	left: -15%;
+	width: 15%;
+	height: 100%;
+
+	background: #eee;
+
+	transition: left .4s;
+
+}
+
+#content {
+	position: absolute;
+	width: 100%;
+	left: 0%;
+
+	transition: left .4s;
+
+}
+
+#slide-out-button {
+	position: fixed;
+	left: 1em; /*left: calc(20% + 15px);*/
+	top: 1em;
+	color: white;
+	font-size: 2em;
+
+	z-index: 1;
+
+	transition: left .4s;
+
+}
+
+#slide-out-button.out {
+	left: calc(15% + 1em);
+}
+
+#sidebar.out {
+	left: 0;
+}
+
+#content.out {
+	left: 15%;
+	right: 0%;
+}

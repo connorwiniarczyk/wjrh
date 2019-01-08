@@ -1,0 +1,170 @@
+html {
+	/*background: #5de6d8;*/
+	background: #eee;
+	color: #333;
+}
+
+#programs > h1 {
+	font-family: bavro;
+	font-size: 3.5em;
+	/*color: #e6d354;*/
+	color: #222;
+
+/*	text-shadow: -1px -1px 0px #333,
+	  1px -1px 0px #333,
+	  -1px 1px 0px #333,
+	  1px 1px 0px #333;*/
+
+	/*font-variation-settings: "TRME" 1000;*/
+}
+
+#programs {
+	/*text-align: center*/
+}
+
+.search-box{
+	background: #333;
+
+}
+
+.search-btn {
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#program-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.program {
+	width: 10em;
+	height: 10em;
+	text-overflow: ellipsis;
+
+	text-align: center;
+
+	border: 1px solid black;
+	border-radius: 1em;
+
+	margin: 1em;
+
+	background-size: cover;
+	background-position: center;
+
+	transition: transform .25s;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: stretch;
+
+	/*white-space: nowrap;*/
+	/*text-overflow: ellipsis;*/
+	overflow: hidden;
+}
+
+.program:hover {
+	transform: scale(1.1);
+}
+
+.program > .name {
+	height: 2em;
+	background: white;
+	text-overflow: hidden;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+
+}
+
+.program > .info {
+	display: none;
+
+	color: #eee;
+	text-align: left;
+
+	padding: .5em;
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+	background: rgba(10, 10, 10, .75);
+}
+
+.program:hover > .info {
+	display: grid;
+}
+
+.program > .info > .title {
+	font-size: .9em;
+}
+
+.program > .info > .authors {
+	font-size: .8em;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+#episodes{
+	background: #eee;
+	/*display: grid;*/
+}
+
+@media only screen and (min-width: 600px) {
+	#episodes {
+		display: grid;
+		grid-template-columns: 50% 50%; 
+		grid-template-areas: "info episodes";
+	}	
+}
+
+#episodes > .info {
+	grid-area: info;
+
+	display: grid;
+
+	grid-template-areas:
+		"name		image"
+		"authors 	image"
+		"description description"
+}
+
+#episodes > .info > .title { 
+	grid-area: name;
+	align-self: bottom;
+	margin-bottom: 0;
+}
+
+#episodes > .info > .authors { grid-area: authors; }
+#episodes > .info > .description { grid-area: description; }
+
+#episodes > .info > .image {
+	grid-area: image;
+	place-self: center;
+
+	width: 10em;
+	height: 10em;
+
+	background-image: url("http://assets.podomatic.net/ts/37/11/dc/cakiral/1400x1400_11741854.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+#episodes > .episodes {
+	grid-area: episodes;
+}
+
+.episode {}

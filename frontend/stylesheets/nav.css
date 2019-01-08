@@ -1,0 +1,42 @@
+.nav {
+	--height: 4rem;
+
+	padding: 0 15%; 
+}
+
+.nav--dark {
+	background: #282828;
+	color: #9DFFFC;
+}
+
+.nav .btn--back {
+	float: left;
+
+	line-height: var(--height);
+	/*font-size: calc(var(--height));*/
+
+	margin-right: 1rem;
+}
+
+.nav__tabs, .nav__tabs li {
+	display: inline;
+}
+
+.nav__tabs {
+	float: right;
+}
+
+.nav__tabs li {
+	margin-left: 1.5rem;
+}
+
+nav a h2 {
+	float: left;
+	line-height: var(--height);
+}
+
+nav .searchbar {
+	float: right;
+	height: calc(var(--height) * .5);
+	margin: calc(var(--height) * .25) 0;
+}

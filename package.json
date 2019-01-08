@@ -13,15 +13,17 @@
     "node-fetch": "^2.0.0",
     "node-vibrant": "^3.0.0",
     "request": "^2.83.0",
-    "socket.io": "^2.0.4"
+    "server": "file:../boilerplate-js/utils/server",
+    "socket.io": "^2.0.4",
+    "song-metadata": "file:../boilerplate-js/utils/song-metadata"
   },
   "devDependencies": {
     "jest": "^22.0.4",
     "reload": "^2.2.2"
   },
   "scripts": {
-    "start": "nodemon main.js",
-    "browser-sync": "browser-sync start -p localhost:80 -f public",
+    "start": "nodemon backend/main.js",
+    "browser-sync": "browser-sync start -p localhost:80 -f frontend",
     "test": "jest",
     "watch": "jest --watchAll"
   },

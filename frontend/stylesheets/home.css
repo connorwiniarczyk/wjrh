@@ -1,0 +1,49 @@
+.page--home {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	height: 100vh;
+
+	text-align: center;
+}
+
+.home__heading {
+	font-family: caviar_dreams;
+	/*text-decoration: underline;*/
+
+	white-space: nowrap;
+	color: #e6d354;
+	font-size: 6em;
+	text-shadow: 
+		-1px -1px 0px #333,
+		 1px -1px 0px #333,
+		-1px  1px 0px #333,
+		 1px  1px 0px #333;
+}
+
+h2 {
+	font-family: caviar_dreams;
+}
+
+.btn--listen-live {
+	border: 1px solid #333;
+	border-radius: .5rem;
+
+	background: #eee;
+
+	padding: .3rem 1rem;
+	margin-top: 5rem;
+
+	transition: box-shadow .25s;
+
+	/*font-family: josefin-slab;*/
+}
+
+.btn--listen-live:hover {
+	box-shadow: 
+		0 0 0 4px #e6d354,
+		0 0 0 5px #333;
+}

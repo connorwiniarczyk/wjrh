@@ -1,0 +1,22 @@
+.page#Contact {
+	grid-template-areas: ". . c c c c c c c c . .";
+}
+
+.contact {
+	grid-area: c;
+	padding: 20px;
+	background: rgba(40, 40, 40, .8);
+	min-height: 50vh;
+	color: white;
+
+	font-family: gravity;
+
+}
+
+input {
+	width: 100%;
+}
+
+textarea {
+	width: 100%;
+}
