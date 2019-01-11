@@ -12,34 +12,17 @@ const averageArray = (array, length) => {
 	})
 }
 
-const toStyle = color => "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")"
+const toStyle = color => `rgb("${color[0]}", "${color[1]}", "${color[2]}")`
 
-// const AudioVisualizer = function(audio) {
-// 	this.analyser = makeAnalyser(audio)
-// }
-
-// AudioVisualizer.options = {
-// 	loadhere: document.currentScript.getAttribute("data-loadhere") ? true : false,
-// 	audioId: document.currentScript.getAttribute("data-audioId")
-// }
-// AudioVisualizer.parent = document.currentScript.parentElementff
-
-const Visualizer = {}
+Visualizer = {}
 
 Visualizer.elements = [];
-Visualizer.color
 Visualizer.analyser;
 
-Visualizer.setColor = function(color) {
-	Visualizer.color = color
-	Visualizer.elements.forEach(
-		element => element.style.background = toStyle(color)
-	)
-}
-
 Visualizer.draw = function(data) {
-	displayData = averageArray(data.filter((elem, index) => index < 800), Visualizer.elements.length)
-	Visualizer.elements.forEach(function(element, index){ 
+	displayData = averageArray(data.filter((elem, index) => index < 600 && index > 30), Visualizer.elements.length)
+	Visualizer.elements.forEach(function(element, index){
+		// element.style.transform = `translateY(-${(displayData[index] / 255) * 100}px)` 
 		element.style.height = ((displayData[index] / 255) * 100) + 5 + "%"
 	})
 }
@@ -58,16 +41,15 @@ Visualizer.render = function(container){
 
 	let output = new Array(amount).fill().map(() => {
 		let node = document.createElement("div")
-		node.className = "visualizer-node"
+		node.className = "visualizer__node"
 		return node
 	})
 
-	Visualizer.elements = output;
-	Visualizer.setColor(Visualizer.color || [255, 255, 255])
+	// console.log(output)
 
-	output.forEach(
-		element => container.appendChild(element)
-	)
+	Visualizer.elements = output;
+
+	output.forEach(element => container.appendChild(element))
 }
 
 Visualizer.load = function(audio, container) {
@@ -76,6 +58,8 @@ Visualizer.load = function(audio, container) {
 
 	Visualizer.render(container);
 	Visualizer.animationLoop()
+
+	console.log("visualizer")
 }
 
 const makeAnalyser = function(audio) {

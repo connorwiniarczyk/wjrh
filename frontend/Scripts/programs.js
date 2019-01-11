@@ -1,57 +1,13 @@
-let Programs = {};
+Programs = {}
 
-Programs.switchTo = function(event, tab){
-	Array.prototype.forEach.call(
-		document.querySelectorAll("#recent-shows > .tab"),
-		tab => tab.classList.add("hidden")
-	);
+Programs.LoadPrograms = async function(search_param){
 
-	console.log(document.getElementById(tab))
-	document.getElementById(tab).classList.remove("hidden")
-}
-
-const render_episode_link = function(episode_data, program_data) {
-	let newEpisode = document.getElementById("episode-template").cloneNode(true)
-
-	newEpisode.onclick = function(){
-		Player.load("/api/listen?id=" + (episode_data.id || ""), {episode_data: episode_data, program_data: program_data})
-	}
-
-	newEpisode.querySelector(".title")
-	.innerHTML = episode_data.name
-
-	newEpisode.querySelector(".description")
-	.innerHTML = episode_data.description
-
-	newEpisode.classList.remove("template")
-	document.getElementById("episodes").appendChild(newEpisode)
-}
-
-const render_episode_list = function(program_name){
-	Utils.tealQuery(`{
-		program (id: ${program_name}) {
-			name, 
-			description,
-			shortname,
-			author,
-			image,
-			episodes {
-				name,
-				description,
-				id
-			}
-		}
-	}`)
-	.then(data => data.program.episodes
-		.forEach(episode => render_episode_link(episode, data.program))
-	)
-
-	document.getElementById("episodes").innerHTML = "";
-}
-
-const load_programs = async function(){
 	const query = `{
-		programs (limit_to: 20, deep: false) {
+		programs (
+			search_param: "${search_param || ""}",
+			limit_to: 30,
+			deep: false,
+		){
 			name,
 			author,
 			image,
@@ -60,23 +16,25 @@ const load_programs = async function(){
 		}
 	}`
 
-	const appendTarget = document.getElementById("program-list")
-
 	const data = await Utils.tealQuery(query)
-	const links = data.programs.map(Dom_Templates.program_link)
-	
+	const links = data.programs.map(program => DomTemplate["program-link"](program))
+
+	const appendTarget = document.getElementById("programs-list")
+	appendTarget.innerHTML = ""
 	links.forEach(link => appendTarget.appendChild(link))
 }
 
-const load_program = async function({name}){
+Programs.LoadProgram = async function(shortname){
+
 	const query = `{
-		program (shortname: "${name}") {
-			name, 
-			description,
+		program(shortname: "${shortname}"){
 			shortname,
+			name,
 			author,
 			image,
+			description,
 			episodes {
+				id,
 				name,
 				description,
 				audio_url
@@ -84,16 +42,39 @@ const load_program = async function({name}){
 		}
 	}`
 
-	const data = await Utils.tealQuery(query)
+	const { program } = await Utils.tealQuery(query)
+	const { episodes, ...details } = program
 
-	console.log(data)
+	const details_fragment = DomTemplate["program-details"](details)
+	const details_target = document.querySelector(".program-details")
 
-	const episode_links = data.program.episodes.map(Dom_Templates.episode_link)
+	details_target.innerHTML = ""
+	details_target.appendChild(details_fragment)
 
-	console.log(episode_links)
+	const episode_links = episodes.map(episode =>
+		DomTemplate["episode-link"]({episode, program: details})
+	)
 
-	// const appendTarget = document.getElementById
+	episodes_target = document.getElementById("program-episodes")
+	episodes_target.innerHTML = ""
+	episode_links.forEach(link => episodes_target.appendChild(link))
+
+	Programs.switchTo(1)
 }
 
-window.addEventListener("load", load_programs)
-window.addEventListener("load", () => load_program({name: "sendnudes"}))
+window.addEventListener("load", () => Programs.LoadPrograms())
+window.addEventListener("load", function(){
+	const tabs = Utils.DomQuery("section.programs > .tab")
+
+	Programs.tabs = new TabMenu(tabs)
+	Programs.switchTo = Programs.tabs.switchTo.bind(Programs.tabs)
+})
+
+window.addEventListener("load", function(){
+	const searchbar = document.getElementById("program-search")
+
+	searchbar.onkeydown = function(){
+		const param = searchbar.value
+		Programs.LoadPrograms(param)
+	}
+})

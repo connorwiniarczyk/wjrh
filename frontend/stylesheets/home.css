@@ -1,3 +1,7 @@
+:root{
+	--primary-color: #e6d354;
+};
+
 .page--home {
 	display: flex;
 	flex-direction: column;

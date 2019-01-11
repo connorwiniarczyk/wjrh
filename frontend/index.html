@@ -8,7 +8,11 @@
 	<script src="Scripts/utils.js" type="text/javascript"></script>
 	<script src="Scripts/dom_templates.js" type="text/javascript"></script>
 
+	<script src="Scripts/visualizer.js"></script>
+	<script src="Scripts/music-player.js"></script>
+
 	<script src="Scripts/schedule.js"></script>
+	<script src="Scripts/programs.js"></script>
 <!-- 	<script src="Scripts/script.js" type="text/javascript"></script>
 
 	<script src="Scripts/player.js" type="text/javascript"></script>
@@ -21,12 +25,20 @@
 
 	<link rel="stylesheet" href="stylesheets/utils.css">
 	<link rel="stylesheet" href="stylesheets/nav.css">
+
 	<link rel="stylesheet" href="stylesheets/home.css">
+
 	<link rel="stylesheet" href="stylesheets/music-player.css">
+	<link rel="stylesheet" href="stylesheets/visualizer.css">
+
+	<link rel="stylesheet" href="stylesheets/schedule.css">
+
+	<link rel="stylesheet" href="stylesheets/programs.css">
+	<link rel="stylesheet" href="stylesheets/program.css">
 
 </head>
 <body>
-	<section class="page page--home tab active">
+	<section class="page page--home tab">
 		<a href="#">
 			<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
 			<h2>104.9 FM</h2>		
@@ -39,17 +51,28 @@
 		</div>
 	</section>
 
-	<section class="page page--music-player tab">
-		<div class="song-info">
-			<div class="album-art square">
-				<div class="content">
-					<div class="controls">
-						<button onclick="Player.toggle()" id="play-pause-btn" class="play-pause-btn pause"></button>
-					</div>
-				</div>
+	<section class="page page--music-player tab active">
+		<div class="music-player__main">
+			<img class="music-player__artwork" src="http://i.imgur.com/ZPr1kx2.jpg" alt="">
+				<!-- <button class="music-player__play btn play-pause-btn">play</button> -->
+			<div class="music-player__details">
+				<h2>Title - Artist</h2>
+				<h3>Album</h3>
+				<br/>
+				<h2>Program</h2>
+				<h3>DJs</h3>
 			</div>
 		</div>
-		<div id="visualizer" class="visualizer"></div>
+
+		<div id="visualizer" class="visualizer">
+			<div class="visualizer__node"></div>
+			<div class="visualizer__node"></div>
+			<div class="visualizer__node"></div>
+			<div class="visualizer__node"></div>
+			<div class="visualizer__node"></div>
+			<div class="visualizer__node"></div>
+		</div>
+
 	</section>
 
 	<nav class="nav nav--dark clearfix">
@@ -65,7 +88,7 @@
 		<!-- Content not shown: see content.html -->
 	</section>
 
-	<section class="schedule tab active">
+	<section class="schedule tab">
 		<div class="schedule__container">
 			<!-- <h2 class="schedule__title">Monday</h2> -->
 			<table id="schedule" class="schedule__table">
@@ -86,7 +109,7 @@
 		</div>
 	</section>
 
-	<section class="programs tab">
+	<section class="programs tab active">
 		<section class="tab programs-main active">
 			<nav class="nav nav--dark clearfix">
 				<a class="progams__nav__header" href="#"><h2>Programs</h2></a>

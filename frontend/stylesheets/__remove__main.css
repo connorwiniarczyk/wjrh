@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
   font-family: "slendergrey";
   src: url("/fonts/slendergrey/Slendergreyregular.ttf"); }
 @font-face {
@@ -78,7 +78,7 @@ body {
   position: sticky;
   top: 0;
 
-  z-index: 1; /* make sure the nav-bar renders on top of the content */
+  z-index: 1;
 }
 
 #site-nav > a {
@@ -91,12 +91,10 @@ body {
   border-bottom: 2px solid #eee;
 }
 
-/*TITLE*/
-
 #title {
   height: 100vh;
   text-align: center;
-  /*background: #eec8eb;*/
+
   background: #5de6d8;
 
   display: flex;
@@ -138,8 +136,6 @@ body {
 #title > button:active {
   box-shadow: none;
 }
-
-/*END TITLE*/
 
 #about-us {}
 
@@ -203,7 +199,7 @@ a {
 
 .song-info > div {
   display: grid;
-}*/
+}
 
 .lds-ellipsis {
   display: inline-block;
@@ -260,4 +256,4 @@ a {
   100% {
     transform: translate(19px, 0);
   }
-}
+} */

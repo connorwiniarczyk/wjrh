@@ -1,14 +1,35 @@
 const server = require('server')
 const path = require('path')
+const cors_hack = require('cors-hack')
+
+const fetch = require("node-fetch")
+
+const schedule = require('./services/schedule/index.js')
 
 // Use this module to communicate with the client via websockets
 const io = require("socket.io")(server.http);
 
 server.expose_dir(path.join(__dirname, "../frontend"), "/")
+server.app.use("/cors-hack", cors_hack)
 
 server.get("/", function(req, res){
 	res.sendFile(path.join(__dirname, "../frontend/index.html"))
 })
+
+server.get("/api/schedule", async function(req, res){
+	const data = await schedule.parse()
+	res.send(data)
+})
+
+// fetch(`http://10.0.0.146/cors-hack?url=https://api.teal.cool/download/59e91ca73c94ae000713a88e.mp3`)
+
+// fetch("http://10.0.0.146/cors-hack", {
+// 	method: "POST",
+// 	headers: {
+// 		"Content-Type": "application/json"
+// 	},
+// 	body: `{"url": "https://api.teal.cool/download/59e91ca73c94ae000713a88e.mp3"}`
+// })
 
 server.listen(80)
 

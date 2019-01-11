@@ -5,13 +5,13 @@ Schedule.update_day = function(){
 	const today = date.getDay()
 
 	const today_string = `
-		${ today == 0 ? "sunday" : ""}\
-		${ today == 1 ? "monday" : ""}\
-		${ today == 2 ? "tuesday" : ""}\
-		${ today == 3 ? "wednesday" : ""}\
-		${ today == 4 ? "thursday" : ""}\
-		${ today == 5 ? "friday" : ""}\
-		${ today == 6 ? "saturday" : ""}\
+		${ today == 0 ? "sunday" 	: 	""}\
+		${ today == 1 ? "monday" 	: 	""}\
+		${ today == 2 ? "tuesday" 	: 	""}\
+		${ today == 3 ? "wednesday" : 	""}\
+		${ today == 4 ? "thursday" 	: 	""}\
+		${ today == 5 ? "friday" 	: 	""}\
+		${ today == 6 ? "saturday" 	: 	""}\
 	`.trim()
 
 	Utils.DomQuery(`
@@ -65,7 +65,7 @@ Schedule.row_index = function(data){
 }
 
 Schedule.render = async function(){
-	const request = fetch("http://10.0.0.146/schedule").then(res => res.json())
+	const request = fetch("http://10.0.0.146/api/schedule").then(res => res.json())
 	const data = await request
 
 	// made a change to the way the schedule is stored,

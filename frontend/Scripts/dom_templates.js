@@ -7,6 +7,17 @@ DomTemplate.render = function(html) {
 	return template.content
 }
 
+DomTemplate["song-metadata"] = function({ track, episode, program }){
+	const template = `
+		${track ? `<h2>${track.title} - ${track.artist}</h2>` : ""}
+		${track && track.album ? `<h3>${track.album}</h3>` : ""}
+		${track ? `<br/>` : ""}
+		<h2>${program.name}</h3>
+		<h3>${program.author}</h3>`
+
+	return DomTemplate.render(template)
+}
+
 DomTemplate["program-link"] = function({ name, author, image, shortname }){
 	const defaultImage = "http://assets.podomatic.net/ts/37/11/dc/cakiral/1400x1400_11741854.jpg"
 
@@ -35,13 +46,15 @@ DomTemplate["program-details"] = function({ name, author, image, description }){
 	return DomTemplate.render(template)
 }
 
-DomTemplate["episode-link"] = function(data) {
+DomTemplate["episode-link"] = function({episode, program}) {
 	const template = `
 		<li class="">
-			<a class="episode-link" href="#">
+			<a 	class="episode-link" 
+				href="#play?episode=${episode.id}&program=${program.shortname}" '>
+
 				<button class="episode-link__play-btn btn play-pause-btn play"></button>
-				<h3 class="episode-link__name">${data.name}</h3>
-				<p class="episode-link__description">${Utils.escapeHtml(data.description || "")}</p>
+				<h3 class="episode-link__name">${episode.name}</h3>
+				<p class="episode-link__description">${Utils.escapeHtml(episode.description || "")}</p>
 			</a>
 		</li>`
 

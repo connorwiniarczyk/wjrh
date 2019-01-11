@@ -1,32 +1,75 @@
-/*.schedule {
-	text-align: center;
-	background: white;
-
-	grid-area: s;
-
-	width: 100%;
-	height: 80%;
-}*/
-
-#schedule > table {
-	margin-left: auto;
-	margin-right: auto;
-	/*max-width: 600px;*/
-
-	border-collapse: collapse;
+.schedule {
+	height: 100vh;
+	/*background: white;*/
+	padding: 1rem 0;
+	box-sizing: border-box;
 }
 
-th {
-	position: sticky;
-}
+.schedule__container {
+	background: #fff;
 
-tr {
-	/*width: 200px;*/
-}
-
-td {
-	padding: .5em;
 	border: 1px solid black;
+	border-radius: 1rem;
 
-	/*width: 100px;*/
+	width: 95%;
+	height: 100%;
+
+	overflow-y: scroll;
+
+	padding: 1rem;
+	margin: 1rem auto;
+
+	box-sizing: border-box;
+}
+
+.schedule__table {
+	width: 100%;
+	border-spacing: 0;
+}
+
+.schedule__table-body {}
+
+.schedule__row {
+	border-bottom: 1px dashed #333;
+}
+
+.schedule__cell--show {
+	text-align: left;
+	padding: 0 1rem;
+
+	/*border-bottom: 1px dashed #333;*/
+}
+
+.schedule__cell--timeslot {
+	text-align: right;
+	padding: 0 1rem;
+	white-space: nowrap;
+
+	border-right: 1px solid #333;
+}
+
+/*
+ *	add some special styles to a cell if it 
+ *	is on the air
+ */
+.schedule__row.live .schedule__cell--show.today {
+	border: 6px solid #9DFFFC;
+	box-shadow: 0 0 -.25rem 0 #9DFFFC;
+}
+
+
+/*	when the screen is too small to display every
+ *	day in the schedule, hide everything that isnt
+ *	today
+ */
+@media only screen and (max-width: 800px) {
+	.schedule__cell--show,
+	.schedule__cell--heading {
+		display: none;
+	}
+
+	.schedule__cell--show.today,
+	.schedule__cell--heading.today {
+		display: table-cell;
+	}
 }
