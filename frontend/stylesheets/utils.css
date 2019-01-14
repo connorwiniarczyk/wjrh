@@ -1,5 +1,12 @@
+:root{
+	--white: #fff;
+	--black: #333;
+	--blue: #9DFFFC;
+}
+
 html {
 	font-family: acumin-pro;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -8,14 +15,19 @@ body {
 }
 
 h1, h2, h3, h4 {
+	font-family: acumin-pro;
 	margin: 0;
-	font-family: josefin-slab;
+}
+
+textarea {
+	font-family: acumin-pro;
 }
 
 a {
 	text-decoration: unset;
 	color: unset;
 	border: unset;
+	cursor: pointer;
 }
 
 ul {
@@ -26,8 +38,12 @@ ul li {
 	list-style: none;
 }
 
+.page {
+	height: 100vh;
+}
+
 /*Removes Default Button Styling*/
-button, input[type="submit"], input[type="reset"] {
+button, input[type="reset"] {
     background: none;
     color: inherit;
     border: none;

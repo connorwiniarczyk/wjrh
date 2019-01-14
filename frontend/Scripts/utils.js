@@ -53,12 +53,14 @@ const TabMenu = function(tabs) {
 	this.tab_list = tabs
 }
 
-TabMenu.prototype.switchTo = function(index) {
+TabMenu.prototype.switchTo = function(index, scrollTo = true) {
 	// remove the "active" class from all tabs in the list
 	this.tab_list.forEach(tab => tab.classList.remove("active"))
 
 	// set the desired tab to active
 	this.tab_list[index].classList.add("active")
+
+	if(scrollTo) this.tab_list[index].scrollIntoView(true)
 }
 
 HashLink = {}
@@ -77,16 +79,20 @@ HashLink.exec = function(event, args){
 	HashLink.listeners[event].forEach(listener => listener(args))
 }
 
-window.addEventListener("hashchange", function(){
+HashLink.onHash = function() {
 	if(!window.location.hash) return
 	
 	const hash_string = window.location.hash.substring(1)
-	const hash_method = hash_string.match(/^.*?(?=(\?|$))/gi)[0]
+	const hash_method_match = hash_string.match(/^.*?(?=(\?|$))/gi)
 
-	const hash_arg_string = hash_string.match(/\?.+?$/ig)[0]
+	if(hash_method_match == null) throw "error: link invalid"
+	const hash_method = hash_method_match[0]
+
+	const hash_arg_match = hash_string.match(/\?.+?$/ig)
+	const hash_arg_string = hash_arg_match ? hash_arg_match[0] : ""
 	const hash_args = Utils.ParseURLQuery(hash_arg_string)
 
 	HashLink.exec(hash_method, hash_args)
-})
+}
 
-HashLink
+window.addEventListener("hashchange", HashLink.onHash)

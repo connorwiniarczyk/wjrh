@@ -5,7 +5,7 @@ Programs.LoadPrograms = async function(search_param){
 	const query = `{
 		programs (
 			search_param: "${search_param || ""}",
-			limit_to: 30,
+			limit_to: 60,
 			deep: false,
 		){
 			name,
@@ -64,7 +64,7 @@ Programs.LoadProgram = async function(shortname){
 
 window.addEventListener("load", () => Programs.LoadPrograms())
 window.addEventListener("load", function(){
-	const tabs = Utils.DomQuery("section.programs > .tab")
+	const tabs = Utils.DomQuery(".page--programs > .tab")
 
 	Programs.tabs = new TabMenu(tabs)
 	Programs.switchTo = Programs.tabs.switchTo.bind(Programs.tabs)

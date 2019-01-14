@@ -1,23 +1,37 @@
 .schedule {
-	height: 100vh;
+	/*height: 100vh;*/
 	/*background: white;*/
 	padding: 1rem 0;
 	box-sizing: border-box;
 }
 
+.page--schedule {
+	position: relative;
+	box-sizing: border-box;
+	height: 100vh;
+	/*background: white;*/
+}
+
 .schedule__container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3rem;
+	right: 3rem;
+
 	background: #fff;
 
 	border: 1px solid black;
 	border-radius: 1rem;
 
-	width: 95%;
-	height: 100%;
+	/*width: 95%;*/
+	/*height: 80%;*/
 
-	overflow-y: scroll;
+	overflow-y: hidden;
 
 	padding: 1rem;
 	margin: 1rem auto;
+	margin-top: 4rem;
 
 	box-sizing: border-box;
 }
@@ -25,9 +39,34 @@
 .schedule__table {
 	width: 100%;
 	border-spacing: 0;
+	
+	display: block;
+	height: 100%;
+	/*overflow-y: hidden;*/
 }
 
-.schedule__table-body {}
+.schedule__table-head {
+	border-bottom: 1px solid black;
+	padding-bottom: 2rem;
+}
+
+thead, tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+tbody {
+	display: block;
+	overflow-x: hidden;
+
+}
+
+.schedule__table-body {
+	height: 100%;
+	display: block;
+	overflow-y: scroll;
+}
 
 .schedule__row {
 	border-bottom: 1px dashed #333;

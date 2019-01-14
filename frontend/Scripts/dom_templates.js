@@ -23,7 +23,7 @@ DomTemplate["program-link"] = function({ name, author, image, shortname }){
 
 	const template = `
 		<li>
-		<a class="list__program-link" href="#"
+		<a class="list__program-link" href="#programs"
 			onclick="Programs.LoadProgram('${shortname}')">
 
 			<img src="${image || defaultImage}" alt="${name}"></img>
@@ -50,7 +50,7 @@ DomTemplate["episode-link"] = function({episode, program}) {
 	const template = `
 		<li class="">
 			<a 	class="episode-link" 
-				href="#play?episode=${episode.id}&program=${program.shortname}" '>
+				href="#listen?episode=${episode.id}&program=${program.shortname}" '>
 
 				<button class="episode-link__play-btn btn play-pause-btn play"></button>
 				<h3 class="episode-link__name">${episode.name}</h3>

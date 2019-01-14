@@ -2,6 +2,7 @@
 	--height: 4rem;
 
 	padding: 0 5%;
+	z-index: 15;
 }
 
 .nav--dark {
@@ -39,4 +40,13 @@ nav .searchbar {
 	float: right;
 	height: calc(var(--height) * .5);
 	margin: calc(var(--height) * .25) 0;
+}
+
+.nav--main {
+	position: sticky;
+
+	top: 0;
+	
+	left: 0;
+	right: 0;
 }

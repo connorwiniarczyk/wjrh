@@ -1,6 +1,6 @@
 :root{
 	--primary-color: #e6d354;
-};
+}
 
 .page--home {
 	display: flex;
@@ -28,7 +28,7 @@
 		 1px  1px 0px #333;
 }
 
-h2 {
+h1, h2 {
 	font-family: caviar_dreams;
 }
 
