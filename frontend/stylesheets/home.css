@@ -33,6 +33,8 @@ h1, h2 {
 }
 
 .btn--listen-live {
+	display: block;
+
 	border: 1px solid #333;
 	border-radius: .5rem;
 

@@ -21,6 +21,7 @@ window.addEventListener("load", function(){
 
 	HashLink.on("music-player", () => Main.Home.tabs.switchTo(1))
 	HashLink.on("listen", () => Main.Home.tabs.switchTo(1))
+	HashLink.on("listen-live", () => Main.Home.tabs.switchTo(1))
 
 	HashLink.onHash()
 })

@@ -17,7 +17,8 @@
     "request": "^2.83.0",
     "server": "file:../boilerplate-js/utils/server",
     "socket.io": "^2.0.4",
-    "song-metadata": "file:../boilerplate-js/utils/song-metadata"
+    "song-metadata": "file:../boilerplate-js/utils/song-metadata",
+    "utils": "git+https://github.com/connorwiniarczyk/utils-js.git"
   },
   "devDependencies": {
     "jest": "^22.0.4",

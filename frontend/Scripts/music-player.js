@@ -1,5 +1,7 @@
 Player = {}
 
+Player.live_src = 'http://www.wjrh.org:8000/WJRH'
+
 Player.socket;
 Player.audio;
 
@@ -96,7 +98,7 @@ HashLink.on("listen", async function(args){
 		const { image, ...program } = res.program
 		const { audio_url, ...episode } = res.episode
 
-		const metadata = { program, episode, image }
+		const metadata = { program, episode, image, volatile: false }
 
 		await Player.load(audio_url, metadata)
 		Player.play()
@@ -104,4 +106,17 @@ HashLink.on("listen", async function(args){
 
 	Utils.DomQuery(".page--music-player")[0]
 	.scrollIntoView(true)
+})
+
+HashLink.on("listen-live", async function(args){
+	const audio_url = Utils.CorsHack(Player.live_src)
+
+	const request = fetch('http://45.55.38.183:4001/now-playing')
+	.catch(err => console.log(err))
+
+	const track = await request
+	const metadata = { ...track, volatile: true }
+
+	await Player.load(audio_url, metadata)
+	Player.play()
 })

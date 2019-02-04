@@ -65,7 +65,7 @@ Schedule.row_index = function(data){
 }
 
 Schedule.render = async function(){
-	const request = fetch("http://10.0.0.146/api/schedule").then(res => res.json())
+	const request = fetch("http://localhost:80/api/schedule").then(res => res.json())
 	const data = await request
 
 	// made a change to the way the schedule is stored,
