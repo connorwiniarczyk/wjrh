@@ -14,11 +14,6 @@ body {
 	background: #9DFFFC;
 }
 
-h1, h2, h3, h4 {
-	font-family: acumin-pro;
-	margin: 0;
-}
-
 textarea {
 	font-family: acumin-pro;
 }
@@ -61,5 +56,9 @@ button, input[type="reset"] {
 
 /* Hide all tabs that are not active */
 .tab:not(.active) {
+	display: none!important;
+}
+
+.hidden {
 	display: none!important;
 }

@@ -49,6 +49,30 @@ Utils.ParseURLQuery = function(url) {
 	return result;
 }
 
+const Decorator = function(operator){
+	this.decorate = operator
+}
+
+Decorator.prototype.applyTo = function(target){
+	return this.decorate(target)
+}
+
+Utils.logger = new Decorator(function(target){
+	return function(){
+		const result = target()
+		console.log("logged")
+		return result
+	}
+})
+
+// Utils.Decorators["update_controls_appearance"] = function(target){
+// 	return function(){ 
+// 		const value = target()
+// 		Player.Controls.update_appearance()
+// 		return value
+// 	}
+// }
+
 const TabMenu = function(tabs) {
 	this.tab_list = tabs
 }

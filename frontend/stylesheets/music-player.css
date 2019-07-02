@@ -25,6 +25,8 @@
 	width: var(--art-size);
 	margin-right: auto;
 	margin-left: auto;
+
+	text-align: center;
 }
 
 .music-player__art-container {
@@ -64,7 +66,15 @@
 	justify-content: center;
 	align-items: center;
 
-	background: rgba(0, 0, 0, .5);
+	background: rgba(0, 0, 0, .75);
+
+	opacity: 0;
+
+	transition: opacity .2s;
+}
+
+.music-player__controls:hover {
+	opacity: 1;
 }
 
 .music-player__details {
@@ -74,6 +84,10 @@
 	border: 1px solid #333;
 	border-radius: 1rem;
 	padding: 1rem;
+}
+
+.music-player__details h3:nth-child(2) {
+	/*margin-left: 2em;*/
 }
 
 /* ------------------------------*/
@@ -133,11 +147,13 @@
 		max-width: 95vw;
 
 		margin-top: 2rem;
+
+		text-align: center;
 	}
 }
 
 .btn--play-pause {
-	--color: #eee;
+	--color: white;
 	--size: 50px;
 
 	box-sizing: border-box;

@@ -14,10 +14,11 @@
 	text-align: center;
 }
 
-.home__heading {
+.home__heading, .home__subtitle {
 	font-family: caviar_dreams;
-	/*text-decoration: underline;*/
+}
 
+.home__heading {
 	white-space: nowrap;
 	color: #e6d354;
 	font-size: 6em;
@@ -28,11 +29,13 @@
 		 1px  1px 0px #333;
 }
 
-h1, h2 {
-	font-family: caviar_dreams;
-}
-
 .btn--listen-live {
+	font-family: josefin-slab;
+	font-size: 18px;
+	font-weight: normal;
+
+	display: block;
+
 	border: 1px solid #333;
 	border-radius: .5rem;
 
@@ -48,6 +51,6 @@ h1, h2 {
 
 .btn--listen-live:hover {
 	box-shadow: 
-		0 0 0 4px #e6d354,
-		0 0 0 5px #333;
+		0 0 0 3px #e6d354,
+		0 0 0 4px #333;
 }

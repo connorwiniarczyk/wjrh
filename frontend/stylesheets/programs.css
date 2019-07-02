@@ -1,8 +1,12 @@
 .programs-main {
-	/*text-align: center;*/
+	position: relative;
+	width: 100%;
+	height: 100vh;
 }
 
 .programs-main__blurb {
+	display: none;
+
 	background: #fff;
 
 	margin-left: auto;
@@ -16,9 +20,25 @@
 }
 
 .programs-main__list {
+	position: absolute;
+
+	top: 0;
+	bottom: 0;
+	left: 3rem;
+	right: 3rem;
+
+	margin-top: 4rem;
+
+	overflow-y: scroll;
+
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: space-evenly;
+
+	background: var(--white);
+	border: 1px solid var(--black);
+	border-radius: 1rem;
+
 }
 
 .list__program-link {

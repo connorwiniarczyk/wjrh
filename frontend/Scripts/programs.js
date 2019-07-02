@@ -73,6 +73,8 @@ window.addEventListener("load", function(){
 window.addEventListener("load", function(){
 	const searchbar = document.getElementById("program-search")
 
+	if(!searchbar) return
+
 	searchbar.onkeydown = function(){
 		const param = searchbar.value
 		Programs.LoadPrograms(param)

@@ -9,11 +9,13 @@ DomTemplate.render = function(html) {
 
 DomTemplate["song-metadata"] = function({ track, episode, program }){
 	const template = `
-		${track ? `<h2>${track.title} - ${track.artist}</h2>` : ""}
+		${track ? `<h2>${track.title}</h2>` : ""}
+		${track && track.artist ? `<h3>${track.artist}</h3>` : ""}
 		${track && track.album ? `<h3>${track.album}</h3>` : ""}
 		${track ? `<br/>` : ""}
-		<h2>${program.name}</h3>
-		<h3>${program.author}</h3>`
+		${program ? `<h2>${program.name}</h2>` : ""}
+		${program ? `<h3>${program.author}</h3>` : ""}`
+
 
 	return DomTemplate.render(template)
 }

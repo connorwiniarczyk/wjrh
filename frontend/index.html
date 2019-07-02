@@ -3,7 +3,9 @@
 <html id="html">
 <head>
 	<title>WJRH</title>
-	<script src="api/getScript?script=socket.io" type="text/javascript"></script>
+
+	<!-- <script src="api/getScript?script=socket.io" type="text/javascript"></script> -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 
 	<script src="Scripts/utils.js" type="text/javascript"></script>
 	<script src="Scripts/dom_templates.js" type="text/javascript"></script>
@@ -46,37 +48,52 @@
 	<section class="page page--home tab active">
 		<a href="#">
 			<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
-			<h2>104.9 FM</h2>		
+			<h2 class="home__subtitle">104.9 FM</h2>		
 		</a>
 		<div style="min-height: 75px;">
 			<div id="loading-animation" class="lds-ellipsis hidden">
 				<div></div> <div></div> <div></div> <div></div>
 			</div>
-			<button class="btn btn--listen-live">Listen Live</button>
+			<a href="#listen-live" class="btn btn--listen-live">Listen</a>
 		</div>
 	</section>
 
-	<section class="page page--music-player tab ">
+	<section class="page page--music-player tab">
+		<!-- <audio src="http://wjrh.org:8000/RoboDJ" autoplay control></audio> -->
+
+
 		<div class="music-player__main">
-			<div class="music-player__art-container">
+
+			<a href="#">
+				<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
+				<h2 class="home__subtitle">104.9 FM</h2>		
+			</a>
+			<div style="min-height: 75px;">
+				<div id="loading-animation" class="lds-ellipsis hidden">
+					<div></div> <div></div> <div></div> <div></div>
+				</div>
+				<!-- <a href="#listen-live" class="btn btn--listen-live">Listen</a> -->
+			</div>
+
+			<div class="music-player__art-container hidden">
 				<img class="music-player__artwork" src="http://i.imgur.com/ZPr1kx2.jpg" alt="">	
 				<div class="music-player__controls">
 					<button class="btn btn--play-pause pause"></button>
 				</div>	
 			</div>
-				<!-- <button class="music-player__play btn play-pause-btn">play</button> -->
-			<div class="music-player__details">
-				<!-- details -->
-			</div>
-<!-- 			<div class="music-player__controls">
+			<div class="music-player__details hidden"></div>
+
+
+		<!-- <div class="music-player__controls">
 				<button class="btn controls__btn--play-pause play">play</button>
 				<button class="btn controls__btn--stop">play</button>
 				<button class="btn controls__btn--play-pause">play</button>
 			</div> -->
-		</div>
 
-		<div id="visualizer" class="visualizer">
-			<!-- visualizer nodes -->
+
+		</div>
+		<div class="visualizer-container">
+			<svg id="visualizer" class="visualizer"></svg>			
 		</div>
 
 	</section>
@@ -117,16 +134,17 @@
 
 	<section class="page page--programs tab">
 		<section class="tab programs-main active">
-			<nav class="nav nav--dark clearfix">
+			<!-- <nav class="nav nav--dark clearfix">
 				<a class="progams__nav__header" href="#"><h2>Programs</h2></a>
 				<input class="searchbar" id="program-search" type="text" placeholder="search">
-			</nav>
+			</nav> -->
 
-			<p class="programs-main__blurb">
+<!-- 			<p class="programs-main__blurb">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eveniet a, officiis, adipisci similique sint aut est voluptatibus non aperiam consequuntur, eaque quae mollitia vero in? Quidem, expedita illo commodi!
-			</p>
+			</p> -->
 
 			<ul class="programs-main__list" id="programs-list">
+
 				<!-- see DomTemplate["program-link"] in main.js -->
 			</ul>
 
@@ -159,7 +177,7 @@
 				class="contact-us__field field--email">
 			<textarea rows="2" placeholder="Message" required
 				class="contact-us__field field--message"></textarea>
-			<input type="submit" value="Submit"
+			<input type="submit" value="Send"
 				class="contact-us__submit">
 		</form>
 		

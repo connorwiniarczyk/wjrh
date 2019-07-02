@@ -1,4 +1,4 @@
-const server = require('server')
+const server = require('./server.js')
 const path = require('path')
 const cors_hack = require('cors-hack')
 
@@ -10,7 +10,13 @@ const schedule = require('./services/schedule/index.js')
 const io = require("socket.io")(server.http);
 
 server.expose_dir(path.join(__dirname, "../frontend"), "/")
-server.app.use("/cors-hack", cors_hack)
+// server.app.use("/cors-hack", cors_hack)
+
+server.app.use("/cors-hack", async function(req, res, next){
+	const request = await fetch(req.query.url)
+	res.set('Content-Type', request.headers.get('Content-Type'))
+	request.body.pipe(res)
+})
 
 server.get("/", function(req, res){
 	res.sendFile(path.join(__dirname, "../frontend/index.html"))
