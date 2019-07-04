@@ -80,8 +80,6 @@ Visualizer.init = function({ audio, parent }){
 	Visualizer.height = getComputedStyle(parent.parentElement)["height"]
 	Visualizer.height = parseInt(Visualizer.height.replace("px", ""))
 
-	// console.log(Visualizer.height / 255)
-
 	Visualizer.onResize()
 
 	Visualizer.x_scale = d3.scaleLinear()
@@ -111,10 +109,10 @@ Visualizer.draw = function(data){
 		.append('rect')
 		.merge(u)
 		.attr("x", (height, index) => Visualizer.x_scale(index) + 1)
-		.attr("y", d => (Visualizer.height) - (d * (Visualizer.height / 255) || 0) - 30)
+		.attr("y", d => (Visualizer.height) - (d * ((Visualizer.height - 30) / 255) || 0) - 30)
 		.attr("rx", 5)
 		.attr("width", 10)
-		.attr("height", d => 10 + (d * (Visualizer.height / 255) || 0))
+		.attr("height", d => 10 + (d * ((Visualizer.height - 30) / 255) || 0))
 		.style("fill", "#e6d354")
 		.style("stroke", "rgb(0,0,0)")
 
