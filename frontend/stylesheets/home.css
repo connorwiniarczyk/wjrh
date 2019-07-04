@@ -30,10 +30,13 @@
 }
 
 .btn--listen-live {
+<<<<<<< HEAD
 	font-family: josefin-slab;
 	font-size: 18px;
 	font-weight: normal;
 
+=======
+>>>>>>> 416115134e3c9c2a3c6a8de6408d7cc0101c55ba
 	display: block;
 
 	border: 1px solid #333;
