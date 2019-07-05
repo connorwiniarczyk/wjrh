@@ -13,14 +13,8 @@ DomTemplate["song-metadata"] = function({ track, episode, program }){
 		${track && track.artist ? `<h3>${track.artist}</h3>` : ""}
 		${track && track.album ? `<h3>${track.album}</h3>` : ""}
 		${track ? `<br/>` : ""}
-<<<<<<< HEAD
 		${program ? `<h2>${program.name}</h2>` : ""}
 		${program ? `<h3>${program.author}</h3>` : ""}`
-
-=======
-		${program ? `<h2>${program.name}</h3>` : ""}
-		${program ? `<h2>${program.author}</h3>` : ""}`
->>>>>>> 416115134e3c9c2a3c6a8de6408d7cc0101c55ba
 
 	return DomTemplate.render(template)
 }

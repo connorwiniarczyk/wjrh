@@ -14,8 +14,7 @@ window.addEventListener("load", function(){
 	console.log(tabs_details)
 
 	Main.Details.tabs = new TabMenu(tabs_details)
-
-	//TODO: add contact-us and about-us pages to tab menu
+	
 	HashLink.on("about-us", () => Main.Details.tabs.switchTo(0))
 	HashLink.on("schedule", () => Main.Details.tabs.switchTo(1))
 	HashLink.on("programs", () => Main.Details.tabs.switchTo(2))

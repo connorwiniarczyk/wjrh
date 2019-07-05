@@ -1,23 +1,20 @@
 const server = require('./server.js')
 const path = require('path')
-const cors_hack = require('cors-hack')
 
 const bodyParser = require('body-parser')
-const path = require('path')
 const fetch = require("node-fetch")
-const io = require("socket.io")(http);
+// const io = require("socket.io")(http);
 
 const schedule = require('./services/schedule/index.js')
 
-const { cors_hack } = require('utils')
-const cors = require('cors')
+// const { cors_hack } = require('utils')
 
 // path to public directory
 const public = path.join(__dirname, '../frontend')
 
-app.use(cors({ origin: true }))
-app.use('/cors-hack', cors_hack)
-app.use('/', express.static(public))
+// app.use(cors({ origin: true }))
+// app.use('/cors-hack', cors_hack)
+// app.use('/', express.static(public))
 
 server.expose_dir(path.join(__dirname, "../frontend"), "/")
 // server.app.use("/cors-hack", cors_hack)
@@ -28,16 +25,16 @@ server.app.use("/cors-hack", async function(req, res, next){
 	request.body.pipe(res)
 })
 
-app.get('/', function(req, res){
-	res.sendFile(`${public}/index.html`)
-})
+// app.get('/', function(req, res){
+// 	res.sendFile(`${public}/index.html`)
+// })
 
-app.get('/api/schedule', async function(req, res){
-	const data = await schedule.parse()
-	res.send(data)
-})
+// app.get('/api/schedule', async function(req, res){
+// 	const data = await schedule.parse()
+// 	res.send(data)
+// })
 
-app.listen(80)
+server.listen(80)
 
 // //the module we wrote for handling api requests
 // const api = require("./api/api");
@@ -90,6 +87,7 @@ app.listen(80)
 // // Manage socket connections
 // io.on('connection', function(socket){
 // 	// io.emit("newData", api.metadata.getData());
+
 // });
 
 // bacon.when([api.metadata.stream, api.colors.stream], function(metadata, colorScheme){
