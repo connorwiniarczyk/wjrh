@@ -24,3 +24,6 @@
 
 ### About-Us
 - [ ] Image carousel in about us page
+
+### Quality of Life
+- [ ] Config file
