@@ -1,7 +1,8 @@
 # WJRH Website
 
-## TODO:
+A brand new website for the Lafayette College's best radio station
 
+## To Do List:
 ### Music Player
 
 - [ ] Add play/pause button to music player
