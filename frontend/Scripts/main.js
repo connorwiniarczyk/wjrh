@@ -3,6 +3,8 @@ Main = {}
 Main.Home = {}
 Main.Details = {}
 
+console.log(config)
+
 window.addEventListener("load", function(){
 	const tabs_details = Utils.DomQuery(`
 		.page--about-us,
@@ -11,8 +13,6 @@ window.addEventListener("load", function(){
 		.page--contact-us
 	`)
 	
-	console.log(tabs_details)
-
 	Main.Details.tabs = new TabMenu(tabs_details)
 	
 	HashLink.on("about-us", () => Main.Details.tabs.switchTo(0))

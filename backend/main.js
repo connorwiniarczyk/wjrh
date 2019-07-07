@@ -1,23 +1,24 @@
+const config = require('../config.json')
+
 const server = require('./server.js')
 const path = require('path')
-
 const bodyParser = require('body-parser')
 const fetch = require("node-fetch")
-// const io = require("socket.io")(http);
 
 const schedule = require('./services/schedule/index.js')
-
-// const { cors_hack } = require('utils')
 
 // path to public directory
 const public = path.join(__dirname, '../frontend')
 
-// app.use(cors({ origin: true }))
-// app.use('/cors-hack', cors_hack)
-// app.use('/', express.static(public))
+server.get("/", async function(req, res){
+	res.sendFile(path.join(__dirname, "../frontend/index.html"))
+})
+
+server.get("/config", function(req, res){
+	res.send(`const config = ${JSON.stringify(config)}`)
+})
 
 server.expose_dir(path.join(__dirname, "../frontend"), "/")
-// server.app.use("/cors-hack", cors_hack)
 
 server.app.use("/cors-hack", async function(req, res, next){
 	const request = await fetch(req.query.url)
@@ -34,7 +35,7 @@ server.app.use("/cors-hack", async function(req, res, next){
 // 	res.send(data)
 // })
 
-server.listen(80)
+server.listen(config.port || 80)
 
 // //the module we wrote for handling api requests
 // const api = require("./api/api");

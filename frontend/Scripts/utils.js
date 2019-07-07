@@ -35,7 +35,7 @@ Utils.DomQuery = function(query){
 	return Array.prototype.slice.call(nodelist)
 }
 
-Utils.CorsHack = url => `http://localhost:80/cors-hack?url=${url}`
+Utils.CorsHack = url => `http://${config.origin}:${config.port}/cors-hack?url=${url}`
 
 Utils.ParseURLQuery = function(url) {
 	const query = url.substr(1);

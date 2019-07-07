@@ -230,7 +230,7 @@ HashLink.on("listen", async function(args){
 })
 
 HashLink.on("listen-live", async function(args){
-	const default_url = "http://wjrh.org:8000/RoboDJ"
+	const default_url = Player.live_src
 
 	if(args.url === undefined) args.url = default_url
 
@@ -242,10 +242,6 @@ HashLink.on("listen-live", async function(args){
 		live: true, 
 		metadata,
 	})
-
-	console.log("loaded")
-
-	// Player.Controls.play()
 
 	Player.audio.play()
 	Player.audio.muted = false;
