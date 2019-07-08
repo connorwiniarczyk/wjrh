@@ -1,37 +1,46 @@
 Player = {}
 
-Player.live_src = 'http://www.wjrh.org:8000/WJRH'
+Player.control_sets = {}
+Player.playpause_live = {}
+Player.playpause_recorded = {}
 
-Player.socket;
-Player.audio;
+window.addEventListener("load", function(){
+	Player.control_sets = new TabMenu(Utils.DomQuery(`
+		.controls .btn--listen-live,
+		.controls .controls__live
+	`))
 
-Player.updates_controls = new Decorator(function(target){
-	return function(){
-		const result = target()
-		Player.update_appearance()
-		return result
-	}
+	Player.playpause_live = document.getElementById('play-pause--live')
+
+	Player.control_sets.switchTo(0)
 })
 
-Player.Controls_Recorded = {
-	play: 	() => Player.audio.play(),
-	pause: 	() => Player.audio.pause(),
-	mute: 	() => Player.audio.muted = true,
-	unmute: () => Player.audio.muted = false,
-}
 
-Player.Controls_Live = {
-	play: 	() => Player.audio.muted = false,
-	pause: 	() => Player.audio.muted = true,
-	mute: 	() => Player.audio.muted = true,
-	unmute: () => Player.audio.muted = false,
-}
+Player.live_src = 'http://www.wjrh.org:8000/WJRH'
 
+Player.audio
 Player.isLive = true
-
 Player.Controls = {}
 
 Player.play_pause //Utils.DomQuery(".music-player__controls .btn--play-pause")[0]
+
+Player.mute = function(){
+	Player.audio.muted = true
+	Player.update_appearance()
+}
+
+Player.unmute = function(){
+	Player.audio.muted = false
+	Player.update_appearance()
+}
+
+Player.toggle_muted = function(){
+	Player.audio.muted = !Player.audio.muted
+	Player.update_appearance()
+}
+
+Player.pause = function(){}
+Player.play = function(){}
 
 Player.isPaused = function(){
 	if(Player.isLive) {
@@ -43,12 +52,12 @@ Player.isPaused = function(){
 
 Player.update_appearance = function(){
 	// play-pause button
-	if(Player.isPaused()){
-		Player.play_pause.classList.remove("pause")
-		Player.play_pause.classList.add("play")
+	if(Player.audio.muted){
+		Player.playpause_live.classList.remove("pause")
+		Player.playpause_live.classList.add("play")
 	} else {
-		Player.play_pause.classList.remove("play")
-		Player.play_pause.classList.add("pause")
+		Player.playpause_live.classList.remove("play")
+		Player.playpause_live.classList.add("pause")
 	}
 }
 
@@ -59,7 +68,7 @@ window.addEventListener("load", function(){
 		else 					Player.Controls.pause()
 	}
 
-	// const /* TODO: volume, mute-unmute */
+	// TODO: volume, mute-unmute
 })
 
 Player.Controls.load = function(live){
@@ -173,12 +182,15 @@ Player.load_metadata = async function({ literal, url }){
 Player.load = async function(streamURL, options = {}) {
 	if(Player.audio == null) Player.init()
 
-	console.log(streamURL)
-
 	if(options.metadata) {
 		// Player.render(await Player.load_metadata(options.metadata))
 	}
-	// if(options.live) ;
+
+	if(options.live){
+		Player.control_sets.switchTo(1)
+	} else {
+		Player.control_sets.switchTo(0)
+	}
 	
 	await Player.load_audio(streamURL)
 

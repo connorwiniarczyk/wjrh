@@ -153,8 +153,8 @@
 }
 
 .btn--play-pause {
-	--color: white;
-	--size: 50px;
+	--color: #333;
+	--size: 30px;
 
 	box-sizing: border-box;
 

@@ -6,6 +6,7 @@ Main.Details = {}
 console.log(config)
 
 window.addEventListener("load", function(){
+
 	const tabs_details = Utils.DomQuery(`
 		.page--about-us,
 		.page--programs,
@@ -27,9 +28,9 @@ window.addEventListener("load", function(){
 	HashLink.on("home", () => Main.Home.tabs.switchTo(0))
 	HashLink.on("", () => Main.Home.tabs.switchTo(0))
 
-	HashLink.on("music-player", () => Main.Home.tabs.switchTo(1))
-	HashLink.on("listen", () => Main.Home.tabs.switchTo(1))
-	HashLink.on("listen-live", () => Main.Home.tabs.switchTo(1))
+	HashLink.on("music-player", () => Main.Home.tabs.switchTo(0))
+	HashLink.on("listen", () => Main.Home.tabs.switchTo(0))
+	HashLink.on("listen-live", () => Main.Home.tabs.switchTo(0))
 
 	HashLink.onHash()
 })
@@ -43,7 +44,7 @@ window.addEventListener("load", async function(){
 
 	document.querySelector(".page--about-us").innerHTML = html
 
-	Main.Details.tabs.switchTo(0)
+	// Main.Details.tabs.switchTo(0)
 })
 
 HashLink.on("about-us", async function(){
