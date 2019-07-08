@@ -27,4 +27,4 @@ A brand new website for the Lafayette College's best radio station
 - [ ] Image carousel in about us page
 
 ### Quality of Life
-- [ ] Config file
+- [x] support for config file
