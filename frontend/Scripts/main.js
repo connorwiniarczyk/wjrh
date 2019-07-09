@@ -3,8 +3,6 @@ Main = {}
 Main.Home = {}
 Main.Details = {}
 
-console.log(config)
-
 window.addEventListener("load", function(){
 
 	const tabs_details = Utils.DomQuery(`

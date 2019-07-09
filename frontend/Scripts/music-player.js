@@ -39,6 +39,36 @@ Player.toggle_muted = function(){
 	Player.update_appearance()
 }
 
+//  stop(), start(), and toggle_stopped() functions
+//	are used during live playback instead of muting or pausing
+//	the audio, and work by unloading and reloading the audio
+//	source each time. This wasn't the obvious choice, but it saves
+//	a lot of headaches and ends up working better than muting
+//	would
+
+Player.stop = function(){
+	Player.audio.pause()
+	Player.audio.removeAttribute("src")
+	Player.audio.load()
+
+	Player.update_appearance()
+}
+
+Player.start = async function(){
+	await Player.load_audio(Player.live_src)
+
+	Player.audio.play()
+	Player.update_appearance()
+}
+
+Player.toggle_stopped = function(){
+	if(Player.audio.src){
+		Player.stop()
+	} else {
+		Player.start()
+	}
+}
+
 Player.pause = function(){}
 Player.play = function(){}
 
@@ -52,7 +82,7 @@ Player.isPaused = function(){
 
 Player.update_appearance = function(){
 	// play-pause button
-	if(Player.audio.muted){
+	if(!Player.audio.src){
 		Player.playpause_live.classList.remove("pause")
 		Player.playpause_live.classList.add("play")
 	} else {
@@ -148,8 +178,6 @@ Player.init = function(){
 	Player.audio = document.createElement('audio')
 	Player.audio.crossOrigin = 'anonymous'
 
-	console.log(Player.audio)
-
 	Visualizer.init({
 		audio: Player.audio, 
 		parent: document.getElementById("visualizer"),
@@ -199,8 +227,6 @@ Player.load = async function(streamURL, options = {}) {
 		Player.Controls[key] = Player.updates_controls.applyTo(output)
 	}
 
-
-	console.log(Player.Controls)
 	Player.Controls.play()
 
 	// if(metadata == "LIVE"){
