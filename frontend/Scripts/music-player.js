@@ -47,7 +47,7 @@ Player.toggle_muted = function(){
 //	would
 
 Player.stop = function(){
-	Player.audio.pause()
+	// Player.audio.pause()
 	Player.audio.removeAttribute("src")
 	Player.audio.load()
 
@@ -55,6 +55,13 @@ Player.stop = function(){
 }
 
 Player.start = async function(){
+	document.body.removeChild(Player.audio)
+	Player.audio = null
+
+	Player.audio = document.createElement('audio')
+	document.body.appendChild(Player.audio)
+	Player.audio.crossOrigin = 'anonymous'
+
 	await Player.load_audio(Player.live_src)
 
 	Player.audio.play()
@@ -176,6 +183,7 @@ Player.init = function(){
 	// document.getElementById("listen-live-btn").classList.add("hidden")
 
 	Player.audio = document.createElement('audio')
+	document.body.appendChild(Player.audio)
 	Player.audio.crossOrigin = 'anonymous'
 
 	Visualizer.init({
@@ -188,7 +196,7 @@ Player.init = function(){
 
 Player.load_audio = async function(url) {
 	const output = new Promise((resolve, reject) => {
-		Player.audio.src = Utils.CorsHack(url);
+		Player.audio.src = url //Utils.CorsHack(url);
 		Player.audio.load();
 		Player.audio.oncanplay = resolve
 	})

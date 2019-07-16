@@ -23,6 +23,7 @@ server.expose_dir(path.join(__dirname, "../frontend"), "/")
 server.app.use("/cors-hack", async function(req, res, next){
 	const request = await fetch(req.query.url)
 	res.set('Content-Type', request.headers.get('Content-Type'))
+	res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
 	request.body.pipe(res)
 })
 
@@ -30,10 +31,10 @@ server.app.use("/cors-hack", async function(req, res, next){
 // 	res.sendFile(`${public}/index.html`)
 // })
 
-// app.get('/api/schedule', async function(req, res){
-// 	const data = await schedule.parse()
-// 	res.send(data)
-// })
+server.get('/api/schedule', async function(req, res){
+	const data = await schedule.parse()
+	res.send(data)
+})
 
 server.listen(config.port || 80)
 

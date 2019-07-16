@@ -10,14 +10,36 @@ WJRH is a federally licensed FM station owned by the Lafayette College Board of 
 
 # Team
 
-![The WJRH team tries their best to look intimidating while Calvin checks his phone](http://10.0.0.146/Board/serious.jpg)
+<div class="slideshow slideshow--team">
+    <!-- <img src="http://10.0.0.146/Board/board_01.jpg" alt=""> -->
+    <!-- <img src="http://10.0.0.146/Board/board_02.jpg" alt=""> -->
+    <img src="http://10.0.0.146/Board/board_03.jpg" alt="">
+    <img src="http://10.0.0.146/Board/serious.jpg" alt="">
+    <img src="http://10.0.0.146/Board/board_04.jpg" alt="">
+</div>
+
+<!-- ![The WJRH team tries their best to look intimidating while Calvin checks his phone](http://10.0.0.146/Board/serious.jpg) -->
 
 We're a team of passionate people interested in Music, Broadcasting and Events. If you're interested in joining our leadership team, we're always looking for people interested in taking responsibility in supporting our community of music lovers and promoting our station. Read about joining us.
  
-   
+-   **Peter Torrente**
+    Media Director
+    torrentp@lafayette.edu
+
+-   **Theresa Dao**
+    Events Director
+    daot@lafayette.edu
+
+-   **Alex Berman**
+    Program Director
+    bermaale@lafayette.edu
+
+-   **Matt Gerber**
+
+
 -  **Neil McEnerney**  
      General Manager   
-     winiarcc@lafayette.edu
+     mcenernn@lafayette.edu
 
 -  **Matt Gerber**  
      Vice General Manager  
@@ -26,6 +48,7 @@ We're a team of passionate people interested in Music, Broadcasting and Events. 
 -  **Connor Winiarczyk**  
      Chief Engineer   
      winiarcc@lafayette.edu
+
 
 
 ## History
