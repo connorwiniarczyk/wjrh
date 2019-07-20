@@ -21,7 +21,7 @@ A brand new website for the Lafayette College's best radio station
 - [ ] Program List should look better in mobile
 
 ### Schedule
-- [ ] Shows in the schedule should link to program page
+- [x] Shows in the schedule should link to program page
 
 ### About-Us
 - [x] Image slideshow in about us page
