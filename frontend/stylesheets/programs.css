@@ -20,16 +20,16 @@
 }
 
 .programs-main__list {
-	position: absolute;
+	/*position: absolute;*/
 
 	top: 0;
 	bottom: 0;
-	left: 3rem;
-	right: 3rem;
+	margin-left: 3rem;
+	margin-right: 3rem;
 
 	margin-top: 4rem;
 
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 
 	display: flex;
 	flex-wrap: wrap;
@@ -146,7 +146,7 @@
 	margin: 1rem;
 	padding: 1rem 2rem;
 
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 }
 
 .program__episodes__link {

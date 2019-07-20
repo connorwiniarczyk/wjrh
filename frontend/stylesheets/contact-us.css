@@ -1,7 +1,9 @@
-.page--contact-us {
-/*	display: flex;
+.contact-us__wrapper {
+	display: flex;
 	flex-direction: column;
-	justify-content: center;*/
+	justify-content: center;
+
+	height: 100vh;
 }
 .contact-us__form {
 	background: var(--white);
@@ -95,11 +97,13 @@
 /* ------------------------------*/
 
 @media only screen and (min-width: 800px) {
-	.page--contact-us{
+	.contact-us__wrapper{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
+		height: 100vh;
 	}
 
 	.contact-us__form {

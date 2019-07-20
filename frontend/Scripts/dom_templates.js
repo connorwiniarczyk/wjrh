@@ -24,9 +24,7 @@ DomTemplate["program-link"] = function({ name, author, image, shortname }){
 
 	const template = `
 		<li>
-		<a class="list__program-link" href="#programs"
-			onclick="Programs.LoadProgram('${shortname}')">
-
+		<a class="list__program-link" href="#programs?shortname=${shortname}">
 			<img src="${image || defaultImage}" alt="${name}"></img>
 			<span>${name}</span>
 		</a>
@@ -69,7 +67,7 @@ DomTemplate["schedule__cell--show"] = function(data, { raw }) {
 			schedule__cell--show
 			${data.day}
 		">
-			<a href="#">
+			<a href="#programs?search=${data.name}">
 				<p>${data.name || ""}</p>
 				<p>${data.author || ""}</p>
 			</a>

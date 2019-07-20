@@ -34,7 +34,7 @@ ul li {
 }
 
 .page {
-	height: 100vh;
+	min-height: 100vh;
 }
 
 /*Removes Default Button Styling*/

@@ -1,6 +1,4 @@
 .nav {
-	--height: 4rem;
-
 	padding: 0 5%;
 	z-index: 15;
 }
@@ -31,22 +29,61 @@
 	margin-left: 1.5rem;
 }
 
-nav a h2 {
+nav a h2, nav a h1, nav a h3, nav a h4 {
 	float: left;
 	line-height: var(--height);
 }
 
+nav > a {
+	float: right;
+	line-height: var(--height);
+	margin-right: 1.5rem;
+}
+
 nav .searchbar {
 	float: right;
-	height: calc(var(--height) * .5);
-	margin: calc(var(--height) * .25) 0;
+	height: calc(var(--height) * .7);
+	margin: calc(var(--height) * .15) 0;
+
+	border-radius: 4rem;
+	padding: 0 1rem;
+
+	border: 1px solid #333;
 }
 
 .nav--main {
+	--height: 4rem;
 	position: sticky;
 
 	top: 0;
 	
 	left: 0;
 	right: 0;
+}
+
+.nav--secondary {
+	--height: 2.5rem;
+	position: sticky;
+	top: 3.4rem;
+
+	margin-left: 20px;
+	margin-right: 20px;
+
+	/*padding: 1rem;*/
+
+	/*background: #464646;*/
+	/*background: #3E3E3E;*/
+
+	background: white;
+	border: 1px solid #333;
+	border-radius: 0 0 10px 10px;
+	color: #333;
+}
+
+.program__nav {
+	position: sticky;
+	top: 3.4rem;
+
+	/*border-top: 1px solid white;*/
+	/*background: rgba(0,0,0,0);*/
 }

@@ -80,3 +80,14 @@ window.addEventListener("load", function(){
 		Programs.LoadPrograms(param)
 	}
 })
+
+HashLink.on("programs", function(args){
+	if(!args.search) args.search = ""
+
+	if(args.shortname) {
+		Programs.LoadProgram(args.shortname)
+	} else {
+		Programs.LoadPrograms(args.search)
+		Programs.switchTo(0)
+	}
+})
