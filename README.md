@@ -17,7 +17,7 @@ A brand new website for the Lafayette College's best radio station
 
 - [ ] Improve back button on Programs page
 - [ ] Improve default program image
-- [ ] Bring Searchbar back to show page
+- [x] Bring Searchbar back to show page
 - [ ] Program List should look better in mobile
 
 ### Schedule
