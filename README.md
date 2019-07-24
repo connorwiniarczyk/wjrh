@@ -10,13 +10,13 @@ A brand new website for the Lafayette College's best radio station
 
 ### Contact
 
-- [ ] Move Contact related info from About-Us to Contact page
+- [x] Move Contact related info from About-Us to Contact page
 - [ ] Working Contact Form
 
 ### Programs
 
-- [ ] Improve back button on Programs page
-- [ ] Improve default program image
+- [x] Improve back button on Programs page
+- [x] Improve default program image
 - [x] Bring Searchbar back to show page
 - [ ] Program List should look better in mobile
 
