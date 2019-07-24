@@ -17,11 +17,11 @@ A brand new website for the Lafayette College's best radio station
 
 - [ ] Improve back button on Programs page
 - [ ] Improve default program image
-- [ ] Bring Searchbar back to show page
+- [x] Bring Searchbar back to show page
 - [ ] Program List should look better in mobile
 
 ### Schedule
-- [ ] Shows in the schedule should link to program page
+- [x] Shows in the schedule should link to program page
 
 ### About-Us
 - [x] Image slideshow in about us page
