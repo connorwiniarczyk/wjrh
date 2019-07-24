@@ -21,6 +21,7 @@
 	<script src="Scripts/main.js"></script>
 
 	<script src="Scripts/about-us.js"></script>
+	<script src="Scripts/contact-us.js"></script>
 
 	<script src="Scripts/slideshow.js"></script>
 
@@ -118,8 +119,8 @@
 
 	</section>
 
-	<nav class="nav nav--main nav--dark clearfix">
-		<ul class="nav__tabs">
+	<nav class="nav nav--main clearfix">
+		<ul class="nav__tab-menu clearfix">
 			<li><a href="#about-us">About Us</a></li>
 			<li><a href="#schedule">Schedule</a></li>
 			<li><a href="#programs">Programs</a></li>
@@ -155,35 +156,38 @@
 	<section class="page page--programs tab">
 		<section class="tab programs-main active">
 			<nav class="nav nav--secondary clearfix">
-				<input type="text" class="searchbar" id="program-search" placeholder="search">
-
-				<a href="#programs" class="programs__nav__header">
-					(Featured Program)
-				</a>
+		<!-- 		<ul class="nav__header">
+					<li>
+						<h3>Programs</h3>
+					</li>
+				</ul> -->
+				<ul class="nav__tab-menu">
+					<li>
+						<h4>WJRH Programs</h4>
+					</li>
+					<li>
+						<input type="text" class="searchbar nav--secondary__searchbar" id="program-search" placeholder="search">
+					</li>
+				</ul>
 			</nav>
-<!-- 			<nav class="program__nav nav nav--dark clearfix">
-				<a class="progams__nav__header" href="#"><h2>Programs</h2></a>
-				<input class="searchbar" id="program-search" type="text" placeholder="search">
-			</nav> -->
-
-<!-- 			<p class="programs-main__blurb">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eveniet a, officiis, adipisci similique sint aut est voluptatibus non aperiam consequuntur, eaque quae mollitia vero in? Quidem, expedita illo commodi!
-			</p> -->
 
 			<ul class="programs-main__list" id="programs-list">
 
-				<!-- see DomTemplate["program-link"] in main.js -->
+				<!-- see DomTemplate["program-link"] in dom_templates.js -->
 			</ul>
 
 		</section>
 
 		<section class="tab program">
-			<nav class="nav nav--secondary clearfix">
-				<ul>
+			<nav class="nav nav--secondary">
+				<ul class="nav__header">
 					<li>
-						<a href="#programs" class="programs__nav__header">
-							(Featured Program)
-						</a>	
+						<a href="#programs" class="btn btn--back"><</a>
+					</li>
+					<li>
+						<a href="#programs">
+							<span class="name">name</span> - <span class="dj">dj</span>
+						</a>
 					</li>
 				</ul>
 			</nav>
@@ -205,15 +209,20 @@
 	</section>
 
 	<section class="page page--contact-us tab">
-		<nav class="nav nav--secondary clearfix">
-			<ul class="nav__tabs">
+<!-- 		<nav class="nav nav--secondary">
+			<ul class="nav__tab-menu">
 				<li><a href="#contact-us">Sponsorship</a></li>
+				<li><a href="#contact-us">Your Music</a></li>
 			</ul>
-		</nav>
+		</nav> -->
 
-		<section class="contact-us__wrapper tab active">
-			<form action="#" class="contact-us__form">
-				<h1 class="contact-us__header">Contact Us</h1>
+		<section class="contact-us__content">
+			
+		</section>
+
+		<section class="contact-us__wrapper">
+			<form id="contact-us-form" action="#" class="contact-us__form">
+				<h1 class="contact-us__header">Send Us a Message!</h1>
 				<input type="text" placeholder="Name" required
 					class="contact-us__field field--name">
 				<input type="email" placeholder="Email" required

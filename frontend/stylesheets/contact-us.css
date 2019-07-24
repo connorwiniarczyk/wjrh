@@ -1,3 +1,21 @@
+.contact-us__content {
+	background: white;
+	padding: 1rem;
+
+	max-width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+
+	border: 1px solid var(--black);
+	margin-top: 2rem;
+	border-radius: 1rem;
+}
+
+.contact-us__content a {
+	text-decoration: underline;
+	color: #0000EE;	
+}
+
 .contact-us__wrapper {
 	display: flex;
 	flex-direction: column;

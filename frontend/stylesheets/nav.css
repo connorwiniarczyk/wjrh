@@ -1,46 +1,79 @@
 .nav {
+	--main-height: 3.5rem;
+	--secondary-height: 2.5rem;
+
+	position: sticky;
+
 	padding: 0 5%;
 	z-index: 15;
 }
 
-.nav--dark {
-	background: #282828;
-	color: #9DFFFC;
+.nav ul {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .nav .btn--back {
-	float: left;
-
-	line-height: var(--height);
-	/*font-size: calc(var(--height));*/
-
-	margin-right: 1rem;
-}
-
-.nav__tabs, .nav__tabs li {
-	display: inline;
-}
-
-.nav__tabs {
-	float: right;
-}
-
-.nav__tabs li {
-	margin-left: 1.5rem;
-}
-
-nav a h2, nav a h1, nav a h3, nav a h4 {
-	float: left;
-	line-height: var(--height);
-}
-
-nav > a {
-	float: right;
-	line-height: var(--height);
 	margin-right: 1.5rem;
 }
 
-nav .searchbar {
+.nav__tab-menu {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+
+	height: 100%;
+
+	/*border: 1px solid red;*/
+	box-sizing: border-box;
+}
+
+.nav__tab-menu li {
+	margin-left: 1.5rem;
+}
+
+.nav--main {
+	--height: var(--main-height);
+	position: sticky;
+
+	height: var(--height);
+
+	background: #282828;
+	color: #9DFFFC;
+
+	top: 0;
+	
+	left: 0;
+	right: 0;
+}
+
+.nav--secondary {
+	--height: var(--secondary-height);
+
+	top: var(--main-height);
+
+	height: var(--height);
+
+	margin-left: 20px;
+	margin-right: 20px;
+
+	/*margin-top: -1rem;*/
+
+	background: white;
+	color: #333;
+
+	border-left: 1px solid #333;
+	border-bottom: 1px solid #333;
+	border-right: 1px solid #333;
+
+	border-radius: 0 0 10px 10px;
+
+	border-top: 0px solid red;
+
+	box-sizing: border-box;
+}
+
+.nav--secondary__searchbar {
 	float: right;
 	height: calc(var(--height) * .7);
 	margin: calc(var(--height) * .15) 0;
@@ -51,39 +84,23 @@ nav .searchbar {
 	border: 1px solid #333;
 }
 
-.nav--main {
-	--height: 4rem;
-	position: sticky;
+.nav__header {
+	display: flex;
+	align-items: center;
+	justify-content: left;
 
-	top: 0;
-	
-	left: 0;
-	right: 0;
+	height: 100%;
+
+	/*border: 1px solid red;*/
+	box-sizing: border-box;
 }
 
-.nav--secondary {
-	--height: 2.5rem;
-	position: sticky;
-	top: 3.4rem;
+.nav__header li {
+	/*height: 100%;*/
 
-	margin-left: 20px;
-	margin-right: 20px;
-
-	/*padding: 1rem;*/
-
-	/*background: #464646;*/
-	/*background: #3E3E3E;*/
-
-	background: white;
-	border: 1px solid #333;
-	border-radius: 0 0 10px 10px;
-	color: #333;
+	/*border: 1px solid blue;*/
 }
 
-.program__nav {
-	position: sticky;
-	top: 3.4rem;
-
-	/*border-top: 1px solid white;*/
-	/*background: rgba(0,0,0,0);*/
+.nav__header h3 {
+	margin: 0;
 }

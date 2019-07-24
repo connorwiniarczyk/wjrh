@@ -20,7 +20,7 @@ DomTemplate["song-metadata"] = function({ track, episode, program }){
 }
 
 DomTemplate["program-link"] = function({ name, author, image, shortname }){
-	const defaultImage = "http://assets.podomatic.net/ts/37/11/dc/cakiral/1400x1400_11741854.jpg"
+	const defaultImage = "http://10.0.0.146/photos/default_program.png"
 
 	const template = `
 		<li>
@@ -34,8 +34,10 @@ DomTemplate["program-link"] = function({ name, author, image, shortname }){
 }
 
 DomTemplate["program-details"] = function({ name, author, image, description }){
+	const defaultImage = "http://10.0.0.146/photos/default_program.png"
+
 	const template = `
-		<img class="program-details__image" src="${image}" alt="">
+		<img class="program-details__image" src="${image || defaultImage}" alt="">
 		<h2 class="program-details__name">${name}</h2>
 		<h3 class="program-details__author">${author}</h3>
 		<p class="program-details__description">
