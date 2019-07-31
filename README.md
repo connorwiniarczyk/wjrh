@@ -1,6 +1,6 @@
 # WJRH Website
 
-A brand new website for the Lafayette College's best radio station
+A brand new website for Lafayette College's best radio station
 
 ## To Do List:
 ### Music Player
