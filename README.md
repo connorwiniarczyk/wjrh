@@ -11,7 +11,9 @@ A brand new website for Lafayette College's best radio station
 ### Contact
 
 - [x] Move Contact related info from About-Us to Contact page
-- [ ] Working Contact Form
+- [x] Working Contact Form
+- [ ] Fix Mobile Styles
+- [ ] Allow any Email Address
 
 ### Programs
 
