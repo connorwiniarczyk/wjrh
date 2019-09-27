@@ -18,7 +18,8 @@
     "reload": "^2.2.2"
   },
   "scripts": {
-    "start": "nodemon backend/main.js",
+    "start": "node backend/main.js",
+    "start-dev": "nodemon backend/main.js",
     "browser-sync": "browser-sync start -p localhost:80 -f frontend",
     "test": "jest",
     "watch": "jest --watchAll"
