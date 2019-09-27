@@ -15,8 +15,7 @@ window.addEventListener("load", function(){
 	Player.control_sets.switchTo(0)
 })
 
-
-Player.live_src = 'http://www.wjrh.org:8000/WJRH'
+Player.live_src = `http://www.wjrh.org:8000/WJRHlow`
 
 Player.audio
 Player.isLive = true
@@ -24,20 +23,22 @@ Player.Controls = {}
 
 Player.play_pause //Utils.DomQuery(".music-player__controls .btn--play-pause")[0]
 
-Player.mute = function(){
-	Player.audio.muted = true
-	Player.update_appearance()
-}
+//  I don't think I need these
 
-Player.unmute = function(){
-	Player.audio.muted = false
-	Player.update_appearance()
-}
+// Player.mute = function(){
+// 	Player.audio.muted = true
+// 	Player.update_appearance()
+// }
 
-Player.toggle_muted = function(){
-	Player.audio.muted = !Player.audio.muted
-	Player.update_appearance()
-}
+// Player.unmute = function(){
+// 	Player.audio.muted = false
+// 	Player.update_appearance()
+// }
+
+// Player.toggle_muted = function(){
+// 	Player.audio.muted = !Player.audio.muted
+// 	Player.update_appearance()
+// }
 
 //  stop(), start(), and toggle_stopped() functions
 //	are used during live playback instead of muting or pausing
@@ -47,7 +48,6 @@ Player.toggle_muted = function(){
 //	would
 
 Player.stop = function(){
-	// Player.audio.pause()
 	Player.audio.removeAttribute("src")
 	Player.audio.load()
 
@@ -55,12 +55,6 @@ Player.stop = function(){
 }
 
 Player.start = async function(){
-	document.body.removeChild(Player.audio)
-	Player.audio = null
-
-	Player.audio = document.createElement('audio')
-	document.body.appendChild(Player.audio)
-	Player.audio.crossOrigin = 'anonymous'
 
 	await Player.load_audio(Player.live_src)
 
@@ -196,7 +190,7 @@ Player.init = function(){
 
 Player.load_audio = async function(url) {
 	const output = new Promise((resolve, reject) => {
-		Player.audio.src = url //Utils.CorsHack(url);
+		Player.audio.src = `${url}?date=${Date.now()}`
 		Player.audio.load();
 		Player.audio.oncanplay = resolve
 	})
