@@ -1,90 +1,53 @@
-Schedule = {}
+// generate arrays containing every day of the week as well as every hour
+const weekdays = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] 
+const hours = Array.apply(0, Array(24)).map((value, index) => `${index}:00`)
 
-Schedule.update_day = function(){
-	const date = new Date()
-	const today = date.getDay()
-
-	const today_string = `
-		${ today == 0 ? "sunday" 	: 	""}\
-		${ today == 1 ? "monday" 	: 	""}\
-		${ today == 2 ? "tuesday" 	: 	""}\
-		${ today == 3 ? "wednesday" : 	""}\
-		${ today == 4 ? "thursday" 	: 	""}\
-		${ today == 5 ? "friday" 	: 	""}\
-		${ today == 6 ? "saturday" 	: 	""}\
-	`.trim()
-
-	Utils.DomQuery(`
-		.schedule__cell--show,
-		.schedule__cell--heading`
-	)
-	.forEach(cell => cell.classList.remove('today'))
-
-	Utils.DomQuery(`
-		.schedule__cell--show.${today_string},
-		.schedule__cell--heading.${today_string}`
-	)
-	.forEach(cell => cell.classList.add('today'))
-}
-
-Schedule.update_time = function(){
-	const date = new Date()
-	const hour = date.getHours()
-
-	Utils.DomQuery(`.schedule__row`)
-	.forEach(elem => elem.classList.remove("live"))
-
-	Utils.DomQuery(`.schedule__row[data-hour="${hour}"]`)
-	.forEach(elem => elem.classList.add("live"))
-
-	Utils.DomQuery(`.schedule__row[data-hour="${hour}"]`)[0]
-	.scrollIntoView(true)
-}
-
-/**
- *	Right now, our schedule data is indexed by day, and then by time of day
- *	in order to make it easier to read. However, since HTML mandates that tables
- *	be indexed by row, and then by column, we need to re-index our data before
- *	we can insert it into the page
- */
-Schedule.row_index = function(data){
-	const rows = {}
-	for(const key_day in data.days) {
-		// get an object of all the shows in that day
-		const day = data.days[key_day]
-
-		for(const key_timeslot in day) {
-			const show = day[key_timeslot]
-
-			if(rows[key_timeslot] == undefined) rows[key_timeslot] = {}
-			rows[key_timeslot][key_day] = show
+const schedule_query = `
+query {
+	schedule{
+		shortname
+		day_number
+		start_hour
+		end_hour
+		program {
+			name
+			author
 		}
 	}
+}`
 
-	return rows
+async function render_schedule(){
+	const schedule = document.querySelector(".schedule")
+	const newTimeslot = clone_template('#template--timeslot', {})
+
+	weekdays.forEach(function(day, index){
+		newElement = clone_template('#template--day', {day})
+		newElement.style['grid-column-start'] = index + 1
+		newElement.style['grid-row-start'] = 1
+		schedule.appendChild(newElement)
+	})
+
+	hours.forEach(function(hour, index){
+		newElement = clone_template('#template--hour', {hour})
+		newElement.style['grid-column-start'] = 1
+		newElement.style['grid-row-start'] = index + 2
+		schedule.appendChild(newElement)
+	})
+
+	const result = await send_graphql_query("http://api.wjrh.org", schedule_query, {})
+	const timeslots = result.schedule
+	
+	timeslots.forEach(function(timeslot){
+		newElement = clone_template('#template--timeslot', {
+			name: timeslot.program.name || `/${timeslot.shortname}`,
+			...timeslot
+		})
+		newElement.style['grid-column-start'] = timeslot.day_number + 1
+		newElement.style['grid-row-start'] = timeslot.start_hour
+		newElement.style['grid-row-end'] = timeslot.end_hour
+
+		schedule.appendChild(newElement)
+	})
 }
 
-Schedule.render = async function(){
-	const url = `http://${config.origin}:${config.port}/api/schedule`
-	console.log(url)
-
-	const request = fetch(`http://${config.origin}:${config.port}/api/schedule`).then(res => res.json())
-	const data = await request
-
-	console.log(data)
-
-	// made a change to the way the schedule is stored,
-	// function isn't necessary at the moment
-	// const rows = Schedule.row_index(data)
-
-	const elements = data.map(timeslot => DomTemplate["schedule-row"](timeslot))
-	const appendTarget = Utils.DomQuery("tbody")[0]
-
-	appendTarget.innerHTML = ""
-	elements.forEach(row => appendTarget.appendChild(row))
-
-	Schedule.update_day()
-	Schedule.update_time()
-}
-
-window.addEventListener('load', Schedule.render)
+window.addEventListener("load", render_schedule)

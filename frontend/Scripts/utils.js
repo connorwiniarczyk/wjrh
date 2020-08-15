@@ -1,5 +1,76 @@
 Utils = {}
 
+async function send_graphql_query(url, query, params){
+	const headers = {
+		"Content-Type": "application/json"
+	}
+	const body = {
+		query: query,
+		variables: params,
+		raw: true,
+	}
+	const request = window.fetch(url, {
+		method: "post",
+		body: JSON.stringify(body),
+		headers: headers,
+	})
+
+	const result = await request
+		.then(res => res.json())
+		.catch(err => console.log(err))
+	
+	return result.data
+}
+
+function form_to_json(form){
+	const elements = form.elements
+	return [].reduce.call(elements, function(data, element){
+		const {name, type, value} = element
+		// if the name has a length of zero, treat it like
+		// it doesn not exist
+		if(name.length == 0) return data
+
+		if(type == "text") data[name] = value
+		if(type == "number") data[name] = parseInt(value)
+				
+		return data
+
+	}, {})
+}
+
+// clones a template element, populates fields
+// with data from a data object, (using handlebars notation)
+// ie. {{...}} and returns the new node
+function clone_template(template, data){
+	// if template is a query string instead of an Element,
+	// convert it to an element by querying the DOM for that
+	// string
+	if (typeof template === 'string'){
+		template = document.querySelector(template)
+	}
+
+	const template_string = template.innerHTML
+	// look for all strings enclosed by {{ }} 
+	const regex = /{{(.*?)}}/gm	
+	const matches = [...template_string.matchAll(regex)]
+	
+	let new_string = template_string
+	matches.forEach(function([string, name]){
+		new_string = new_string.replace(string, data[name])	
+	})
+	
+	const newElement = document.createElement('template')
+	newElement.innerHTML = new_string.trim()
+	return newElement.content.firstChild
+}
+
+function get_template_variables(template){
+	const template_string = template.innerHTML
+	const regex = /{{(.+?)}}/gm
+	const matches = [...template_string.matchAll(regex)]
+	return matches.map(([text, name]) => name)
+}
+
 Utils.query = null;
 Utils.tealQuery = async function(query) {
 

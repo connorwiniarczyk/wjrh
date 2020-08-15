@@ -12,22 +12,25 @@
 	/*background: white;*/
 }
 
-.schedule__container {
+.schedule {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 3rem;
 	right: 3rem;
 
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(25, 4rem);
+	column-gap: 10px;
+	row-gap: 10px;
+
 	background: #fff;
 
 	border: 1px solid black;
 	border-radius: 1rem;
 
-	/*width: 95%;*/
-	/*height: 80%;*/
-
-	overflow-y: hidden;
+	overflow-y: scroll;
 
 	padding: 1rem;
 	margin: 1rem auto;
@@ -36,83 +39,7 @@
 	box-sizing: border-box;
 }
 
-.schedule__table {
-	width: 100%;
-	border-spacing: 0;
-	
-	display: block;
-	height: 100%;
-	/*overflow-y: hidden;*/
-}
-
-.schedule__table-head {
-	border-bottom: 1px solid black;
-	padding-bottom: 2rem;
-}
-
-thead, tbody tr {
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-}
-
-tbody {
-	display: block;
-	overflow-x: hidden;
-
-}
-
-.schedule__table-body {
-	height: 95%;
-	display: block;
-	overflow-y: scroll;
-}
-
-.schedule__row {
-	border-bottom: 1px dashed #333;
-}
-
-.schedule__cell--show {
-	text-align: left;
-	padding: 0 1rem;
-
-	/*border-bottom: 1px dashed #333;*/
-}
-
-.schedule__cell--timeslot {
-	text-align: right;
-	padding: 0 1rem;
-	white-space: nowrap;
-
-	border-right: 1px solid #333;
-}
-
-.schedule__cell--timeslot, .hours {
-	width: 4rem;
-}
-
-/*
- *	add some special styles to a cell if it 
- *	is on the air
- */
-.schedule__row.live .schedule__cell--show.today {
-	border: 6px solid #9DFFFC;
-	box-shadow: 0 0 -.25rem 0 #9DFFFC;
-}
-
-
-/*	when the screen is too small to display every
- *	day in the schedule, hide everything that isnt
- *	today
- */
-@media only screen and (max-width: 800px) {
-	.schedule__cell--show,
-	.schedule__cell--heading {
-		display: none;
-	}
-
-	.schedule__cell--show.today,
-	.schedule__cell--heading.today {
-		display: table-cell;
-	}
+.schedule__timeslot {
+	background: rgba(0, 100, 255, 0.3);
+	border-radius: 10px;
 }

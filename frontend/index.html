@@ -108,13 +108,9 @@
 			<div class="music-player__details hidden"></div>
 
 
-		<!-- <div class="music-player__controls">
 				<button class="btn controls__btn--play-pause play">play</button>
 				<button class="btn controls__btn--stop">play</button>
 				<button class="btn controls__btn--play-pause">play</button>
-			</div> -->
-
-
 		</div>
 
 	</section>
@@ -133,24 +129,21 @@
 	</section>
 
 	<section class="page page--schedule tab">
-		<div class="schedule__container">
-			<!-- <h2 class="schedule__title">Monday</h2> -->
-			<table id="schedule" class="schedule__table">
-				<thead class="schedule__table-head">
-					<tr class="schedule__headings">
-						<th class="schedule__cell schedule__cell--empty hours"></th>
-						<th class="schedule__cell schedule__cell--heading monday">Monday</th>
-						<th class="schedule__cell schedule__cell--heading tuesday">Tuesday</th>
-						<th class="schedule__cell schedule__cell--heading wednesday">Wednesday</th>
-						<th class="schedule__cell schedule__cell--heading thursday">Thursday</th>
-						<th class="schedule__cell schedule__cell--heading friday">Friday</th>
-						<th class="schedule__cell schedule__cell--heading saturday">Saturday</th>
-						<th class="schedule__cell schedule__cell--heading sunday">Sunday</th>
-					</tr>
-				</thead>
-				<tbody class="schedule__table-body"></tbody>
-			</table>
-		</div>
+		<div id="schedule" class="schedule"></div>
+		<template id="template--timeslot">
+			<div
+				class="schedule__timeslot"
+				data-day="{{day_number}}"
+				data-start_time="{{start_hour}}"
+				data-end_time="{{end_hour}}"
+				>{{name}}</div>	
+		</template>
+		<template id="template--day">
+			<h3>{{day}}</h3>
+		</template>
+		<template id="template--hour">
+			<h4>{{hour}}</h4>
+		</template>
 	</section>
 
 	<section class="page page--programs tab">
@@ -158,12 +151,12 @@
 			<nav class="nav nav--secondary clearfix">
 		<!-- 		<ul class="nav__header">
 					<li>
-						<h3>Programs</h3>
+						<h3>programs</h3>
 					</li>
 				</ul> -->
 				<ul class="nav__tab-menu">
 					<li>
-						<h4>WJRH Programs</h4>
+						<h4>wjrh programs</h4>
 					</li>
 					<li>
 						<input type="text" class="searchbar nav--secondary__searchbar" id="program-search" placeholder="search">
@@ -172,8 +165,6 @@
 			</nav>
 
 			<ul class="programs-main__list" id="programs-list">
-
-				<!-- see DomTemplate["program-link"] in dom_templates.js -->
 			</ul>
 
 		</section>
@@ -192,17 +183,17 @@
 				</ul>
 			</nav>
 <!-- 			<nav class="program__nav nav nav--dark clearfix">
-				<a class="btn btn--back" href="#programs" onclick="Programs.switchTo(0)"> < </a>
-				<a class="progams__nav__header" href="#"><h2>Title - Authors</h2></a>
+				<a class="btn btn--back" href="#programs" onclick="programs.switchto(0)"> < </a>
+				<a class="progams__nav__header" href="#"><h2>title - authors</h2></a>
 			</nav> -->
 
 			<div class="content">
 				<div class="program-details clearfix">
-					<!-- see DomTemplate["program-details"] in main.js -->
+					<!-- see domtemplate["program-details"] in main.js -->
 				</div>
 				
 				<ul id="program-episodes" class="program-episodes">
-					<!-- see DomTemplate["episode-link"] in main.js -->
+					<!-- see domtemplate["episode-link"] in main.js -->
 				</ul>
 			</div>
 		</section>
@@ -211,8 +202,8 @@
 	<section class="page page--contact-us tab">
 <!-- 		<nav class="nav nav--secondary">
 			<ul class="nav__tab-menu">
-				<li><a href="#contact-us">Sponsorship</a></li>
-				<li><a href="#contact-us">Your Music</a></li>
+				<li><a href="#contact-us">sponsorship</a></li>
+				<li><a href="#contact-us">your music</a></li>
 			</ul>
 		</nav> -->
 
@@ -222,14 +213,14 @@
 
 		<section class="contact-us__wrapper">
 			<form id="contact-us-form" action="#" class="contact-us__form">
-				<h1 class="contact-us__header">Send Us a Message!</h1>
-				<input type="text" placeholder="Name" required
+				<h1 class="contact-us__header">send us a message!</h1>
+				<input type="text" placeholder="name" required
 					class="contact-us__field field--name">
-				<input type="email" placeholder="Email" required
+				<input type="email" placeholder="email" required
 					class="contact-us__field field--email">
-				<textarea rows="2" placeholder="Message" required
+				<textarea rows="2" placeholder="message" required
 					class="contact-us__field field--message"></textarea>
-				<input type="submit" value="Send"
+				<input type="submit" value="send"
 					class="contact-us__submit">
 			</form>
 		</section>
