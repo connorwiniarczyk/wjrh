@@ -43,8 +43,8 @@
 
 	<link rel="stylesheet" href="stylesheets/schedule.css">
 
-	<link rel="stylesheet" href="stylesheets/programs.css">
-	<link rel="stylesheet" href="stylesheets/program.css">
+	<link rel="stylesheet" href="stylesheets/program-list.css">
+	<link rel="stylesheet" href="stylesheets/program-details.css">
 
 	<link rel="stylesheet" href="stylesheets/contact-us.css">
 
@@ -131,12 +131,7 @@
 	<section class="page page--schedule tab">
 		<div id="schedule" class="schedule"></div>
 		<template id="template--timeslot">
-			<div
-				class="schedule__timeslot"
-				data-day="{{day_number}}"
-				data-start_time="{{start_hour}}"
-				data-end_time="{{end_hour}}"
-				>{{name}}</div>	
+			<a class="schedule__timeslot"href='#programs?shortname="{{shortname}}"'>{{name}}</div>	
 		</template>
 		<template id="template--day">
 			<h3>{{day}}</h3>
@@ -148,65 +143,40 @@
 
 	<section class="page page--programs tab">
 		<section class="tab programs-main active">
-			<nav class="nav nav--secondary clearfix">
-		<!-- 		<ul class="nav__header">
-					<li>
-						<h3>programs</h3>
-					</li>
-				</ul> -->
-				<ul class="nav__tab-menu">
-					<li>
-						<h4>wjrh programs</h4>
-					</li>
-					<li>
-						<input type="text" class="searchbar nav--secondary__searchbar" id="program-search" placeholder="search">
-					</li>
-				</ul>
-			</nav>
-
-			<ul class="programs-main__list" id="programs-list">
-			</ul>
-
+			<ul class="program-list"></ul>
+			<template id="template--program-link">
+				<li>
+						<a href="#programs?shortname={{shortname}}" class="program-list__link">
+						<span>{{name}}</span>
+						<img src="{{image}}"></img>	
+					</a>
+				</li>				
+			</template>
 		</section>
-
-		<section class="tab program">
-			<nav class="nav nav--secondary">
-				<ul class="nav__header">
-					<li>
-						<a href="#programs" class="btn btn--back"><</a>
-					</li>
-					<li>
-						<a href="#programs">
-							<span class="name">name</span> - <span class="dj">dj</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-<!-- 			<nav class="program__nav nav nav--dark clearfix">
-				<a class="btn btn--back" href="#programs" onclick="programs.switchto(0)"> < </a>
-				<a class="progams__nav__header" href="#"><h2>title - authors</h2></a>
-			</nav> -->
-
-			<div class="content">
-				<div class="program-details clearfix">
-					<!-- see domtemplate["program-details"] in main.js -->
+		<section class="tab program content">
+			<div class="program-details"></div>
+			<h2>Episodes</h2>
+			<ul class="program-episodes"></ul>
+			<template id="template--program">
+				<div>
+					<h2>{{name}}</h2>
+					<h2>{{author}}</h2>
+					<p>{{description}}</p>
+					<img class="program-details__image" src="{{image}}"></img>
 				</div>
-				
-				<ul id="program-episodes" class="program-episodes">
-					<!-- see domtemplate["episode-link"] in main.js -->
-				</ul>
-			</div>
+			</template>
+			<template id="template--episode">
+				<li>
+					<a href=#listen?episode={{id}}&program={{shortname}}">
+						<h3>{{name}}</h3>
+						<p>{{description}}</p>
+					</a>
+				</li>
+			</template>
 		</section>
 	</section>
 
 	<section class="page page--contact-us tab">
-<!-- 		<nav class="nav nav--secondary">
-			<ul class="nav__tab-menu">
-				<li><a href="#contact-us">sponsorship</a></li>
-				<li><a href="#contact-us">your music</a></li>
-			</ul>
-		</nav> -->
-
 		<section class="contact-us__content">
 			
 		</section>

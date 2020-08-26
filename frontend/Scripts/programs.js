@@ -1,71 +1,81 @@
 Programs = {}
 
-Programs.LoadPrograms = async function(search_param){
+const programs_query = `
+query{
+	programs{
+		shortname
+		author
+		image
+		name
+	}
+}
+`
 
-	const query = `{
-		programs (
-			search_param: "${search_param || ""}",
-			limit_to: 60,
-			deep: false,
-		){
-			name,
-			author,
-			image,
-			description,
-			shortname
-		}
-	}`
+async function render_program_list(){
+	const result = await send_graphql_query('http://api.wjrh.org', programs_query, {})
+	const programs = result.programs
+	const target = document.querySelector(".program-list")
 
-	const data = await Utils.tealQuery(query)
-	const links = data.programs.map(program => DomTemplate["program-link"](program))
-
-	const appendTarget = document.getElementById("programs-list")
-	appendTarget.innerHTML = ""
-	links.forEach(link => appendTarget.appendChild(link))
+	programs.forEach(function(program){
+		newElement = clone_template("#template--program-link", {
+			...program,
+			image: program.image || '/photos/default_program.png',
+		})	
+		target.appendChild(newElement)
+	})
 }
 
-Programs.LoadProgram = async function(shortname){
+window.addEventListener("load", render_program_list)
 
-	const query = `{
-		program(shortname: "${shortname}"){
-			shortname,
-			name,
-			author,
-			image,
-			description,
-			episodes {
-				id,
-				name,
-				description,
-				audio_url
-			}
+const program_query = `
+query($shortname: String){
+	program(shortname:$shortname){
+		shortname
+		author
+		image
+		name
+		description
+		episodes {
+			id
+			name
+			description
+			audio_url	
 		}
-	}`
+	}
+}`
 
-	const { program } = await Utils.tealQuery(query)
-	const { episodes, ...details } = program
-
-	const details_fragment = DomTemplate["program-details"](details)
-	const details_target = document.querySelector(".program-details")
-
-	details_target.innerHTML = ""
-	details_target.appendChild(details_fragment)
-
-	const episode_links = episodes.map(episode =>
-		DomTemplate["episode-link"]({episode, program: details})
+async function render_program_details(shortname){
+	const program_page = document.querySelector('.program-details')
+	const result = await send_graphql_query(
+		'http://api.wjrh.org',
+		program_query,
+		{shortname: shortname}
 	)
 
-	episodes_target = document.getElementById("program-episodes")
-	episodes_target.innerHTML = ""
-	episode_links.forEach(link => episodes_target.appendChild(link))
+	const program = result.program
+	console.log(shortname)
 
-	Programs.switchTo(1)
+	console.log(program)
+
+	newElement = clone_template("#template--program", {
+		...program
+	})
+
+	program_page.innerHTML = ""
+	program_page.appendChild(newElement)
+
+	episode_list = document.querySelector('.program-episodes')
+	episode_list.innerHTML = ""
+	program.episodes.forEach(function(episode){
+		newEpisodeLink = clone_template("#template--episode",{
+			...episode	
+		})
+		episode_list.appendChild(newEpisodeLink)
+	})
 }
 
-window.addEventListener("load", () => Programs.LoadPrograms())
 window.addEventListener("load", function(){
 	const tabs = Utils.DomQuery(".page--programs > .tab")
-
 	Programs.tabs = new TabMenu(tabs)
 	Programs.switchTo = Programs.tabs.switchTo.bind(Programs.tabs)
 })
@@ -85,9 +95,10 @@ HashLink.on("programs", function(args){
 	if(!args.search) args.search = ""
 
 	if(args.shortname) {
-		Programs.LoadProgram(args.shortname)
+		render_program_details(args.shortname)
+		Programs.switchTo(1)
 	} else {
-		Programs.LoadPrograms(args.search)
+		render_program_list()
 		Programs.switchTo(0)
 	}
 })
