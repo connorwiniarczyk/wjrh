@@ -1,99 +1,104 @@
-let Programs = {};
+Programs = {}
 
-Programs.switchTo = function(event, tab){
-	Array.prototype.forEach.call(
-		document.querySelectorAll("#recent-shows > .tab"),
-		tab => tab.classList.add("hidden")
-	);
-
-	console.log(document.getElementById(tab))
-	document.getElementById(tab).classList.remove("hidden")
-}
-
-const render_episode_link = function(episode_data, program_data) {
-	let newEpisode = document.getElementById("episode-template").cloneNode(true)
-
-	newEpisode.onclick = function(){
-		Player.load("/api/listen?id=" + (episode_data.id || ""), {episode_data: episode_data, program_data: program_data})
+const programs_query = `
+query{
+	programs{
+		shortname
+		author
+		image
+		name
 	}
+}
+`
 
-	newEpisode.querySelector(".title")
-	.innerHTML = episode_data.name
+async function render_program_list(){
+	const result = await send_graphql_query('http://api.wjrh.org', programs_query, {})
+	const programs = result.programs
+	const target = document.querySelector(".program-list")
 
-	newEpisode.querySelector(".description")
-	.innerHTML = episode_data.description
-
-	newEpisode.classList.remove("template")
-	document.getElementById("episodes").appendChild(newEpisode)
+	programs.forEach(function(program){
+		newElement = clone_template("#template--program-link", {
+			...program,
+			image: program.image || '/photos/default_program.png',
+		})	
+		target.appendChild(newElement)
+	})
 }
 
-const render_episode_list = function(program_name){
-	Utils.tealQuery(`{
-		program (id: ${program_name}) {
-			name, 
-			description,
-			shortname,
-			author,
-			image,
-			episodes {
-				name,
-				description,
-				id
-			}
+window.addEventListener("load", render_program_list)
+
+const program_query = `
+query($shortname: String){
+	program(shortname:$shortname){
+		shortname
+		author
+		image
+		name
+		description
+		episodes {
+			id
+			name
+			description
+			audio_url	
 		}
-	}`)
-	.then(data => data.program.episodes
-		.forEach(episode => render_episode_link(episode, data.program))
+	}
+}`
+
+async function render_program_details(shortname){
+	const program_page = document.querySelector('.program-details')
+	const result = await send_graphql_query(
+		'http://api.wjrh.org',
+		program_query,
+		{shortname: shortname}
 	)
 
-	document.getElementById("episodes").innerHTML = "";
+	const program = result.program
+	console.log(shortname)
+
+	console.log(program)
+
+	newElement = clone_template("#template--program", {
+		...program
+	})
+
+	program_page.innerHTML = ""
+	program_page.appendChild(newElement)
+
+	episode_list = document.querySelector('.program-episodes')
+	episode_list.innerHTML = ""
+	program.episodes.forEach(function(episode){
+		newEpisodeLink = clone_template("#template--episode",{
+			...episode	
+		})
+		episode_list.appendChild(newEpisodeLink)
+	})
 }
 
-const load_programs = async function(){
-	const query = `{
-		programs (limit_to: 20, deep: false) {
-			name,
-			author,
-			image,
-			description,
-			shortname
-		}
-	}`
+window.addEventListener("load", function(){
+	const tabs = Utils.DomQuery(".page--programs > .tab")
+	Programs.tabs = new TabMenu(tabs)
+	Programs.switchTo = Programs.tabs.switchTo.bind(Programs.tabs)
+})
 
-	const appendTarget = document.getElementById("program-list")
+window.addEventListener("load", function(){
+	const searchbar = document.getElementById("program-search")
 
-	const data = await Utils.tealQuery(query)
-	const links = data.programs.map(Dom_Templates.program_link)
-	
-	links.forEach(link => appendTarget.appendChild(link))
-}
+	if(!searchbar) return
 
-const load_program = async function({name}){
-	const query = `{
-		program (shortname: "${name}") {
-			name, 
-			description,
-			shortname,
-			author,
-			image,
-			episodes {
-				name,
-				description,
-				audio_url
-			}
-		}
-	}`
+	searchbar.onkeydown = function(){
+		const param = searchbar.value
+		Programs.LoadPrograms(param)
+	}
+})
 
-	const data = await Utils.tealQuery(query)
+HashLink.on("programs", function(args){
+	if(!args.search) args.search = ""
 
-	console.log(data)
-
-	const episode_links = data.program.episodes.map(Dom_Templates.episode_link)
-
-	console.log(episode_links)
-
-	// const appendTarget = document.getElementById
-}
-
-window.addEventListener("load", load_programs)
-window.addEventListener("load", () => load_program({name: "sendnudes"}))
+	if(args.shortname) {
+		render_program_details(args.shortname)
+		Programs.switchTo(1)
+	} else {
+		render_program_list()
+		Programs.switchTo(0)
+	}
+})

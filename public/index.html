@@ -4,252 +4,197 @@
 <head>
 	<title>WJRH</title>
 
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bacon.js/1.0.1/Bacon.js"></script> -->
+	<!-- <script src="api/getScript?script=socket.io" type="text/javascript"></script> -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 
-	<!-- <script src="api/getScript?script=handlebars" type="text/javascript"></script> -->
-	<script src="api/getScript?script=socket.io" type="text/javascript"></script>
+	<script src="/config"></script>
 
-	<!-- <script src="api/getScript?script=visualizer" type="text/javascript"></script> -->
-  <script src="Scripts/utils.js" type="text/javascript"></script>
-  <script src="Scripts/dom_templates.js" type="text/javascript"></script>
-	<script src="Scripts/script.js" type="text/javascript"></script>
+	<script src="Scripts/utils.js" type="text/javascript"></script>
+	<script src="Scripts/dom_templates.js" type="text/javascript"></script>
 
-	<script src="Scripts/player.js" type="text/javascript"></script>
-	<script src="Scripts/programs.js" type="text/javascript"></script>
-	<script src="Scripts/visualizer.js" type="text/javascript"></script>
+	<script src="Scripts/visualizer.js"></script>
+	<script src="Scripts/music-player.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/player.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/play_pause_button.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/sidebar.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/schedule.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/about_us.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/contact.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/recent-shows.css">
+	<script src="Scripts/schedule.js"></script>
+	<script src="Scripts/programs.js"></script>
+	<script src="Scripts/main.js"></script>
+
+	<script src="Scripts/about-us.js"></script>
+	<script src="Scripts/contact-us.js"></script>
+
+	<script src="Scripts/slideshow.js"></script>
+
+	<!-- fonts -->
+	<link rel="stylesheet" href="https://use.typekit.net/mnh5ihx.css">
+	<link rel="stylesheet" href="stylesheets/fonts.css">
+
+	<link rel="stylesheet" href="stylesheets/typography.css">
+
+	<link rel="stylesheet" href="stylesheets/utils.css">
+	<link rel="stylesheet" href="stylesheets/nav.css">
+
+	<link rel="stylesheet" href="stylesheets/home.css">
+
+	<link rel="stylesheet" href="stylesheets/music-player.css">
+	<link rel="stylesheet" href="stylesheets/visualizer.css">
+
+	<link rel="stylesheet" href="stylesheets/about-us.css">
+
+	<link rel="stylesheet" href="stylesheets/schedule.css">
+
+	<link rel="stylesheet" href="stylesheets/program-list.css">
+	<link rel="stylesheet" href="stylesheets/program-details.css">
+
+	<link rel="stylesheet" href="stylesheets/contact-us.css">
+
+	<link rel="stylesheet" href="stylesheets/slideshow.css">
 
 </head>
 <body>
-		<div id="Home" class="page hidden">
+	<section class="page page--home">
+		<a href="#home">
+			<h1 class="home__heading">WJRH</h1>
+			<h2 class="home__subtitle">104.9 FM</h2>
+		</a>
 
-			<div class="song-info">
-				<div class="album-art square">
-					<div class="content">
-						<div class="controls">
-							<button onclick="Player.toggle()" id="play-pause-btn" class="play-pause-btn pause"></button>
-						</div>
-					</div>
-				</div>
+		<div class="controls">
+			<a href="#listen-live" class="btn btn--listen-live tab">Listen</a>
 
-				<div id="metadata" class="metadata">
-					<h4 class="songname"></h4>
-					<h5>by: <span class="artistname"></span></h5>
-					<h5>on: <span class="album"></span></h5>
-					<br>
-					<h5 class="showname">Robo DJ</h5>
-					<h6 class="author">Robo DJ</h6>
-				</div>
+			<div style="margin-top: 5rem;" class="controls__live tab active">
+				<button id="play-pause--live" onclick="Player.toggle_stopped()" class="btn btn--play-pause pause"></button>
 			</div>
-		
-			<!-- <script id="template" type="text/x-handlebars-template">
-				<div class="program">
-					<div>{{title}}</div>
-					<div><span>with </span>{{author}}</div>
-				</div>
-				<br>
-				<div class="playing">playing</div>
-				<br>
-				<div id=song>
-					<div id="songname" class="songname">{{songname}}</div>
-					<div id="artistname" class="artistname"><span>by: </span>{{artistname}}</div>
-				</div>
-				<div style="font-size: 15px;">on</div>
-				<img class="logo" src="resources/Logo.png" style="width: 60%">
-			</script> -->
-			<div id="visualizer" class="visualizer"></div>
 		</div>
-		<div id="title" class="hidden">
-			<h1 data-heading="WJRH">WJRH</h1>
+
+		<div class="visualizer-container">
+			<svg id="visualizer" class="visualizer"></svg>			
+		</div>
+	</section>
+
+	<section class="page page--home tab">
+		<a href="#">
+			<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
+			<h2 class="home__subtitle">Panic! at the</h2>		
+		</a>
+		<div style="min-height: 75px;">
+			<div id="loading-animation" class="lds-ellipsis hidden">
+				<div></div> <div></div> <div></div> <div></div>
+			</div>
+
+			<a href="#listen-live" class="btn btn--listen-live">Listen</a>
+		</div>
+	</section>
+
+	<section class="page page--music-player tab">
+		<div class="music-player__main">
+
+			<a href="#">
+				<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
+				<h2 class="home__subtitle">Panic! at the Disco</h2>		
+			</a>
 			<div style="min-height: 75px;">
-				<div id="loading-animation" class="lds-ellipsis hidden"><div></div><div></div><div></div><div></div></div>
-				<button id="listen-live-btn" onclick="Player.load('http://www.wjrh.org:8000/WJRHlow', 'LIVE')">Listen Live</button>
-			</div>
-		</div>
-		<div id="control-bar" class="control-bar">
-			<!-- <button id="play-pause-btn" class="play-pause-btn play"></button> -->
-		</div>
-		<div id="site-content" class="">
-			<nav id="site-nav">
-				<a href="#about-us" onclick="switchTo(event, 'about-us')">About Us</a>
-				<a href="#schedule" onclick="switchTo(event, 'schedule')">Schedule</a>
-				<a href="#recent-shows" onclick="switchTo(event, 'recent-shows')">Programs</a>
-				<a href="#contact-us" onclick="switchTo(event, 'contact-us')">Contact Us</a>
-			</nav>
-
-			<section id="about-us" class="tab hidden main-tab">
-				<h2 >About Us</h2>
-				<p>Broadcasting from Hogg Hall since 1946, WJRH has been a major part of life on Lafayette College’s campus and beyond in the Lehigh Valley community. We provide the soundtrack to the Lafayette experience and make our voice heard by the greater community. You can listen to us 24/7 every day of the year on 104.9 FM in the area.</p>
-
-				<p>WJRH is one of the last college radio stations in the United States that is fully student managed and provides fully freeform programming. This means that we give 100% control to live DJs in the booth without any intervention or guidance from the Music Director. Freeform radio stations have always been at the forefront of the music world and we believe that we can achieve better programming through diversity.</p>
-
-				<p>WJRH is an all volunteer radio station. None of our members are paid for their efforts. The majority of WJRH’s funding comes from Lafayette College with additional funding from individual donors and funding programs. We offer the opportunity for Lafayette students and community members to learn about music, radio engineering, audio production techniques, electrical engineering, acoustics, podcasting and how to manage a small business.</p>
-
-				<p>WJRH is a federally licensed FM station owned by the Lafayette College Board of Trustees, operating at 104.9 MHz. You can tune into our signal from most of the Lehigh Valley 24 hours a day. WJRH is a noncommercial educational radio station meaning that we never air commercials.</p>
-
-				<h3 id="history">History</h3>
-
-				<p>“Radio Lafayette” was established in 1946 on the third floor of Hogg Hall at Lafayette College. It was assigned the call letters WJRH in May of 1947; while W was the standard, JRH was in honor of James Renwick Hogg, the donor of Hogg Hall.</p>
-
-				<p>To the left, you see the original WJRH members, Raymond DePuy, Jerome B. Alenick, and George Menkart testing the station’s broadcasting capabilities, shortly after the radio was assigned call letters. The first official broadcast of WJRH took place five months later on October 1st, 1947. This broadcast was entitled “Songs at Seven” and aired various popular songs from 7 to 11 pm. Shortly thereafter, WJRH started broadcasting collegiate sports, with the first broadcast occurring on October 6th of that same year, eventually leading up to a regularly scheduled sports broadcast starting in Fall of 1948. In 1949, variety programming began, populating the schedule with quiz shows and talk radio.</p>
-
-				<p>From these humble beginnings, WJRH’s diversity in programming has expanded immensely. Over the years, WJRH has added a full recording studio, support for podcasting, and a community of people who love everything about sound. WJRH has hosted many artists, from As I Lay Dying and Ben Folds to more up-and-coming acts like Børns. In addition to artists, WJRH boasts a diverse and talented group of both student and community DJs who help to contribute to the Lafayette College soundtrack. We pride ourselves in serving both the student body of Lafayette and the City of Easton by championing free speech and providing a unique free-form listening experience. Since 2011, WJRH has been streaming online at WJRH.org; we at WJRH are honored and excited to continue WJRH’s proud past as a vital part of the Lafayette experience.</p>
-
-				<h3>Team</h3>
-
-				<p>We're a team of passionate people interested in Music, Broadcasting and Events. If you're interested in joining our leadership team, we're always looking for people interested in taking responsibility in supporting our community of music lovers and promoting our station. Read about joining us.</p>
-
-				<h4>TODO: Add Table of Members</h4>
-
-				<h3>Your Music</h3>
-
-				<p>WJRH is a completely freeform radio station. This means that the station gives DJs time slots and each DJ selects all the music played on his or her show. DJs may play music from their personal collection and from the radio station library. There is minimal oversight of the music that is available for DJ consideration. We have a very large record collection and a lot of CDs in racks. We put up all the music we receive in a special ‘new music’ area before archiving them, but in the end what is played is in the DJs control.</p>
-
-				<p>Yeah, Jake Garber and Nicole Harry are DJs with special interest in new music. They are in charge of glance over most of the music sent to us and provide feedback. This does not mean that we will provice any feedback to you at all.</p>
-
-				<p>The Music Director is not responsible for listening to all music submissions.We let each individual DJ decide what to spin. DJs are free to check out your tunes whenever they want.</p>
-				<p>WJRH is a completely freeform radio station. This means that the station gives DJs time slots and each DJ selects all the music played on his or her show. DJs may play music from their personal collection and from the radio station library. There is minimal oversight of the music that is available for DJ consideration. We have a very large record collection and a lot of CDs in racks. We put up all the music we receive in a special ‘new music’ area before archiving them, but in the end what is played is in the DJs control.</p>
-			</section>
-			<section id="schedule" class="tab main-tab hidden">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			</section>
-			<div id="recent-shows" class="tab main-tab animate-left">
-				<!-- <nav>
-					<button class="back" onclick="Programs.switchTo(event, 'programs')"><</button>
-				</nav> -->
-				<div id="programs" class="tab hidden">
-          <h1>PROGRAMS</h1>
-          <div class="search-bar">
-            <input type="text" name="" placeholder="Search"> 
-            <a class="search-btn" href="#"></a>
-          </div>
-
-          <div id="program-list">
-            <a id="program-template" class="program template">
-              <span class="name">hello</span>
-              <div class="info">
-                <span class="title">Various Breads and Butters</span>
-                <br>
-                <span class="authors">Someone, someone else</span>
-              </div>
-            </a>
-          </div>
+				<div id="loading-animation" class="lds-ellipsis hidden">
+					<div></div> <div></div> <div></div> <div></div>
 				</div>
-
-
-				<div id="episodes" class="tab">
-					<div class="info">
-						<div class="image"></div>
-						<h4 class="title">A Test Program</h4>
-						<h5 class="authors">The Author</h5>
-            <p class="description">
-              We like saying Disco Cheerio is a radio show with lively music and conversation to pump up your weekend. It's actually just two guys talking in a basement.
-            </p>
-					</div>
-          <div class="episodes">
-            <ul>
-              <li><a href="#">
-                <span class="title"></span>episode1
-              </a></li>
-              <li><a href="#">episode2</a></li>
-            </ul>
-          </div>
-				</div>
-
-
-
-				<a id="episode-template" class="episode template">
-					<button class="play-button">></button>
-					<div>
-						<h4 class="title"></h4>
-						<p class="description"></p>
-					</div>
-				</a>
+				<!-- <a href="#listen-live" class="btn btn--listen-live">Listen</a> -->
 			</div>
-			<div id="contact-us" class="tab main-tab hidden">
-				<div class="contact">
-					<h1>Contact Us</h1>
-					<form>
-						<input type="text" name="name">
-						<input type="text" name="email">
-						<textarea name="message" cols="40" rows="10"></textarea>
-					</form>
-				</div>
+
+			<div class="music-player__art-container hidden">
+				<img class="music-player__artwork" src="http://i.imgur.com/ZPr1kx2.jpg" alt="">	
+				<div class="music-player__controls">
+					<button class="btn btn--play-pause pause"></button>
+				</div>	
 			</div>
+			<div class="music-player__details hidden"></div>
+
+
+				<button class="btn controls__btn--play-pause play">play</button>
+				<button class="btn controls__btn--stop">play</button>
+				<button class="btn controls__btn--play-pause">play</button>
 		</div>
 
-		<!-- <div id="About-Us" class="page" tabindex="-1">
-			<div class="about-us">
-				<nav id="about-us-navbar" class="pn-ProductNav_Contents">
-					<a class="pn-ProductNav_Link" aria-selected="true">About Us</a>
-					<a class="pn-ProductNav_Link" data-goto="history">History</a>
-					<a class="pn-ProductNav_Link" data-goto="team">Team</a>
-					<a class="pn-ProductNav_Link" data-goto="your-music">Your Music</a>
-					<div id="nav-indicator" class="nav-indicator">&nbsp</div>
-				</nav>
-				<div id="scroll-window" class="scroll-window">
-				<div id="scroll-content" class="content">
-					<div class="block block-about-us">
-						<p>Broadcasting from Hogg Hall since 1946, WJRH has been a major part of life on Lafayette College’s campus and beyond in the Lehigh Valley community. We provide the soundtrack to the Lafayette experience and make our voice heard by the greater community. You can listen to us 24/7 every day of the year on 104.9 FM in the area.</p>
+	</section>
 
-						<p>WJRH is one of the last college radio stations in the United States that is fully student managed and provides fully freeform programming. This means that we give 100% control to live DJs in the booth without any intervention or guidance from the Music Director. Freeform radio stations have always been at the forefront of the music world and we believe that we can achieve better programming through diversity.</p>
+	<nav class="nav nav--main clearfix">
+		<ul class="nav__tab-menu clearfix">
+			<li><a href="#about-us">About Us</a></li>
+			<li><a href="#schedule">Schedule</a></li>
+			<li><a href="#programs">Programs</a></li>
+			<li><a href="#contact-us">Contact Us</a></li>
+		</ul>
+	</nav>
 
-						<p>WJRH is an all volunteer radio station. None of our members are paid for their efforts. The majority of WJRH’s funding comes from Lafayette College with additional funding from individual donors and funding programs. We offer the opportunity for Lafayette students and community members to learn about music, radio engineering, audio production techniques, electrical engineering, acoustics, podcasting and how to manage a small business.</p>
+	<section class="page--about-us tab active">
+		<!-- Content not shown: see content.html -->
+	</section>
 
-						<p>WJRH is a federally licensed FM station owned by the Lafayette College Board of Trustees, operating at 104.9 MHz. You can tune into our signal from most of the Lehigh Valley 24 hours a day. WJRH is a noncommercial educational radio station meaning that we never air commercials.</p>
-					</div>
-					<div class="block block-history">
-						<p>“Radio Lafayette” was established in 1946 on the third floor of Hogg Hall at Lafayette College. It was assigned the call letters WJRH in May of 1947; while W was the standard, JRH was in honor of James Renwick Hogg, the donor of Hogg Hall.</p>
+	<section class="page page--schedule tab">
+		<div id="schedule" class="schedule"></div>
+		<template id="template--timeslot">
+			<a class="schedule__timeslot"href='#programs?shortname="{{shortname}}"'>{{name}}</div>	
+		</template>
+		<template id="template--day">
+			<h3>{{day}}</h3>
+		</template>
+		<template id="template--hour">
+			<h4>{{hour}}</h4>
+		</template>
+	</section>
 
-						<p>To the left, you see the original WJRH members, Raymond DePuy, Jerome B. Alenick, and George Menkart testing the station’s broadcasting capabilities, shortly after the radio was assigned call letters. The first official broadcast of WJRH took place five months later on October 1st, 1947. This broadcast was entitled “Songs at Seven” and aired various popular songs from 7 to 11 pm. Shortly thereafter, WJRH started broadcasting collegiate sports, with the first broadcast occurring on October 6th of that same year, eventually leading up to a regularly scheduled sports broadcast starting in Fall of 1948. In 1949, variety programming began, populating the schedule with quiz shows and talk radio.</p>
-
-						<p>From these humble beginnings, WJRH’s diversity in programming has expanded immensely. Over the years, WJRH has added a full recording studio, support for podcasting, and a community of people who love everything about sound. WJRH has hosted many artists, from As I Lay Dying and Ben Folds to more up-and-coming acts like Børns. In addition to artists, WJRH boasts a diverse and talented group of both student and community DJs who help to contribute to the Lafayette College soundtrack. We pride ourselves in serving both the student body of Lafayette and the City of Easton by championing free speech and providing a unique free-form listening experience. Since 2011, WJRH has been streaming online at WJRH.org; we at WJRH are honored and excited to continue WJRH’s proud past as a vital part of the Lafayette experience.</p>
-					</div>
-					<div class="block block-team">
-						<p>We're a team of passionate people interested in Music, Broadcasting and Events. If you're interested in joining our leadership team, we're always looking for people interested in taking responsibility in supporting our community of music lovers and promoting our station. Read about joining us.</p>
-
-						<h4>TODO: Add Table of Members</h4>
-					</div>
-					<div class="block block-your-music">
-						<p>WJRH is a completely freeform radio station. This means that the station gives DJs time slots and each DJ selects all the music played on his or her show. DJs may play music from their personal collection and from the radio station library. There is minimal oversight of the music that is available for DJ consideration. We have a very large record collection and a lot of CDs in racks. We put up all the music we receive in a special ‘new music’ area before archiving them, but in the end what is played is in the DJs control.</p>
-
-						<p>Yeah, Jake Garber and Nicole Harry are DJs with special interest in new music. They are in charge of glance over most of the music sent to us and provide feedback. This does not mean that we will provice any feedback to you at all.</p>
-
-						<p>The Music Director is not responsible for listening to all music submissions.We let each individual DJ decide what to spin. DJs are free to check out your tunes whenever they want.</p>
-						<p>WJRH is a completely freeform radio station. This means that the station gives DJs time slots and each DJ selects all the music played on his or her show. DJs may play music from their personal collection and from the radio station library. There is minimal oversight of the music that is available for DJ consideration. We have a very large record collection and a lot of CDs in racks. We put up all the music we receive in a special ‘new music’ area before archiving them, but in the end what is played is in the DJs control.</p>
-					</div>
+	<section class="page page--programs tab">
+		<section class="tab programs-main active">
+			<ul class="program-list"></ul>
+			<template id="template--program-link">
+				<li>
+						<a href="#programs?shortname={{shortname}}" class="program-list__link">
+						<span>{{name}}</span>
+						<img src="{{image}}"></img>	
+					</a>
+				</li>				
+			</template>
+		</section>
+		<section class="tab program content">
+			<div class="program-details"></div>
+			<h2>Episodes</h2>
+			<ul class="program-episodes"></ul>
+			<template id="template--program">
+				<div>
+					<h2>{{name}}</h2>
+					<h2>{{author}}</h2>
+					<p>{{description}}</p>
+					<img class="program-details__image" src="{{image}}"></img>
 				</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- <div id="Schedule" class="page">
-			<div class="schedule">
-				<iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=lafayette.edu_5k9e8d0c54rfq7jvvbhmmjvt9c%40group.calendar.google.com&amp;color=%23865A5A&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-			</div>
-		</div>
-		<div id="Recent-Shows" class="page">
-			The recent shows would go here
-		</div>
-		<div id="Contact" class="page">
-			<div class="contact">
-				<h1>Contact Us</h1>
-				<form>
-					<input type="text" name="name">
-					<input type="text" name="email">
-					<textarea name="message" cols="40" rows="10"></textarea>
-				</form>
-			</div>
-		</div>
-	</div> -->
+			</template>
+			<template id="template--episode">
+				<li>
+					<a href=#listen?episode={{id}}&program={{shortname}}">
+						<h3>{{name}}</h3>
+						<p>{{description}}</p>
+					</a>
+				</li>
+			</template>
+		</section>
+	</section>
 
-	<!-- <audio id="audio" src="http://www.wjrh.org:8000/WJRHlow" crossorigin="anonymous"></audio> -->
+	<section class="page page--contact-us tab">
+		<section class="contact-us__content">
+			
+		</section>
+
+		<section class="contact-us__wrapper">
+			<form id="contact-us-form" action="#" class="contact-us__form">
+				<h1 class="contact-us__header">send us a message!</h1>
+				<input type="text" placeholder="name" required
+					class="contact-us__field field--name">
+				<input type="email" placeholder="email" required
+					class="contact-us__field field--email">
+				<textarea rows="2" placeholder="message" required
+					class="contact-us__field field--message"></textarea>
+				<input type="submit" value="send"
+					class="contact-us__submit">
+			</form>
+		</section>
+	</section>
+
 </body>
 </html>

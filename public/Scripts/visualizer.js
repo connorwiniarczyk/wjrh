@@ -1,5 +1,25 @@
-const repeat = function(amount, callback){
-	for(var i=0; i<amount; i++) callback(i)
+// include d3.js
+const Fourier = {}
+
+const rescaleArray = function(array, length){
+	const scale = d3.scalePow()
+		.exponent(2.7)
+		.domain([0, length])
+		.range([20, array.length - 100])
+
+	// A discrete version of the scale function
+	const scale_disc = x => Math.ceil(scale(x))
+
+
+	let output = new Array(length).fill()
+
+	return output.map((elem, index) => {
+		return array
+			.slice(scale_disc(index), scale_disc(index + 1))
+			.reduce((prev, curr) => prev + curr, 0) 
+			/ (scale_disc(index + 1) - scale_disc(index))
+			// / 20
+	})
 }
 
 const averageArray = (array, length) => {
@@ -12,76 +32,10 @@ const averageArray = (array, length) => {
 	})
 }
 
-const toStyle = color => "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")"
-
-// const AudioVisualizer = function(audio) {
-// 	this.analyser = makeAnalyser(audio)
-// }
-
-// AudioVisualizer.options = {
-// 	loadhere: document.currentScript.getAttribute("data-loadhere") ? true : false,
-// 	audioId: document.currentScript.getAttribute("data-audioId")
-// }
-// AudioVisualizer.parent = document.currentScript.parentElementff
-
-const Visualizer = {}
-
-Visualizer.elements = [];
-Visualizer.color
-Visualizer.analyser;
-
-Visualizer.setColor = function(color) {
-	Visualizer.color = color
-	Visualizer.elements.forEach(
-		element => element.style.background = toStyle(color)
-	)
-}
-
-Visualizer.draw = function(data) {
-	displayData = averageArray(data.filter((elem, index) => index < 800), Visualizer.elements.length)
-	Visualizer.elements.forEach(function(element, index){ 
-		element.style.height = ((displayData[index] / 255) * 100) + 5 + "%"
-	})
-}
-
-Visualizer.animationLoop = function() {
-	let dataArray = new Uint8Array(Visualizer.analyser.frequencyBinCount)
-	Visualizer.analyser.getByteFrequencyData(dataArray)
-	Visualizer.draw(dataArray)
-	window.requestAnimationFrame(Visualizer.animationLoop)
-}
-
-Visualizer.render = function(container){
-	container.innerHTML = "";
-
-	let amount = Math.ceil(window.innerWidth / 20);
-
-	let output = new Array(amount).fill().map(() => {
-		let node = document.createElement("div")
-		node.className = "visualizer-node"
-		return node
-	})
-
-	Visualizer.elements = output;
-	Visualizer.setColor(Visualizer.color || [255, 255, 255])
-
-	output.forEach(
-		element => container.appendChild(element)
-	)
-}
-
-Visualizer.load = function(audio, container) {
-	// initialize audio analyser
-	Visualizer.analyser = makeAnalyser(audio);
-
-	Visualizer.render(container);
-	Visualizer.animationLoop()
-}
-
-const makeAnalyser = function(audio) {
+Fourier.makeAnalyzer = function(audio) {
 	let ctx = new AudioContext()
 	let analyser = ctx.createAnalyser()
-	analyser.fftSize = 2048
+	analyser.fftSize = 1024
 
 	//connect audio to analyser
 	let source = ctx.createMediaElementSource(audio)
@@ -91,52 +45,88 @@ const makeAnalyser = function(audio) {
 	return analyser
 }
 
-window.addEventListener("resize", () => Visualizer.render(document.getElementById("visualizer")))
+Fourier.getSpectrumData = function(analyzer, options) {
+	// optional parameter
+	options = options || {}
 
-// AudioVisualizer.prototype.play = function(){
-// 	this.loop()
-// }
+	let output = new Uint8Array(analyzer.frequencyBinCount)
+	analyzer.getByteFrequencyData(output)
 
-// AudioVisualizer.prototype.loop = function(){
-// 	let dataArray = new Uint8Array(this.analyser.frequencyBinCount)
-// 	this.analyser.getByteFrequencyData(dataArray)
-// 	this.draw(dataArray)
-// 	window.requestAnimationFrame(this.loop.bind(this))
-// }
+	if(options.resolution) {
+		output = rescaleArray(output, options.resolution)
+	}
 
-// AudioVisualizer.prototype.stop = function(){}
+	return output
+}
 
+const Visualizer = {}
 
-// AudioVisualizer.getDraw = visualizer => data => {
-// 	displayData = averageArray(data, visualizer.length)
-// 	visualizer.forEach((element, index) => element.style.height = displayData[index] + "px")
-// }
+Visualizer.x_scale
+Visualizer.analyzer
 
-// AudioVisualizer.createDomVisualizer = function(color){
-// 	let output = new Array(50).fill().map(() => {
-// 		let node = document.createElement("div")
-// 		node.className = "visualizer-node"
-// 		node.style.background = color
-// 		return node
-// 	})
+Visualizer.maxWidth = 1000
+Visualizer.width
+Visualizer.height
+Visualizer.barWidth = 15
 
-// 	return output
-// }
+Visualizer.resolution
 
-// AudioVisualizer.setColor = function(color){
-// 	this.elements.forEach(element => element.style.background = 
-// 		"rgb(" + color[0] + "," + color[1] + ", " + color[2] + ")")
-// }
+Visualizer.init = function({ audio, parent }){
+	Visualizer.analyzer = Fourier.makeAnalyzer(audio)
 
-// window.addEventListener("load", function(){
-// 	let elements = AudioVisualizer.createDomVisualizer("#333")
-// 	elements.forEach(element => AudioVisualizer.parent.appendChild(element))
+	Visualizer.maxWidth = getComputedStyle(parent)["max-width"]
+	Visualizer.maxWidth = parseInt(Visualizer.maxWidth.replace("px", ""))
 
-// 	primary = new AudioVisualizer(document.getElementById(AudioVisualizer.options.audioId))
-// 	primary.draw = AudioVisualizer.getDraw(elements)
-// 	primary.play()
+	Visualizer.height = getComputedStyle(parent.parentElement)["height"]
+	Visualizer.height = parseInt(Visualizer.height.replace("px", ""))
 
-// 	primary.setColor([255, 255, 255])
+	Visualizer.onResize()
 
-// 	// colorScheme.onValue(scheme => elements.forEach(element => element.style.background = scheme.primary))
-// });
+	Visualizer.x_scale = d3.scaleLinear()
+		.domain([0, Visualizer.resolution])
+		.range([0, Visualizer.width])
+}
+
+Visualizer.begin = function(){
+	window.requestAnimationFrame(Visualizer.loop)
+}
+
+Visualizer.loop = function(){
+	let data = Fourier.getSpectrumData(Visualizer.analyzer, {
+		resolution: Visualizer.resolution,
+	})
+
+	Visualizer.draw(data)
+	window.requestAnimationFrame(Visualizer.loop)
+}
+
+Visualizer.draw = function(data){
+	const u = d3.select('.visualizer')
+		.selectAll('rect')
+		.data(data);
+
+		u.enter()
+		.append('rect')
+		.merge(u)
+		.attr("x", (height, index) => Visualizer.x_scale(index) + 1)
+		.attr("y", d => (Visualizer.height) - (d * ((Visualizer.height - 30) / 255) || 0) - 30)
+		.attr("rx", 5)
+		.attr("width", 10)
+		.attr("height", d => 10 + (d * ((Visualizer.height - 30) / 255) || 0))
+		.style("fill", "#e6d354")
+		.style("stroke", "rgb(0,0,0)")
+
+	u.exit().remove()
+}
+
+Visualizer.onResize = function(){
+	Visualizer.width = Visualizer.maxWidth ? 
+		Math.min(window.innerWidth, Visualizer.maxWidth) :
+		window.innerWidth
+
+	Visualizer.resolution = Math.floor(Visualizer.width / Visualizer.barWidth)
+
+	console.log(Visualizer.resolution)
+}
+
+window.addEventListener("resize", Visualizer.onResize)
