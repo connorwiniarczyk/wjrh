@@ -11,11 +11,11 @@ WJRH is a federally licensed FM station owned by the Lafayette College Board of 
 # Team
 
 <div class="slideshow slideshow--team">
-    <!-- <img src="http://10.0.0.146/Board/board_01.jpg" alt=""> -->
-    <!-- <img src="http://10.0.0.146/Board/board_02.jpg" alt=""> -->
-    <img src="http://10.0.0.146/Board/serious.jpg" alt="">
-    <img src="http://10.0.0.146/Board/board_03.jpg" alt="">
-    <img src="http://10.0.0.146/Board/board_04.jpg" alt="">
+    <img src="/media/board-photos/board_01.jpg" alt="">
+    <img src="/media/board-photos/board_02.jpg" alt="">
+    <img src="/media/board-photos/serious.jpg" alt="">
+    <img src="/media/board-photos/board_03.jpg" alt="">
+    <img src="/media/board-photos/board_04.jpg" alt="">
 </div>
 
 We're a team of passionate people interested in Music, Broadcasting and Events. If you're interested in joining our leadership team, we're always looking for people interested in taking responsibility in supporting our community of music lovers and promoting our station. Read about joining us.

@@ -15,7 +15,7 @@ window.addEventListener("load", function(){
 	Player.control_sets.switchTo(0)
 })
 
-Player.live_src = `http://www.wjrh.org:8000/WJRHlow`
+Player.live_src = `http://api.wjrh.org:8000/RoboDJ`
 
 Player.audio
 Player.isLive = true
