@@ -36,6 +36,7 @@
 	<link rel="stylesheet" href="stylesheets/about-us.css">
 
 	<link rel="stylesheet" href="stylesheets/schedule.css">
+	<link rel="stylesheet" href="stylesheets/content.css">
 
 	<link rel="stylesheet" href="stylesheets/program-list.css">
 	<link rel="stylesheet" href="stylesheets/program-details.css">
@@ -118,12 +119,17 @@
 		</ul>
 	</nav>
 
-	<section class="page--about-us tab active">
-		<!-- Content not shown: see content.html -->
+	<section class="page page--about-us content content--text tab active">
+	<!-- Content not shown: see content directory -->
 	</section>
 
 	<section class="page page--schedule tab">
-		<div id="schedule" class="schedule"></div>
+
+		<div id="schedule" class="schedule content content--wide">
+			<div class="schedule__header"></div>
+			<div class="schedule__timeslots"></div>
+		</div>
+		<!-- <div id="schedule" class="schedule content content--wide"></div> -->
 		<template id="template--timeslot">
 			<a class="schedule__timeslot"href='#programs?shortname="{{shortname}}"'>{{name}}</div>	
 		</template>
@@ -135,45 +141,49 @@
 		</template>
 	</section>
 
-	<section class="page page--programs tab">
-		<section class="tab programs-main active">
+	<section class="programs page page--programs tab">
+		<section class="tab programs-main content content--wide active">
+			<h2>Programs</h2>
 			<ul class="program-list"></ul>
+
 			<template id="template--program-link">
-				<li>
-						<a href="#programs?shortname={{shortname}}" class="program-list__link">
-						<span>{{name}}</span>
-						<img src="{{image}}"></img>	
-					</a>
-				</li>				
+			<li>
+				<a href="#programs?shortname={{shortname}}" class="program-list__link">
+					<span>{{name}}</span>
+					<img src="{{image}}"></img>	
+				</a>
+			</li>				
 			</template>
+
 		</section>
-		<section class="tab program content">
+		<section class="page page--program tab program content">
 			<div class="program-details"></div>
 			<h2>Episodes</h2>
 			<ul class="program-episodes"></ul>
+
 			<template id="template--program">
-				<div>
-					<h2>{{name}}</h2>
-					<h2>{{author}}</h2>
-					<p>{{description}}</p>
-					<img class="program-details__image" src="{{image}}"></img>
-				</div>
+			<div>
+				<h2>{{name}}</h2>
+				<h2>{{author}}</h2>
+				<p>{{description}}</p>
+				<img class="program-details__image" src="{{image}}"></img>
+			</div>
 			</template>
+
 			<template id="template--episode">
-				<li>
-					<a href=#listen?episode={{id}}&program={{shortname}}">
-						<h3>{{name}}</h3>
-						<p>{{description}}</p>
-					</a>
-				</li>
+			<li>
+				<a href=#listen?episode={{id}}&program={{shortname}}">
+					<h3>{{name}}</h3>
+					<p>{{description}}</p>
+				</a>
+			</li>
 			</template>
 		</section>
+
 	</section>
 
 	<section class="page page--contact-us tab">
-		<section class="contact-us__content">
-			
-		</section>
+		<section class="content content--text contact-us__content"></section>
 
 		<section class="contact-us__wrapper">
 			<form id="contact-us-form" action="#" class="contact-us__form">

@@ -19,7 +19,7 @@ async function render_program_list(){
 	programs.forEach(function(program){
 		newElement = clone_template("#template--program-link", {
 			...program,
-			image: program.image || '/photos/default_program.png',
+			image: program.image || '/media/default_program.png',
 		})	
 		target.appendChild(newElement)
 	})

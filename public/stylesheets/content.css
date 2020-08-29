@@ -1,0 +1,57 @@
+/* content.css contains styles for all of the site's text based content. */
+/* This includes the about us and contact us pages, as well as the individual */
+/* program pages */
+
+.content {
+	/* min-height: 100vh; */
+	width: 100%;
+
+	background: white;
+	padding: 1rem;
+
+	box-sizing: border-box;
+}
+
+@media only screen and (min-width: 800px) {
+	.content:not(.content--wide){
+		border: 1px solid var(--black);
+		border-radius: 1rem;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+
+		max-width: 800px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.content--wide{
+		border: 1px solid var(--black);
+		border-radius: 1rem;
+		margin-top: 2rem;
+
+		max-width: 1200px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+.content img {
+	width: 100%;
+	border-radius: .5rem;
+}
+
+.content--text a {
+	text-decoration: underline;
+	color: #0000EE;	
+}
+
+.content--text li {
+	list-style-type: circle;	
+	list-style-position: inside;
+}
+
+/* .content.content--wide { */
+/* 	max-width: 1200px; */	
+/* } */

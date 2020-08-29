@@ -2,22 +2,22 @@
 /* The styles common accross all screens */
 /* --------------------------------------*/
 
-.content {
-	background: var(--white);	
+/* .content { */
+/* 	background: var(--white); */	
 
-	max-width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 1rem;
-}
+/* 	max-width: 800px; */
+/* 	margin-left: auto; */
+/* 	margin-right: auto; */
+/* 	padding: 1rem; */
+/* } */
 
-@media only screen and (min-width: 800px) {
-	.content {
-		border: 1px solid var(--black);
-		border-radius: 1rem;
-		margin-top: 2rem;
-	}
-}
+/* @media only screen and (min-width: 800px) { */
+/* 	.content { */
+/* 		border: 1px solid var(--black); */
+/* 		border-radius: 1rem; */
+/* 		margin-top: 2rem; */
+/* 	} */
+/* } */
 
 /*.program-details {*/
 /*	background: #fff;*/

@@ -68,7 +68,7 @@ We're a team of passionate people interested in Music, Broadcasting and Events. 
 
 Radio Lafayette was established in 1946 on the third floor of Hogg Hall at Lafayette College. It was assigned the call letters WJRH in May of 1947; while W was the standard, JRH was in honor of James Renwick Hogg, the donor of Hogg Hall.
 
-![old timey photo](http://10.0.0.146/Hogg_old.jpg)
+![old timey photo](/media/Hogg_old.jpg)
 
 <!-- TODO: Find this photo or remove the mention of it -->
 

@@ -17,14 +17,15 @@ query {
 }`
 
 async function render_schedule(){
-	const schedule = document.querySelector(".schedule")
+	const schedule = document.querySelector(".schedule__timeslots")
+	const schedule_header = document.querySelector(".schedule__header")
 	const newTimeslot = clone_template('#template--timeslot', {})
 
 	weekdays.forEach(function(day, index){
 		newElement = clone_template('#template--day', {day})
 		newElement.style['grid-column-start'] = index + 1
 		newElement.style['grid-row-start'] = 1
-		schedule.appendChild(newElement)
+		schedule_header.appendChild(newElement)
 	})
 
 	hours.forEach(function(hour, index){

@@ -33,9 +33,9 @@ ul li {
 	list-style: none;
 }
 
-.page {
-	min-height: 100vh;
-}
+/* .page { */
+/* 	min-height: 100vh; */
+/* } */
 
 /*Removes Default Button Styling*/
 button, input[type="reset"] {
