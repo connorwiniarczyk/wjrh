@@ -45,6 +45,9 @@
 
 	<link rel="stylesheet" href="stylesheets/slideshow.css">
 
+	<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+
+
 </head>
 <body>
 	<section class="page page--home">
@@ -53,70 +56,38 @@
 			<h2 class="home__subtitle">104.9 FM</h2>
 		</a>
 
-		<div class="controls">
-			<a href="#listen-live" class="btn btn--listen-live tab">Listen</a>
+		<div class="music-controls" data-state="off">
+			<a onclick="Player.start()" href="#listen-live" class="btn btn--listen-live">Listen</a>
 
-			<div style="margin-top: 5rem;" class="controls__live tab active">
-				<button id="play-pause--live" onclick="Player.toggle_stopped()" class="btn btn--play-pause pause"></button>
+			<div class="control-panel controls--stream">
+				<!-- <span>Cake - The Distance</span> -->
+				<a onclick="Player.stop()" href="#listen-live" class="">Stop</a>
+				<input class="volume-slider" oninput="Player.audio.volume = this.value" type="range" min="0" max="1" step="0.01">
+				<!-- <button onclick="Player.toggle_stopped()" class="btn btn--play-pause pause"></button> -->
+			</div>
+			<div class="control-panel controls--recording">
+				<button onclick="Player.toggle_stopped()" class="btn btn--play-pause pause"></button>
+				<button onclick="Player.toggle_stopped()" class="btn btn--play-pause pause"></button>
 			</div>
 		</div>
+
+		<audio id="music-player"
+			data-default-url="http://api.wjrh.org:8000/RoboDJ"
+			data-media-type="STREAM" 
+			data-state="off"
+			crossorigin="anonymous"
+		></audio>
 
 		<div class="visualizer-container">
 			<svg id="visualizer" class="visualizer"></svg>			
 		</div>
 	</section>
 
-	<section class="page page--home tab">
-		<a href="#">
-			<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
-			<h2 class="home__subtitle">Panic! at the</h2>		
-		</a>
-		<div style="min-height: 75px;">
-			<div id="loading-animation" class="lds-ellipsis hidden">
-				<div></div> <div></div> <div></div> <div></div>
-			</div>
-
-			<a href="#listen-live" class="btn btn--listen-live">Listen</a>
-		</div>
-	</section>
-
-	<section class="page page--music-player tab">
-		<div class="music-player__main">
-
-			<a href="#">
-				<h1 class="home__heading" data-heading="WJRH">WJRH</h1>
-				<h2 class="home__subtitle">Panic! at the Disco</h2>		
-			</a>
-			<div style="min-height: 75px;">
-				<div id="loading-animation" class="lds-ellipsis hidden">
-					<div></div> <div></div> <div></div> <div></div>
-				</div>
-				<!-- <a href="#listen-live" class="btn btn--listen-live">Listen</a> -->
-			</div>
-
-			<div class="music-player__art-container hidden">
-				<img class="music-player__artwork" src="http://i.imgur.com/ZPr1kx2.jpg" alt="">	
-				<div class="music-player__controls">
-					<button class="btn btn--play-pause pause"></button>
-				</div>	
-			</div>
-			<div class="music-player__details hidden"></div>
-
-
-				<button class="btn controls__btn--play-pause play">play</button>
-				<button class="btn controls__btn--stop">play</button>
-				<button class="btn controls__btn--play-pause">play</button>
-		</div>
-
-	</section>
-
-	<nav class="nav nav--main clearfix">
-		<ul class="nav__tab-menu clearfix">
-			<li><a href="#about-us">About Us</a></li>
-			<li><a href="#schedule">Schedule</a></li>
-			<li><a href="#programs">Programs</a></li>
-			<li><a href="#contact-us">Contact Us</a></li>
-		</ul>
+	<nav class="nav nav--main">
+		<a href="#about-us">About Us</a>
+		<a href="#schedule">Schedule</a>
+		<a href="#programs">Programs</a>
+		<a href="#contact-us">Contact Us</a>
 	</nav>
 
 	<section class="page page--about-us content content--text tab active">
@@ -124,12 +95,10 @@
 	</section>
 
 	<section class="page page--schedule tab">
-
 		<div id="schedule" class="schedule content content--wide">
 			<div class="schedule__header"></div>
 			<div class="schedule__timeslots"></div>
 		</div>
-		<!-- <div id="schedule" class="schedule content content--wide"></div> -->
 		<template id="template--timeslot">
 			<a class="schedule__timeslot"href='#programs?shortname="{{shortname}}"'>{{name}}</div>	
 		</template>

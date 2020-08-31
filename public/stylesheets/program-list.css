@@ -55,6 +55,12 @@
 	font-family: fira-mono;
 	font-size: .75rem;
 	text-align: center;
+
+	max-width: var(--link-size);
+	max-height: 3em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
 	position: absolute;
 	top: calc(var(--link-size) + 1rem);
 	left: 0;

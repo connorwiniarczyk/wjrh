@@ -2,6 +2,28 @@
 /* The styles common accross all screens */
 /* --------------------------------------*/
 
+.control-panel {
+	background: var(--white);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--black);
+	border-radius: 0.5rem;
+	margin-top: 5rem;
+}
+
+.music-controls[data-state="off"] > :not(.btn--listen-live){
+	display: none;
+}
+
+.music-controls[data-state="stream"] > :not(.controls--stream){
+	display: none;
+}
+
+.music-controls[data-state="recording"] > :not(.controls--recording){
+	display: none;
+}
+
+
+
 .page--music-player {
 	height: 100vh;
 	width: 100%;

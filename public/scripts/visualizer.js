@@ -123,10 +123,15 @@ Visualizer.onResize = function(){
 	Visualizer.width = Visualizer.maxWidth ? 
 		Math.min(window.innerWidth, Visualizer.maxWidth) :
 		window.innerWidth
-
 	Visualizer.resolution = Math.floor(Visualizer.width / Visualizer.barWidth)
-
-	console.log(Visualizer.resolution)
 }
 
 window.addEventListener("resize", Visualizer.onResize)
+window.addEventListener("load", function(){
+	Visualizer.init({
+		audio: document.getElementById("music-player"),
+		parent: document.getElementById("visualizer"),
+	})
+	Visualizer.begin()
+
+})
