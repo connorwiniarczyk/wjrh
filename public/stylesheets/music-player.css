@@ -8,6 +8,15 @@
 	border: 1px solid var(--black);
 	border-radius: 0.5rem;
 	margin-top: 5rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.control-panel input[type="range"]{
+	width: 5rem;
+	margin-left: 2rem;
 }
 
 .music-controls[data-state="off"] > :not(.btn--listen-live){
@@ -176,7 +185,7 @@
 
 .btn--play-pause {
 	--color: #333;
-	--size: 30px;
+	--size: 20px;
 
 	box-sizing: border-box;
 
@@ -189,7 +198,7 @@
 }
 
 .btn--play-pause:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
 
 .btn--play-pause.play {

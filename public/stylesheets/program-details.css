@@ -2,6 +2,70 @@
 /* The styles common accross all screens */
 /* --------------------------------------*/
 
+
+/* variables */
+.program-details{
+	--image-size: 12rem;	
+}
+
+@media only screen and (max-width: 800px){
+	.program-details{
+		--image-size: 8rem;
+	}
+}
+
+.program__header{
+	display: grid; 
+	grid-template-columns: var(--image-size) auto;
+	grid-template-rows: repeat(2, calc(var(--image-size) * 0.5));
+
+	grid-template-areas:
+		"image title"
+		"image djs";
+
+	justify-items: left;
+	/*s align-items: center; */
+}
+
+.program__header .program-details__image {
+	grid-area: image;
+	object-position: center;
+	object-fit: cover;
+
+	width: var(--image-size);
+	height: var(--image-size);
+
+	border-radius: 1rem;
+}
+
+.program__header h1 {
+	grid-area: title;
+	margin-left: 2rem;
+	align-self: end;
+
+	text-align: center;
+}
+
+.program__header h2 {
+	grid-area: djs;
+	margin-left: 2rem;
+	align-self: start;
+	text-align: center;
+}
+
+.episode {
+	border-bottom: solid 1px var(--black);
+}
+
+
+.episode .btn--play-pause {
+	margin-right: 1rem;
+}
+
+.episode h3 {
+	
+}
+
 /* .content { */
 /* 	background: var(--white); */	
 

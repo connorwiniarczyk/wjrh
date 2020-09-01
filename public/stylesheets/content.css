@@ -23,6 +23,10 @@
 		margin-right: auto;
 		margin-left: auto;
 	}
+
+	.content h1 {
+		font-size: 2em;
+	}
 }
 
 @media only screen and (min-width: 1200px) {
@@ -36,6 +40,10 @@
 		margin-left: auto;
 	}
 }
+
+/* .content h1 { */
+/* 	font-size: 2rem; */
+/* } */
 
 .content img {
 	width: 100%;

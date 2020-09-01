@@ -53,12 +53,13 @@ async function render_program_details(shortname){
 	)
 
 	const program = result.program
-	console.log(shortname)
 
-	console.log(program)
+	console.log(program.image)
 
 	newElement = clone_template("#template--program", {
-		...program
+		...program,
+		image: program.image || '/media/default_program.png',
+		description: program.description || '',
 	})
 
 	program_page.innerHTML = ""
@@ -68,7 +69,8 @@ async function render_program_details(shortname){
 	episode_list.innerHTML = ""
 	program.episodes.forEach(function(episode){
 		newEpisodeLink = clone_template("#template--episode",{
-			...episode	
+			...episode,
+			description: episode.description || "",
 		})
 		episode_list.appendChild(newEpisodeLink)
 	})
